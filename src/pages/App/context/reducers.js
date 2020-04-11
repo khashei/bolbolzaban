@@ -2,7 +2,7 @@ const reducers = (state, action) => {
   const { payload } = action;
   switch (action.type) {
     case 'ADD_ITEM':
-      return addNewItem(state, payload.todoItem);
+      return addNewItem(state, payload);
     default:
       return state;
   }

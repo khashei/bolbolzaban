@@ -1,9 +1,8 @@
 import React from 'react';
 import reducers from './reducers';
 import initialState from './initial-state';
+import Context from './index';
 
-const Context = React.createContext();
-// export const Context = React.createContext();
 const Provider = (props) => {
   const [globalState, dispatch] = React.useReducer(reducers, initialState);
 

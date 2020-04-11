@@ -291,6 +291,7 @@ module.exports = function (webpackEnv) {
         .filter((ext) => useTypeScript || !ext.includes('ts')),
       alias: {
         '@app': path.resolve(__dirname, './../src/pages/App'),
+        '@app-context': path.resolve(__dirname, './../src/pages/App/context'),
         '@pages': path.resolve(__dirname, './../src/pages'),
         '@components': path.resolve(__dirname, './../src/components'),
         '@utils': path.resolve(__dirname, './../src/utils'),

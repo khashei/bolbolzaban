@@ -13,7 +13,7 @@ const useStyles = makeStyles(({ palette, typography }) => ({
   },
 }));
 
-function Home() {
+function Blank() {
   const { globalState, dispatch } = React.useContext(Context);
   console.log('Global State', globalState);
 
@@ -33,12 +33,12 @@ function Home() {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <Button>Home It Is</Button>
+      <Button>Blank It Is</Button>
     </div>
   );
 }
 
-Home.defaultProps = {};
-Home.propTypes = {};
+Blank.defaultProps = {};
+Blank.propTypes = {};
 
-export default Home;
+export default Blank;
