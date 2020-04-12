@@ -1,4 +1,4 @@
-const request = ({
+const request = async ({
   url,
   method = 'GET',
   headers = {},
@@ -16,12 +16,15 @@ const request = ({
     finalHeaders['Content-Type'] = contentType;
   }
 
-  return fetch({
-    url,
+  console.log('URL ===>', url);
+  let response = await fetch(url, {
     method,
     headers: finalHeaders,
-    body,
+    ...(method === 'POST' && { body: body }),
   });
+  let data = await response.json();
+  console.log('got this from server', data);
+  return data;
 };
 
 export const getRequest = ({ url, headers = {}, body = {}, token = null }) =>

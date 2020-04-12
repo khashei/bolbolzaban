@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 // import { connect } from 'react-redux';
 import {
@@ -9,13 +9,14 @@ import {
   Radio,
   Button,
 } from '@material-ui/core/';
+import useAsync from '@hooks/use-async';
 import { makeStyles } from '@material-ui/core/styles';
 // import { generatePoem } from '../../../../../actions/bolbolzaban/generate-poem';
 import InputHintBox from './input-hint-box';
 import RandomInputBox from './random-input-box';
 import BeytPreprocessor from '@utils/beyt-preprocessor';
 import predefinedPatterns from '@utils/predefined-patterns';
-
+import { generatePoemRequest } from '@app/api';
 const useStyles = makeStyles(
   ({ breakpoints, spacing, palette, typography }) => ({
     container: {
@@ -75,35 +76,28 @@ const InputForm = () => {
     style: 'free',
     hint: null,
     randomInputVisible: false,
+    isLoading: false,
+    isUserDefined: true,
   });
+  const [isLoading, setIsLoading] = useState(false);
   // const [inputTextRef, setInputTextRef] = useState();
 
   const onSubmit = () => {
-    // TODO DISPATCH
     const { firstMesra, secondMesra, hint } = BeytPreprocessor.process(
       formState.firstMesra,
       formState.secondMesra
     );
+
     const randomInputVisible = !firstMesra && !secondMesra;
-    console.log('randomInputVisible is ', randomInputVisible);
-    if (randomInputVisible) {
-      setFormState({
-        ...formState,
-        firstMesra,
-        secondMesra,
-        hint,
-        randomInputVisible,
-      });
-    } else {
-      setFormState({
-        ...formState,
-        firstMesra,
-        secondMesra,
-        hint,
-        randomInputVisible,
-      });
-      dispatchGeneratePoem(true);
-    }
+    setFormState({
+      ...formState,
+      firstMesra,
+      secondMesra,
+      hint,
+      randomInputVisible,
+      shouldSubmit: true,
+      isUserDefined: !randomInputVisible,
+    });
   };
 
   const onRandomSampleClick = () => {
@@ -121,9 +115,10 @@ const InputForm = () => {
       hint:
         'حالا سعی کنید بعضی از کلمات را عوض کنید یا بجای آن علامت سوال بگذارید و دوباره امتحان کنید',
       randomInputVisible: false,
+      shouldSubmit: true,
+      isUserDefined: false,
     });
-    // TODO
-    dispatchGeneratePoem(false);
+    // dispatchGeneratePoem(false);
   };
 
   // setInputTextRef = (node) => {
@@ -132,21 +127,31 @@ const InputForm = () => {
   //   });
   // };
 
-  const dispatchGeneratePoem = (isUserDefined) => () => {
+  useEffect(() => {
+    if (formState.shouldSubmit === true) {
+      console.log('SHOULD SUBMIT');
+      dispatchGeneratePoem();
+      setFormState({ ...formState, shouldSubmit: false });
+    }
+  }, [formState.shouldSubmit]);
+
+  const dispatchGeneratePoem = () => {
     const firstMesra = formState.firstMesra || '?';
     const secondMesra = formState.secondMesra || '?';
-    // TODO
+    const byUser = formState.isUserDefined;
+
     console.log(
       'DISPATCH WITH THIS',
-      style,
+      formState.style,
       `${firstMesra}-${secondMesra}`,
-      isUserDefined
+      byUser
     );
-    // this.props.generatePoem(
-    //   style,
-    //   `${firstMesra}-${secondMesra}`,
-    //   isUserDefined
-    // );
+
+    generatePoemRequest({
+      style: formState.style,
+      mask: `${firstMesra}-${secondMesra}`,
+      isUserDefined: byUser,
+    });
   };
 
   const handleChange = (name) => (event) => {
@@ -156,7 +161,6 @@ const InputForm = () => {
     });
   };
 
-  const isLoading = false;
   const classes = useStyles();
   return (
     <form className={classes.container} noValidate autoComplete='off'>

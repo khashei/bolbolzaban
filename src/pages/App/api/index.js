@@ -6,10 +6,11 @@ export const subscribeRequest = ({ contact }) =>
     url: `${BASE_PATH}/subscribe/${contact}`,
   });
 
-export const generatePoemRequest = ({ style, mask }) =>
+export const generatePoemRequest = ({ style, mask }) => {
   getRequest({
     url: `${BASE_PATH}/deepsher/${style}/${mask}`,
   });
+};
 
 export const feedbackRequest = ({ email, body }) =>
   postRequest({
