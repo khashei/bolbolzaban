@@ -1,5 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Pre-requisites
+install NodeJS 
+Install Yarn: `npm install -g yarn`
+
 ## Available Scripts
 
 The code is based on an ejected create-react-app so you know how it works!
