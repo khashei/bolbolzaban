@@ -1,9 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html dir="rtl">
   <head>
     <meta charset="utf-8" />
+    <title>بلبل‌زبان</title>
+    <meta
+      name="description"
+      content="بلبل‌زبان یک موتور هوشمند سُراینده‌ی شعر است، که با کمک هوش مصنوعی، اشعاری با وزن و عبارات دلخواه شما می‌سُراید.    زبان شعر گفتن را از روی آثار کهن شعر فارسی یاد گرفته است و میتواند سبک و وزن شعرای بزرگ را تقلید کند"
+    />
+    <meta
+      name="keywords"
+      content="machine learning, شعر, bolbol, bolbolzaban, ai"
+    />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    />
+
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
@@ -24,7 +41,19 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'UA-134342850-1');
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-134342850-1"
+    ></script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -40,4 +69,23 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
+  <!-- smartlook -->
+  <script type="text/javascript">
+    window.smartlook ||
+      (function (d) {
+        var o = (smartlook = function () {
+            o.api.push(arguments);
+          }),
+          h = d.getElementsByTagName('head')[0];
+        var c = d.createElement('script');
+        o.api = new Array();
+        c.async = true;
+        c.type = 'text/javascript';
+        c.charset = 'utf-8';
+        c.src = 'https://rec.smartlook.com/recorder.js';
+        h.appendChild(c);
+      })(document);
+    smartlook('init', '2b43d30a83c801d35a56e7a9e1570531104a8ad5');
+  </script>
+  <!-- smartlook -->
 </html>
