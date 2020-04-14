@@ -47,7 +47,7 @@ function App() {
   const NotFound = lazy(() =>
     import(
       /* webpackChunkName: "pages" */
-      '@pages/PageErrors/NotFound'
+      '@pages/Errors/NotFound'
     )
   );
 
