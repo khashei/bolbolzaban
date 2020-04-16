@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, AppBar, Tabs, Tab, Typography } from '@material-ui/core';
-import TakBeyt from '@pages/TakBeyt'
-import Sher from '@pages/Sher'
-import About from '@pages/About'
+import InputForm from './node_modules/@components/beyt-sora/input-form';
+import ResultContainer from './node_modules/@components/beyt-sora/result/container';
 import PropTypes from 'prop-types';
-import Context from '@app-context';
+import Context from './node_modules/@app-context';
 const useStyles = makeStyles(({ palette, typography }) => ({
   root: {
     width: '100%',
@@ -29,7 +28,8 @@ function TabContainer(props) {
 TabContainer.propTypes = {
   children: PropTypes.node.isRequired,
 };
-function Home() {
+
+function BeytSora() {
   // const { globalState, dispatch } = React.useContext(Context);
   // console.log('Global State', globalState);
   const [value, setValue] = useState(0);
@@ -42,34 +42,14 @@ function Home() {
   };
   const classes = useStyles();
   return (
-    <div className={classes.root}>
-      <AppBar position='static'>
-        <Tabs value={value} onChange={handleChange} centered>
-          <Tab label='همسُرایی تک بیت' />
-          <Tab label='سُرایش شعر' />
-          <Tab label='بیشتر' />
-        </Tabs>
-      </AppBar>
-      {value === 0 && (
-        <TabContainer>
-          <TakBeyt />
-        </TabContainer>
-      )}
-      {value === 1 && (
-        <TabContainer>
-          <Sher />
-        </TabContainer>
-      )}
-      {value === 2 && (
-        <TabContainer>
-          <About />
-        </TabContainer>
-      )}
+    <div className={classes.mainContent}>
+      <InputForm />
+      <ResultContainer />
     </div>
   );
 }
 
-Home.defaultProps = {};
-Home.propTypes = {};
+BeytSora.defaultProps = {};
+BeytSora.propTypes = {};
 
-export default Home;
+export default BeytSora;
