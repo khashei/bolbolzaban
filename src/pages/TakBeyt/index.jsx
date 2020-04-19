@@ -3,10 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import InputForm from './input-form';
 import ResultContainer from './result/container';
 import PropTypes from 'prop-types';
-import Context from '@app-context';
 import { GenerateSW } from 'workbox-webpack-plugin';
 import { generatePath } from 'react-router-dom';
-import BeytPreprocessor from '@utils/beyt-preprocessor';
 import { generatePoemRequest } from '@app/api';
 
 const useStyles = makeStyles(({ palette, typography }) => ({
@@ -36,7 +34,7 @@ const useStyles = makeStyles(({ palette, typography }) => ({
 // };
 
 
-function TakBeyt() {
+const TakBeyt = props => {
 
 
   // const [result, setResult] = useState({
@@ -89,11 +87,7 @@ function TakBeyt() {
   return (
     <div className={classes.mainContent}>
       <InputForm
-        firstMesra={""}
-        secondMesra={""}
-        style={"free"}
         isLoading={false}
-        hint={""}
         onSubmit={generateBeyt} />
       <ResultContainer />
     </div>

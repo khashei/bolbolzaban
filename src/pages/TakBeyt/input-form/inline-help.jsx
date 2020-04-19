@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Typography, Card, CardContent, CardActions, Button, Popper } from '@material-ui/core/';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-class RandomInputBox extends React.Component {
+class InlineHelp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -57,13 +57,13 @@ class RandomInputBox extends React.Component {
   }
 }
 
-RandomInputBox.propTypes = {
+InlineHelp.propTypes = {
   classes: PropTypes.object.isRequired,
   onRandomSampleClick: PropTypes.func.isRequired,
   anchor: PropTypes.object,
 };
 
-RandomInputBox.defaultProps = {
+InlineHelp.defaultProps = {
   anchor: null,
 };
 
@@ -103,4 +103,4 @@ const styles = theme => ({
   },
 });
 
-export default withStyles(styles, { withTheme: true })(RandomInputBox);
+export default withStyles(styles, { withTheme: true })(InlineHelp);

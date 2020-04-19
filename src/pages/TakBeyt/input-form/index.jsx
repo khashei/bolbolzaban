@@ -7,16 +7,13 @@ import {
   Paper,
   Radio,
   Button,
-} from '@material-ui/core/';
+} from '@material-ui/core';
 
-import useAsync from '@hooks/use-async';
 import { makeStyles } from '@material-ui/core/styles';
-
-// import { generatePoem } from '../../../../../actions/bolbolzaban/generate-poem';
-
 import HintBox from '@components/hint-box';
-import RandomInputBox from './random-input-box';
+import InlineHelp from './inline-help'; 
 import predefinedPatterns from '@utils/predefined-patterns';
+import TakBeytPreprocessor from "./TakBeytPreprocessor";
 
 const useStyles = makeStyles(
   ({ breakpoints, spacing, palette, typography }) => ({
@@ -67,53 +64,34 @@ const InputForm = props => {
     firstMesra: props.firstMesra,
     secondMesra: props.secondMesra,
     style: props.style,
+    hint: "",
+    inlineHelpVisible: false
   });
 
+  const [inputTextRef, setInputTextRef] = useState();
+
   // const [formState, setFormState] = useState({
-  //   randomInputVisible: false,
+  //   inlineHelpVisible: false,
   //   isLoading: false,
   //   isUserDefined: true,
   // });
   // const [isLoading, setIsLoading] = useState(false);
-  // const [inputTextRef, setInputTextRef] = useState();
-
-  // const onSubmit = () => {
-  //   const { firstMesra, secondMesra, hint } = BeytPreprocessor.process(
-  //     formState.firstMesra,
-  //     formState.secondMesra
-  //   );
-
-  //   const randomInputVisible = !firstMesra && !secondMesra;
-  //   setFormState({
-  //     ...formState,
-  //     firstMesra,
-  //     secondMesra,
-  //     hint,
-  //     randomInputVisible,
-  //     shouldSubmit: true,
-  //     isUserDefined: !randomInputVisible,
-  //   });
-  // };
-
-  const handleClick = () => {
-    props.onSubmit(formState.firstMesra, formState.secondMesra, formState.style)
-    // const { firstMesra, secondMesra, hint } = BeytPreprocessor.process(
-    //   formState.firstMesra,
-    //   formState.secondMesra
-    // );
-
-    // const randomInputVisible = !firstMesra && !secondMesra;
-    // setFormState({
-    //   ...formState,
-    //   firstMesra,
-    //   secondMesra,
-    //   hint,
-    //   randomInputVisible,
-    //   shouldSubmit: true,
-    //   isUserDefined: !randomInputVisible,
-    // });
 
 
+  const handleSubmit = () => {
+    const { firstMesra, secondMesra, hint } = TakBeytPreprocessor.process(
+      formState.firstMesra,
+      formState.secondMesra
+    );
+    
+    if (!firstMesra && !secondMesra) {
+      setFormState({
+        ...formState,
+        inlineHelpVisible: true,
+      });
+    } else {
+      props.onSubmit(formState.firstMesra, formState.secondMesra, formState.style);
+    }
   };
 
   const onRandomSampleClick = () => {
@@ -130,28 +108,20 @@ const InputForm = props => {
       style,
       hint:
         'حالا سعی کنید بعضی از کلمات را عوض کنید یا بجای آن علامت سوال بگذارید و دوباره امتحان کنید',
-      randomInputVisible: false,
-      shouldSubmit: true,
+      inlineHelpVisible: false,
+      //shouldSubmit: true,
       isUserDefined: false,
     });
-    // dispatchGeneratePoem(false);
+    props.onSubmit(formState.firstMesra, formState.secondMesra, formState.style);
   };
 
-  // setInputTextRef = (node) => {
-  //   this.setState({
-  //     inputTextRef: node,
-  //   });
-  // };
-
-  useEffect(() => {
-    if (formState.shouldSubmit === true) {
-      console.log('SHOULD SUBMIT');
-      dispatchGeneratePoem();
-      setFormState({ ...formState, shouldSubmit: false });
-    }
-  }, [formState.shouldSubmit]);
-
-  
+  // useEffect(() => {
+  //   if (formState.shouldSubmit === true) {
+  //     console.log('SHOULD SUBMIT');
+  //     dispatchGeneratePoem();
+  //     setFormState({ ...formState, shouldSubmit: false });
+  //   }
+  // }, [formState.shouldSubmit]);
 
   const handleChange = (name) => (event) => {
     setFormState({
@@ -233,7 +203,6 @@ const InputForm = props => {
             onChange={handleChange('firstMesra')}
             margin='normal'
             variant='filled'
-            // inputRef={this.setInputTextRef}
           />
           <TextField
             id='user-input'
@@ -248,7 +217,7 @@ const InputForm = props => {
             onChange={handleChange('secondMesra')}
             margin='normal'
             variant='filled'
-            // inputRef={this.setInputTextRef}
+            inputRef={setInputTextRef.bind(this)}
           />
         </Grid>
         {props.hint && !props.isLoading && (
@@ -256,11 +225,11 @@ const InputForm = props => {
             <HintBox hint={props.hint} />
           </Grid>
         )}
-        {formState.randomInputVisible && (
-          <RandomInputBox
+        {formState.inlineHelpVisible && (
+          <InlineHelp
             onRandomSample={setRandomInput}
             onRandomSampleClick={onRandomSampleClick}
-            // anchor={formState.inputTextRef}
+            anchor={inputTextRef}
           />
         )}
         <Grid item xs={12}>
@@ -269,7 +238,7 @@ const InputForm = props => {
             color='primary'
             fullWidth
             className={classes.button}
-            onClick={handleClick}
+            onClick={handleSubmit}
           >
             بسُرای
           </Button>
@@ -281,20 +250,18 @@ const InputForm = props => {
 
 InputForm.propTypes = {
   isLoading: PropTypes.bool,
-  onSubmit: PropTypes.func,
   firstMesra: PropTypes.string,
   secondMesra: PropTypes.string,
   style: PropTypes.string,
-  hint: PropTypes.string,
+  onSubmit: PropTypes.func,
 };
 
 InputForm.defaultProps = {
-  firstMesra: null,
-  secondMesra: null,
+  isLoading: false,
+  firstMesra: "",
+  secondMesra: "",
   style: "free",
   onSubmit: null,
-  hint: null,
-  isLoading: false,
 };
 
 export default InputForm;
