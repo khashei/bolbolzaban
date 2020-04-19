@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button, AppBar, Tabs, Tab, Typography } from '@material-ui/core';
-import InputForm from '@pages/TakBeyt/input-form';
-import ResultContainer from '@pages/TakBeyt/result/container';
+import InputForm from './input-form';
+import ResultContainer from './result/container';
 import PropTypes from 'prop-types';
 import Context from '@app-context';
+import { GenerateSW } from 'workbox-webpack-plugin';
+import { generatePath } from 'react-router-dom';
+import BeytPreprocessor from '@utils/beyt-preprocessor';
+import { generatePoemRequest } from '@app/api';
+
 const useStyles = makeStyles(({ palette, typography }) => ({
   root: {
     width: '100%',
@@ -16,23 +20,35 @@ const useStyles = makeStyles(({ palette, typography }) => ({
     position: 'relative',
   },
 }));
+// const onSubmit = () => {
+//   const { firstMesra, secondMesra, hint } = BeytPreprocessor.process(
+//     formState.firstMesra,
+//     formState.secondMesra
+//   );
 
-function TabContainer(props) {
-  return (
-    <Typography component='div' style={{ padding: 8 * 3 }}>
-      {props.children}
-    </Typography>
-  );
-}
+//   const randomInputVisible = !firstMesra && !secondMesra;
+//   setFormState({
+//     ...formState,
+//     randomInputVisible,
+//     shouldSubmit: true,
+//     isUserDefined: !randomInputVisible,
+//   });
+// };
 
-TabContainer.propTypes = {
-  children: PropTypes.node.isRequired,
-};
 
-function TabBeyt() {
+function TakBeyt() {
+
+
+  // const [result, setResult] = useState({
+  //   style: 'free',
+  //   firstMesra,
+  //   secondMesra,
+  // });
+
+
   // const { globalState, dispatch } = React.useContext(Context);
   // console.log('Global State', globalState);
-  const [value, setValue] = useState(0);
+  // const [value, setValue] = useState(0);
   // const updatedSubscriptionHeight = (value) => {
   //   this.setState({ footerHeight: value });
   // }
@@ -40,16 +56,51 @@ function TabBeyt() {
   const handleChange = (event, value) => {
     setValue(value);
   };
+
+  const dispatchGeneratePoem = () => {
+    const firstMesra = formState.firstMesra || '?';
+    const secondMesra = formState.secondMesra || '?';
+    const byUser = formState.isUserDefined;
+
+    console.log(
+      'DISPATCH WITH THIS',
+      formState.style,
+      `${firstMesra}-${secondMesra}`,
+      byUser
+    );
+
+    generatePoemRequest({
+      style: formState.style,
+      mask: `${firstMesra}-${secondMesra}`,
+      isUserDefined: byUser,
+    });
+  };
+
+  const generateBeyt = (firstMesra, secondMesra, style) => {
+    console.log(
+      'Generating beyt with',
+      firstMesra,
+      secondMesra,
+      style
+    );
+  }
+
   const classes = useStyles();
   return (
     <div className={classes.mainContent}>
-      <InputForm />
+      <InputForm
+        firstMesra={""}
+        secondMesra={""}
+        style={"free"}
+        isLoading={false}
+        hint={""}
+        onSubmit={generateBeyt} />
       <ResultContainer />
     </div>
   );
 }
 
-TabBeyt.defaultProps = {};
-TabBeyt.propTypes = {};
+TakBeyt.defaultProps = {};
+TakBeyt.propTypes = {};
 
-export default TabBeyt;
+export default TakBeyt;

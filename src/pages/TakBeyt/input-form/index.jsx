@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-// import { connect } from 'react-redux';
 import {
   TextField,
   Typography,
@@ -9,14 +8,16 @@ import {
   Radio,
   Button,
 } from '@material-ui/core/';
+
 import useAsync from '@hooks/use-async';
 import { makeStyles } from '@material-ui/core/styles';
+
 // import { generatePoem } from '../../../../../actions/bolbolzaban/generate-poem';
-import InputHintBox from './input-hint-box';
+
+import HintBox from '@components/hint-box';
 import RandomInputBox from './random-input-box';
-import BeytPreprocessor from '@utils/beyt-preprocessor';
 import predefinedPatterns from '@utils/predefined-patterns';
-import { generatePoemRequest } from '@app/api';
+
 const useStyles = makeStyles(
   ({ breakpoints, spacing, palette, typography }) => ({
     container: {
@@ -61,43 +62,58 @@ const useStyles = makeStyles(
   })
 );
 
-// @connect(
-//   (state) => ({
-//     isLoading: state.getIn(['deepsher', 'isLoading']),
-//   }),
-//   {
-//     generatePoem,
-//   }
-// )
-const InputForm = () => {
-  const [formState, setFormState] = useState({
-    firstMesra: '',
-    secondMesra: '',
-    style: 'free',
-    hint: null,
-    randomInputVisible: false,
-    isLoading: false,
-    isUserDefined: true,
+const InputForm = props => {
+  const [formState, setFormState] = useState({ 
+    firstMesra: props.firstMesra,
+    secondMesra: props.secondMesra,
+    style: props.style,
   });
-  const [isLoading, setIsLoading] = useState(false);
+
+  // const [formState, setFormState] = useState({
+  //   randomInputVisible: false,
+  //   isLoading: false,
+  //   isUserDefined: true,
+  // });
+  // const [isLoading, setIsLoading] = useState(false);
   // const [inputTextRef, setInputTextRef] = useState();
 
-  const onSubmit = () => {
-    const { firstMesra, secondMesra, hint } = BeytPreprocessor.process(
-      formState.firstMesra,
-      formState.secondMesra
-    );
+  // const onSubmit = () => {
+  //   const { firstMesra, secondMesra, hint } = BeytPreprocessor.process(
+  //     formState.firstMesra,
+  //     formState.secondMesra
+  //   );
 
-    const randomInputVisible = !firstMesra && !secondMesra;
-    setFormState({
-      ...formState,
-      firstMesra,
-      secondMesra,
-      hint,
-      randomInputVisible,
-      shouldSubmit: true,
-      isUserDefined: !randomInputVisible,
-    });
+  //   const randomInputVisible = !firstMesra && !secondMesra;
+  //   setFormState({
+  //     ...formState,
+  //     firstMesra,
+  //     secondMesra,
+  //     hint,
+  //     randomInputVisible,
+  //     shouldSubmit: true,
+  //     isUserDefined: !randomInputVisible,
+  //   });
+  // };
+
+  const handleClick = () => {
+    props.onSubmit(formState.firstMesra, formState.secondMesra, formState.style)
+    // const { firstMesra, secondMesra, hint } = BeytPreprocessor.process(
+    //   formState.firstMesra,
+    //   formState.secondMesra
+    // );
+
+    // const randomInputVisible = !firstMesra && !secondMesra;
+    // setFormState({
+    //   ...formState,
+    //   firstMesra,
+    //   secondMesra,
+    //   hint,
+    //   randomInputVisible,
+    //   shouldSubmit: true,
+    //   isUserDefined: !randomInputVisible,
+    // });
+
+
   };
 
   const onRandomSampleClick = () => {
@@ -135,24 +151,7 @@ const InputForm = () => {
     }
   }, [formState.shouldSubmit]);
 
-  const dispatchGeneratePoem = () => {
-    const firstMesra = formState.firstMesra || '?';
-    const secondMesra = formState.secondMesra || '?';
-    const byUser = formState.isUserDefined;
-
-    console.log(
-      'DISPATCH WITH THIS',
-      formState.style,
-      `${firstMesra}-${secondMesra}`,
-      byUser
-    );
-
-    generatePoemRequest({
-      style: formState.style,
-      mask: `${firstMesra}-${secondMesra}`,
-      isUserDefined: byUser,
-    });
-  };
+  
 
   const handleChange = (name) => (event) => {
     setFormState({
@@ -166,7 +165,7 @@ const InputForm = () => {
     <form className={classes.container} noValidate autoComplete='off'>
       <Grid container justify='space-around' spacing={16}>
         <Grid item xs={12}>
-          <Typography variant='h5'>همسُرایی</Typography>
+          <Typography variant='h5'>همسُرایی تک بیت</Typography>
         </Grid>
         <Grid item xs={6}>
           <Paper
@@ -215,7 +214,7 @@ const InputForm = () => {
           <Button
             onClick={onRandomSampleClick}
             className={classes.randomTextButton}
-            disabled={isLoading}
+            disabled={props.isLoading}
             color='inherit'
             size='small'
           >
@@ -252,9 +251,9 @@ const InputForm = () => {
             // inputRef={this.setInputTextRef}
           />
         </Grid>
-        {formState.hint && !isLoading && (
+        {props.hint && !props.isLoading && (
           <Grid item xs={12}>
-            <InputHintBox hint={formState.hint} />
+            <HintBox hint={props.hint} />
           </Grid>
         )}
         {formState.randomInputVisible && (
@@ -270,7 +269,7 @@ const InputForm = () => {
             color='primary'
             fullWidth
             className={classes.button}
-            onClick={onSubmit}
+            onClick={handleClick}
           >
             بسُرای
           </Button>
@@ -281,13 +280,20 @@ const InputForm = () => {
 };
 
 InputForm.propTypes = {
-  classes: PropTypes.object.isRequired,
   isLoading: PropTypes.bool,
-  generatePoem: PropTypes.func,
+  onSubmit: PropTypes.func,
+  firstMesra: PropTypes.string,
+  secondMesra: PropTypes.string,
+  style: PropTypes.string,
+  hint: PropTypes.string,
 };
 
 InputForm.defaultProps = {
-  generatePoem: null,
+  firstMesra: null,
+  secondMesra: null,
+  style: "free",
+  onSubmit: null,
+  hint: null,
   isLoading: false,
 };
 

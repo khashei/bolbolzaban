@@ -45,9 +45,9 @@ function Home() {
     <div className={classes.root}>
       <AppBar position='static'>
         <Tabs value={value} onChange={handleChange} centered>
-          <Tab label='همسُرایی تک بیت' />
-          <Tab label='سُرایش شعر' />
-          <Tab label='بیشتر' />
+          <Tab label='تک بیت' />
+          <Tab label='شعر' />
+          <Tab label='درباره' />
         </Tabs>
       </AppBar>
       {value === 0 && (
