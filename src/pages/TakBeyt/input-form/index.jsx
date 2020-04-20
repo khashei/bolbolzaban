@@ -65,7 +65,8 @@ const InputForm = props => {
     secondMesra: props.secondMesra,
     style: props.style,
     hint: "",
-    inlineHelpVisible: false
+    inlineHelpVisible: false,
+    shouldSubmit: false
   });
 
   const [inputTextRef, setInputTextRef] = useState();
@@ -90,38 +91,33 @@ const InputForm = props => {
         inlineHelpVisible: true,
       });
     } else {
-      props.onSubmit(formState.firstMesra, formState.secondMesra, formState.style);
+      setFormState({
+        ...formState,
+        shouldSubmit: true,
+      });
     }
   };
 
   const onRandomSampleClick = () => {
-    const randomInput =
-      predefinedPatterns[Math.floor(Math.random() * predefinedPatterns.length)];
-    setRandomInput(randomInput.first, randomInput.second, randomInput.style);
-  };
-
-  const setRandomInput = (firstMesra, secondMesra, style) => {
+    const randomInput = predefinedPatterns[Math.floor(Math.random() * predefinedPatterns.length)];
     setFormState({
       ...formState,
-      firstMesra,
-      secondMesra,
-      style,
-      hint:
-        'حالا سعی کنید بعضی از کلمات را عوض کنید یا بجای آن علامت سوال بگذارید و دوباره امتحان کنید',
+      firstMesra: randomInput.first,
+      secondMesra: randomInput.second,
+      style: randomInput.style,
+      hint: 'حالا سعی کنید بعضی از کلمات را عوض کنید یا بجای آن علامت سوال بگذارید و دوباره امتحان کنید',
       inlineHelpVisible: false,
-      //shouldSubmit: true,
+      shouldSubmit: true,
       isUserDefined: false,
     });
-    props.onSubmit(formState.firstMesra, formState.secondMesra, formState.style);
   };
 
-  // useEffect(() => {
-  //   if (formState.shouldSubmit === true) {
-  //     console.log('SHOULD SUBMIT');
-  //     dispatchGeneratePoem();
-  //     setFormState({ ...formState, shouldSubmit: false });
-  //   }
-  // }, [formState.shouldSubmit]);
+  useEffect(() => {
+    if (formState.shouldSubmit === true) {
+      props.onSubmit(formState.firstMesra, formState.secondMesra, formState.style);
+      setFormState({ ...formState, shouldSubmit: false });
+    }
+  }, [formState.shouldSubmit]);
 
   const handleChange = (name) => (event) => {
     setFormState({
@@ -192,9 +188,6 @@ const InputForm = props => {
           </Button>
           <TextField
             id='user-input'
-            // rows="1"
-            // rowsMax="1"
-            // multiline
             fullWidth
             required
             placeholder='هرگز ؟ آنکه ؟ ؟ بعشق'
@@ -206,9 +199,6 @@ const InputForm = props => {
           />
           <TextField
             id='user-input'
-            // rows="1"
-            // rowsMax="1"
-            // multiline
             fullWidth
             required
             placeholder='؟ است بر ؟ ؟ ؟‌ ما'
@@ -227,7 +217,6 @@ const InputForm = props => {
         )}
         {formState.inlineHelpVisible && (
           <InlineHelp
-            onRandomSample={setRandomInput}
             onRandomSampleClick={onRandomSampleClick}
             anchor={inputTextRef}
           />
