@@ -14,9 +14,10 @@ import HintBox from '@components/hint-box';
 import InlineHelp from './inline-help'; 
 import predefinedPatterns from '@utils/predefined-patterns';
 import TakBeytPreprocessor from "./TakBeytPreprocessor";
+import theme from "@app/theme"
 
 const useStyles = makeStyles(
-  ({ breakpoints, spacing, palette, typography }) => ({
+  ({ breakpoints, palette, typography }) => ({
     container: {
       display: 'flex',
       flexWrap: 'wrap',
@@ -44,7 +45,7 @@ const useStyles = makeStyles(
       },
     },
     randomTextButton: {
-      marginBottom: spacing.unit / 2,
+      marginBottom: theme.spacing(0.5),
       float: 'right',
       color: palette.common.noSokhanPrimary,
     },
@@ -129,7 +130,7 @@ const InputForm = props => {
   const classes = useStyles();
   return (
     <form className={classes.container} noValidate autoComplete='off'>
-      <Grid container justify='space-around' spacing={16}>
+      <Grid container justify='space-around' spacing={2}>
         <Grid item xs={12}>
           <Typography variant='h5'>همسُرایی تک بیت</Typography>
         </Grid>

@@ -5,11 +5,11 @@ import { TextField, Typography, Grid, Paper, Radio, Button, Input } from '@mater
 import withStyles from '@material-ui/core/styles/withStyles';
 import { feedback } from '../../../../../actions/bolbolzaban/feedback';
 
-@connect(state => ({
-  isLoading: state.getIn(['deepsher', 'isLoading']),
-}), {
-  feedback,
-})
+// @connect(state => ({
+//   isLoading: state.getIn(['deepsher', 'isLoading']),
+// }), {
+//   feedback,
+// })
 
 class InputForm extends React.Component {
   constructor(props) {
@@ -60,7 +60,7 @@ class InputForm extends React.Component {
     const { isFormValid } = this.state;
     return (
       <form className={classes.container} noValidate autoComplete="off">
-        <Grid container justify="space-around" spacing={16}>
+        <Grid container justify="space-around" spacing={10}> 
           {/* <Grid item xs={12}>
             <Typography variant="h5">
             نظرسنجی
