@@ -27,7 +27,12 @@ const request = async ({
   return data;
 };
 
-export const getRequest = ({ url, headers = {}, body = {}, token = null }) =>
+export const getRequest = ({ 
+  url, 
+  headers = {}, 
+  body = {}, 
+  token = null 
+}) =>
   request({
     url,
     headers,
@@ -67,7 +72,13 @@ export const putRequest = ({
     contentType: (json && 'application/json') || null,
   });
 
-export const deleteRequest = ({ url, headers = {}, body = {}, token = null }) =>
+export const deleteRequest = 
+({ 
+  url, 
+  headers = {}, 
+  body = {}, 
+  token = null 
+}) =>
   request({
     url,
     headers,

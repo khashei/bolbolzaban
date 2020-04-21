@@ -8,11 +8,12 @@ import {
   Radio,
   Button,
 } from '@material-ui/core';
+//import { Map, List } from 'immutable';
 
 import { makeStyles } from '@material-ui/core/styles';
 import HintBox from '@components/hint-box';
 import InlineHelp from './inline-help'; 
-import predefinedPatterns from '@utils/predefined-patterns';
+import predefinedPatterns from './predefined-patterns';
 import TakBeytPreprocessor from "./TakBeytPreprocessor";
 import theme from "@app/theme"
 
@@ -67,6 +68,7 @@ const InputForm = props => {
     style: props.style,
     hint: "",
     inlineHelpVisible: false,
+    isUserDefined: false,
     shouldSubmit: false
   });
 
@@ -81,7 +83,7 @@ const InputForm = props => {
 
 
   const handleSubmit = () => {
-    const { firstMesra, secondMesra, hint } = TakBeytPreprocessor.process(
+    const { firstMesra, secondMesra, newHint } = TakBeytPreprocessor.process(
       formState.firstMesra,
       formState.secondMesra
     );
@@ -94,6 +96,7 @@ const InputForm = props => {
     } else {
       setFormState({
         ...formState,
+        hint: newHint,
         shouldSubmit: true,
       });
     }
@@ -115,8 +118,11 @@ const InputForm = props => {
 
   useEffect(() => {
     if (formState.shouldSubmit === true) {
-      props.onSubmit(formState.firstMesra, formState.secondMesra, formState.style);
-      setFormState({ ...formState, shouldSubmit: false });
+      props.onSubmit(formState.firstMesra, formState.secondMesra, formState.style, formState.isUserDefined);
+      setFormState({ 
+        ...formState, 
+        shouldSubmit: false 
+      });
     }
   }, [formState.shouldSubmit]);
 

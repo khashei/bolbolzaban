@@ -5,7 +5,8 @@ import ResultContainer from './result/container';
 import PropTypes from 'prop-types';
 import { GenerateSW } from 'workbox-webpack-plugin';
 import { generatePath } from 'react-router-dom';
-import { generatePoemRequest } from '@app/api';
+import { generatePoemRequest } from './api';
+//import { Map, List } from 'immutable';
 
 const useStyles = makeStyles(({ palette, typography }) => ({
   root: {
@@ -18,31 +19,18 @@ const useStyles = makeStyles(({ palette, typography }) => ({
     position: 'relative',
   },
 }));
-// const onSubmit = () => {
-//   const { firstMesra, secondMesra, hint } = BeytPreprocessor.process(
-//     formState.firstMesra,
-//     formState.secondMesra
-//   );
-
-//   const randomInputVisible = !firstMesra && !secondMesra;
-//   setFormState({
-//     ...formState,
-//     randomInputVisible,
-//     shouldSubmit: true,
-//     isUserDefined: !randomInputVisible,
-//   });
-// };
-
 
 const TakBeyt = props => {
+  const [result, setResult] = useState({
+    input: '',
+    modelName: '',
+    outputs: [],
+    responseTime: null,
+    error: null,
+    statusCode: 200,
+  });
 
-
-  // const [result, setResult] = useState({
-  //   style: 'free',
-  //   firstMesra,
-  //   secondMesra,
-  // });
-
+  const [isLoading, setIsLoading] = useState(false);
 
   // const { globalState, dispatch } = React.useContext(Context);
   // console.log('Global State', globalState);
@@ -51,36 +39,14 @@ const TakBeyt = props => {
   //   this.setState({ footerHeight: value });
   // }
 
-  const handleChange = (event, value) => {
-    setValue(value);
-  };
-
-  const dispatchGeneratePoem = () => {
-    const firstMesra = formState.firstMesra || '?';
-    const secondMesra = formState.secondMesra || '?';
-    const byUser = formState.isUserDefined;
-
-    console.log(
-      'DISPATCH WITH THIS',
-      formState.style,
-      `${firstMesra}-${secondMesra}`,
-      byUser
-    );
-
+  const generateBeyt = (firstMesra, secondMesra, style, byUser) => {
+    setIsLoading(true);
     generatePoemRequest({
-      style: formState.style,
-      mask: `${firstMesra}-${secondMesra}`,
+      style: style,
+      mask: `${firstMesra || '?'}-${secondMesra || '?'}`,
       isUserDefined: byUser,
     });
-  };
-
-  const generateBeyt = (firstMesra, secondMesra, style) => {
-    console.log(
-      'Generating beyt with',
-      firstMesra,
-      secondMesra,
-      style
-    );
+    setIsLoading(false);
   }
 
   const classes = useStyles();
@@ -89,6 +55,7 @@ const TakBeyt = props => {
       <InputForm
         isLoading={false}
         onSubmit={generateBeyt} />
+      {isLoading && (<p>loading...</p>)}
       <ResultContainer />
     </div>
   );
