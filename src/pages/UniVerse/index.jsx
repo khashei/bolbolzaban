@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import InputForm from './InputForm';
-import ResultContainer from './result/container';
+import ResultContainer from './Result/container';
 import PropTypes from 'prop-types';
 import { GenerateSW } from 'workbox-webpack-plugin';
 import { generatePath } from 'react-router-dom';
 import { generatePoemRequest } from './api';
 //import { Map, List } from 'immutable';
-import { BASE_PATH } from './node_modules/@app-settings';
-
-
+import { BASE_PATH } from '@app-settings';
 
 const useStyles = makeStyles(({ palette, typography }) => ({
   root: {
@@ -23,7 +21,7 @@ const useStyles = makeStyles(({ palette, typography }) => ({
   },
 }));
 
-const TakBeyt = props => {
+const UniVerse = props => {
   const [result, setResult] = useState({
     input: '',
     modelName: '',
@@ -68,8 +66,7 @@ const TakBeyt = props => {
     </div>
   );
 }
+UniVerse.defaultProps = {};
+UniVerse.propTypes = {};
 
-TakBeyt.defaultProps = {};
-TakBeyt.propTypes = {};
-
-export default TakBeyt;
+export default UniVerse;

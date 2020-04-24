@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, AppBar, Tabs, Tab, Typography } from '@material-ui/core';
-import TakBeyt from '@pages/TakBeyt'
-import Sher from '@pages/Sher'
+import UniVerse from '@pages/UniVerse'
+import MultiVerse from '@pages/MultiVerse'
 import About from '@pages/About'
 import PropTypes from 'prop-types';
 import Context from '@app-context';
@@ -52,12 +52,12 @@ function Home() {
       </AppBar>
       {value === 0 && (
         <TabContainer>
-          <TakBeyt />
+          <UniVerse />
         </TabContainer>
       )}
       {value === 1 && (
         <TabContainer>
-          <Sher />
+          <MultiVerse />
         </TabContainer>
       )}
       {value === 2 && (

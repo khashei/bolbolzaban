@@ -8,9 +8,8 @@ import {
   Radio,
   Button,
 } from '@material-ui/core';
-//import { Map, List } from 'immutable';
 
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core';
 import HintBox from '@components/hint-box';
 import InlineHelp from './inline-help'; 
 import predefinedPatterns from './predefined-patterns';

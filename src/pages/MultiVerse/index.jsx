@@ -28,7 +28,7 @@ TabContainer.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-function Sher() {
+function MultiVerse() {
   // const { globalState, dispatch } = React.useContext(Context);
   // console.log('Global State', globalState);
   const [value, setValue] = useState(0);
@@ -47,7 +47,7 @@ function Sher() {
   );
 }
 
-Sher.defaultProps = {};
-Sher.propTypes = {};
+MultiVerse.defaultProps = {};
+MultiVerse.propTypes = {};
 
-export default Sher;
+export default MultiVerse;

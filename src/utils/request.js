@@ -27,13 +27,13 @@ const request = async ({
   return data;
 };
 
-export const getRequest = ({ 
+export const getRequest = async ({ 
   url, 
   headers = {}, 
   body = {}, 
   token = null 
 }) =>
-  request({
+  await request({
     url,
     headers,
     body,
