@@ -39,7 +39,7 @@ const ResultContainer = props => {
       </div>
     );
   } else if (!props.isLoading) {
-    if (props.error?.code != 200) {
+    if (props.error == null || props.error?.code === 200) {
       return (
         <div className={classes.root}>
           {props.outputs?.map((line, index) => (

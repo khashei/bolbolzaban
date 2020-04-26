@@ -41,7 +41,7 @@ const UniVerse = props => {
         secondMesra, 
         style,
         outputs: data.output,
-        error: { code: data.statusCode, message: data.error }
+        error: data.statusCode === 200 ? null : { code: data.statusCode, message: data.error }
       }
     });
 
@@ -65,6 +65,7 @@ const UniVerse = props => {
     </div>
   );
 }
+
 UniVerse.defaultProps = {};
 UniVerse.propTypes = {};
 
