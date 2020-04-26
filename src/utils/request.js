@@ -16,15 +16,13 @@ const request = async ({
     finalHeaders['Content-Type'] = contentType;
   }
 
-  console.log('URL ===>', url);
   let response = await fetch(url, {
     method,
     headers: finalHeaders,
     ...(method === 'POST' && { body: body }),
   });
-  let data = await response.json();
-  console.log('got this from server', data);
-  return data;
+
+  return await response.json();
 };
 
 export const getRequest = async ({ 

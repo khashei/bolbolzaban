@@ -1,4 +1,4 @@
-export default class TakBeytPreprocessor {
+export default class InputPreprocessor {
   static normalizeText(text) {
     return text
       .replace(/\?/g, '؟')
@@ -13,10 +13,10 @@ export default class TakBeytPreprocessor {
   
   static process(firstMesraText, secondMesraText) {
     let hint = null;
-    let firstMesra = TakBeytPreprocessor.normalizeText(firstMesraText);
-    let secondMesra = TakBeytPreprocessor.normalizeText(secondMesraText);
-    let m1WordCount = TakBeytPreprocessor.wordCount(firstMesra);
-    let m2WordCount = TakBeytPreprocessor.wordCount(secondMesra);
+    let firstMesra = InputPreprocessor.normalizeText(firstMesraText);
+    let secondMesra = InputPreprocessor.normalizeText(secondMesraText);
+    let m1WordCount = InputPreprocessor.wordCount(firstMesra);
+    let m2WordCount = InputPreprocessor.wordCount(secondMesra);
     // return if no input
     if (m1WordCount === 0 && m2WordCount === 0) {
       return { firstMesra, secondMesra, hint };

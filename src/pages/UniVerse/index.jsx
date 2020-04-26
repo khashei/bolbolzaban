@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import InputForm from './InputForm';
 import ResultContainer from './Result/container';
-import PropTypes from 'prop-types';
-import { GenerateSW } from 'workbox-webpack-plugin';
-import { generatePath } from 'react-router-dom';
+// import PropTypes from 'prop-types';
+// import { GenerateSW } from 'workbox-webpack-plugin';
+// import { generatePath } from 'react-router-dom';
 import { generatePoemRequest } from './api';
-//import { Map, List } from 'immutable';
-import { BASE_PATH } from '@app-settings';
+import useUniVerseContext from '@pages/Home/context/uni-verse-context';
+import { GENERATE_VERSE_FULLFILLED } from '@pages/Home/context/uni-verse-reducer';
 
 const useStyles = makeStyles(({ palette, typography }) => ({
   root: {
@@ -22,35 +22,24 @@ const useStyles = makeStyles(({ palette, typography }) => ({
 }));
 
 const UniVerse = props => {
-  const [result, setResult] = useState({
-    input: '',
-    modelName: '',
-    outputs: [],
-    responseTime: null,
-    error: null,
-    statusCode: 200,
-  });
-
+  const { state, dispatch } = useUniVerseContext();
   const [isLoading, setIsLoading] = useState(false);
-
-  // const { globalState, dispatch } = React.useContext(Context);
-  // console.log('Global State', globalState);
-  // const [value, setValue] = useState(0);
-  // const updatedSubscriptionHeight = (value) => {
-  //   this.setState({ footerHeight: value });
-  // }
 
   const generateBeyt = async (firstMesra, secondMesra, style, byUser) => {
     setIsLoading(true);
-    // const x = await generatePoemRequest({
-    //   style: style,
-    //   mask: `${firstMesra || '?'}-${secondMesra || '?'}`,
-    //   isUserDefined: byUser,
-    // });
 
-    let response = await fetch(`${BASE_PATH}/deepsher/${style}/${firstMesra || '?'}-${secondMesra || '?'}`);
-    let data = await response.json();
-    console.log('gX', data);
+    const data = await generatePoemRequest({
+      style: style,
+      mask: `${firstMesra || '?'}-${secondMesra || '?'}`,
+      isUserDefined: byUser,
+    });
+
+    dispatch({
+      type: GENERATE_VERSE_FULLFILLED,
+      payload: {
+        outputs: data.output,
+      }
+    });
 
     setIsLoading(false);
   }
@@ -59,9 +48,15 @@ const UniVerse = props => {
   return (
     <div className={classes.mainContent}>
       <InputForm
-        isLoading={false}
+        firstMesra={state.firstMesra}
+        secondMesra={state.secondMesra}
+        style={state.style}
+        isLoading={isLoading}
         onSubmit={generateBeyt} />
-      {isLoading && (<p>loading...</p>)}
+
+      {isLoading && <p> loading </p>} 
+      {true && <p>{JSON.stringify(state)}</p>}
+
       <ResultContainer />
     </div>
   );
