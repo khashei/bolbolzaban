@@ -31,15 +31,13 @@ TabContainer.propTypes = {
   children: PropTypes.node.isRequired,
 };
 function Home() {
-  // const { globalState, dispatch } = React.useContext(Context);
-  // console.log('Global State', globalState);
   const [tabIndex, setTabIndex] = useState(0);
   // const updatedSubscriptionHeight = (value) => {
   //   this.setState({ footerHeight: value });
   // }
 
   const handleChange = (event, value) => {
-    setValue(value);
+    setTabIndex(value);
   };
   const classes = useStyles();
   return (

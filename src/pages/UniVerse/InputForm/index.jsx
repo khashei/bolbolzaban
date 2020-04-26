@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   TextField,
@@ -106,7 +106,6 @@ const InputForm = props => {
       style: randomInput.style,
       hint: 'حالا سعی کنید بعضی از کلمات را عوض کنید یا بجای آن علامت سوال بگذارید و دوباره امتحان کنید',
       inlineHelpVisible: false,
-      shouldSubmit: true,
       isUserDefined: false,
     });
 

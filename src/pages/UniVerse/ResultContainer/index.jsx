@@ -5,7 +5,6 @@ import BeytCard from './beyt-card';
 import BeytLoader from './beyt-loader';
 import ErrorCard from './error-card';
 import { makeStyles } from '@material-ui/core/styles';
-
 // import { copyResultToClipboard } from '../../../../../actions/bolbolzaban/copy-result-to-clipboard';
 
 const useStyles = makeStyles(
@@ -29,6 +28,8 @@ const useStyles = makeStyles(
 );
 
 const ResultContainer = props => {
+  console.log({props});
+
   const classes = useStyles();
 
   if (props.isLoading) {
@@ -46,6 +47,7 @@ const ResultContainer = props => {
               key={index}
               firstline={line.m1}
               secondline={line.m2}
+              //onCopy={this.copyText}
             />
           ))}
         </div>

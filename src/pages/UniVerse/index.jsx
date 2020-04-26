@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import InputForm from './InputForm';
-import ResultContainer from './Result/container';
+import ResultContainer from './ResultContainer';
 // import PropTypes from 'prop-types';
 // import { GenerateSW } from 'workbox-webpack-plugin';
 // import { generatePath } from 'react-router-dom';
