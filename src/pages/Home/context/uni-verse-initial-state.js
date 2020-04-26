@@ -3,12 +3,9 @@ const UniVerseInitialState = {
   secondMesra: '', 
   style: 'free', 
   byUser: false,
-  modelName: '',
-  outputs: [],
   responseTime: null,
-  error: null,
-  statusCode: 200,
-  //isLoading: null,
+  outputs: [],
+  error: {},
   // TODO4A: prune
 };
 

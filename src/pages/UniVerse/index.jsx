@@ -33,11 +33,15 @@ const UniVerse = props => {
       mask: `${firstMesra || '?'}-${secondMesra || '?'}`,
       isUserDefined: byUser,
     });
-
+    
     dispatch({
       type: GENERATE_VERSE_FULLFILLED,
       payload: {
+        firstMesra, 
+        secondMesra, 
+        style,
         outputs: data.output,
+        error: { code: data.statusCode, message: data.error }
       }
     });
 
@@ -48,16 +52,16 @@ const UniVerse = props => {
   return (
     <div className={classes.mainContent}>
       <InputForm
+        isLoading={isLoading}
         firstMesra={state.firstMesra}
         secondMesra={state.secondMesra}
         style={state.style}
-        isLoading={isLoading}
         onSubmit={generateBeyt} />
-
-      {isLoading && <p> loading </p>} 
-      {true && <p>{JSON.stringify(state)}</p>}
-
-      <ResultContainer />
+      <ResultContainer 
+        isLoading={isLoading}
+        outputs={state.outputs}
+        error={state.error}
+        />
     </div>
   );
 }

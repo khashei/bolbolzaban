@@ -16,7 +16,7 @@ class BeytCard extends React.Component {
 
   copyText = () => {
     const { firstline, secondline } = this.props;
-    this.props.onCopy(`${firstline}     ${secondline}`);
+    //CopyToClipboardAPICALL(`${firstline}     ${secondline}`);
   }
 
   render() {

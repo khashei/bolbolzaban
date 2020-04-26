@@ -1,96 +1,87 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { connect } from 'react-redux';
-import { nanoid } from 'nanoid';
-import withStyles from '@material-ui/core/styles/withStyles';
+//import { nanoid } from 'nanoid';
 import BeytCard from './beyt-card';
 import BeytLoader from './beyt-loader';
 import ErrorCard from './error-card';
+import { makeStyles } from '@material-ui/core/styles';
+
 // import { copyResultToClipboard } from '../../../../../actions/bolbolzaban/copy-result-to-clipboard';
 
-// @connect(state => ({
-//   bolbolzaban: state.get('deepsher'),
-// }), {
-//   copyResultToClipboard,
-// })
-class ResultContainer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+const useStyles = makeStyles(
+  (theme) => ({
+    root: {
+      margin: '0 auto',
+      [theme.breakpoints.up('md')]: {
+        width: '40%',
+      },
+      [theme.breakpoints.between('sm', 'md')]: {
+        width: '60%',
+      },
+      // [theme.breakpoints.between('xs', 'sm')]: {
+      //   width: '60%',
+      // },
+      [theme.breakpoints.down('sm')]: {
+        width: '100%',
+      },
+    },
+  })
+);
 
-  copyText = (text) => {
-    // TODO
-    // this.props.copyResultToClipboard(text);
-  };
+const ResultContainer = props => {
+  const classes = useStyles();
 
-  render() {
-    // TODO bolbolzaban
-    const bolbolzaban = [];
-
-    const { classes } = this.props;
-    const currentResult = bolbolzaban;
-    if (currentResult.isLoading === true) {
+  if (props.isLoading) {
+    return (
+      <div className={classes.root}>
+        <BeytLoader />
+      </div>
+    );
+  } else if (!props.isLoading) {
+    if (props.error == null || props.error?.code === 200) {
       return (
         <div className={classes.root}>
-          <BeytLoader />
-        </div>
-      );
-    } else if (currentResult?.isLoading === false) {
-      if (currentResult?.statusCode === 200) {
-        return (
-          <div className={classes.root}>
-            {currentResult?.outputs.map((line) => (
-              <BeytCard
-                key={`b${nanoid(8)}`}
-                firstline={line.m1}
-                secondline={line.m2}
-                onCopy={this.copyText}
-              />
-            ))}
-          </div>
-        );
-      }
-      return (
-        <div className={classes.root}>
-          <ErrorCard
-            statusCode={currentResult.statusCode}
-            error={currentResult.error}
-          />
+          {props.outputs?.map((line, index) => (
+            <BeytCard
+              key={index}
+              firstline={line.m1}
+              secondline={line.m2}
+            />
+          ))}
         </div>
       );
     }
-    return null;
+    return (
+      <div className={classes.root}>
+        <ErrorCard
+          statusCode={props.error.code}
+          error={props.error.message}
+        />
+      </div>
+    );
   }
-}
+  return null;
+};
 
-const styles = (theme) => ({
-  root: {
-    margin: '0 auto',
-    [theme.breakpoints.up('md')]: {
-      width: '40%',
-    },
-    [theme.breakpoints.between('sm', 'md')]: {
-      width: '60%',
-    },
-    // [theme.breakpoints.between('xs', 'sm')]: {
-    //   width: '60%',
-    // },
-    [theme.breakpoints.down('sm')]: {
-      width: '100%',
-    },
-  },
-});
 
 ResultContainer.propTypes = {
-  classes: PropTypes.object.isRequired,
-  bolbolzaban: PropTypes.object,
-  copyResultToClipboard: PropTypes.func,
+  isLoading: PropTypes.bool,
+  outputs: PropTypes.arrayOf(
+    PropTypes.exact({
+      m1: PropTypes.string,
+      m2: PropTypes.string
+    })
+  ),
+  error: PropTypes.exact({
+    code: PropTypes.number,
+    message: PropTypes.string
+  }),
 };
 
 ResultContainer.defaultProps = {
-  bolbolzaban: {},
-  copyResultToClipboard: null,
+  outputs: [],
+  isLoading: false,
+  error: null,
 };
 
-export default withStyles(styles, { withTheme: true })(ResultContainer);
+export default ResultContainer;
