@@ -16,7 +16,7 @@ const useStyles = makeStyles(
       margin: theme.spacing.unit,
     },
     content: {
-      paddingRight: 0,
+      paddingRight: 15,
       paddingTop: 10,
       paddingBottom: 0,
       paddingLeft: 15,
