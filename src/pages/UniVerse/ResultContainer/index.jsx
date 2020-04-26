@@ -8,7 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 // import { copyResultToClipboard } from '../../../../../actions/bolbolzaban/copy-result-to-clipboard';
 
 const useStyles = makeStyles(
-  (theme) => ({
+  theme => ({
     root: {
       margin: '0 auto',
       [theme.breakpoints.up('md')]: {
@@ -45,8 +45,8 @@ const ResultContainer = props => {
           {props.outputs?.map((line, index) => (
             <BeytCard
               key={index}
-              firstline={line.m1}
-              secondline={line.m2}
+              firstMesra={line.m1}
+              secondMesra={line.m2}
               //onCopy={this.copyText}
             />
           ))}

@@ -9,7 +9,7 @@ import { makeStyles } from '@material-ui/core';
 // @connect(state => ({
 //   settings: state.get('application').toJS().settings,
 // }))
-const useStyle = () => makeStyles({
+const useStyles = () => makeStyles({
   title: {
     fontSize: '1.5rem',
     display: 'block',
@@ -35,7 +35,7 @@ const ApplicationTitleContainer = props => {
     navbarTitle: 'Fix the title',
     titleText: 'fix its text',
   };
-  const classes = useStyle();
+  const classes = useStyles();
   return (
     <Link to={settings.navbarLink} className={classes.title}>
       <Typography
