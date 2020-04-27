@@ -5,7 +5,7 @@ const UniVerseInitialState = {
   byUser: false,
   responseTime: null,
   outputs: [],
-  error: {},
+  error: null,
   // TODO4A: prune
 };
 
