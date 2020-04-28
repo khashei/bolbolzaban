@@ -60,8 +60,8 @@ const useStyles = makeStyles(
   })
 );
 
-const InputForm = ({isLoading, firstMesra, secondMesra, style, hint, onSubmit}) => {
-  console.log("inputForm", {isLoading, firstMesra, secondMesra, style, hint, onSubmit});
+const InputForm = ({ isLoading, firstMesra, secondMesra, style, onSubmit }) => {
+  console.log("inputForm", { isLoading, firstMesra, secondMesra, style, onSubmit });
 
   const [formState, setFormState] = useState({
     firstMesra: firstMesra,
@@ -96,7 +96,7 @@ const InputForm = ({isLoading, firstMesra, secondMesra, style, hint, onSubmit}) 
 
       onSubmit(firstMesra, secondMesra, formState.style, true);
     }
-    
+
   };
 
   const onRandomSampleClick = () => {
@@ -115,122 +115,122 @@ const InputForm = ({isLoading, firstMesra, secondMesra, style, hint, onSubmit}) 
   };
 
 
-const handleChange = (name) => (event) => {
-  setFormState({
-    ...formState,
-    [name]: event.target.value,
-  });
-};
+  const handleChange = (name) => (event) => {
+    setFormState({
+      ...formState,
+      [name]: event.target.value,
+    });
+  };
 
-const classes = useStyles();
-return (
-  <form className={classes.container} noValidate autoComplete='off'>
-    <Grid container justify='space-around' spacing={2}>
-      <Grid item xs={12}>
-        <Typography variant='h5'>همسُرایی تک بیت</Typography>
-      </Grid>
-      <Grid item xs={6}>
-        <Paper
-          className={classes.paper}
-          onClick={() => {
-            setFormState({ ...formState, style: 'free' });
-          }}
-        >
-          <Grid container alignItems='center'>
-            <Radio
-              checked={formState.style === 'free'}
-              onChange={handleChange('style')}
-              value='free'
-              color='primary'
-            />
-            <Typography variant='subtitle1'>سبک آزاد</Typography>
-          </Grid>
-        </Paper>
-      </Grid>
-      <Grid item xs={6}>
-        <Paper
-          className={classes.paper}
-          onClick={() => {
-            setFormState({ ...formState, style: 'ferd' });
-          }}
-        >
-          <Grid container alignItems='center'>
-            <Radio
-              checked={formState.style === 'ferd'}
-              onChange={handleChange('style')}
-              value='ferd'
-              color='primary'
-            />
-            <Typography variant='subtitle1'>سبک فردوسی</Typography>
-          </Grid>
-        </Paper>
-      </Grid>
-      <Grid item xs={12}>
-        <Typography variant='subtitle1'>
-          الگوی بیتی را که می‌خواهید بسُرایید، با ترکیب کلمات و علامت سوال
-          «؟»، مانند نمونه زیر وارد کنید. بلبل زبان سعی می‌کند با حفظ کلمات
-          شما و جایگزینی هر «؟» با یک کلمه‌ی مناسب، بیت را کامل کند.
-          </Typography>
-      </Grid>
-      <Grid item xs={12}>
-        <Button
-          onClick={onRandomSampleClick}
-          className={classes.randomTextButton}
-          disabled={isLoading}
-          color='inherit'
-          size='small'
-        >
-          الگوی نمونه
-          </Button>
-        <TextField
-          id='user-input'
-          fullWidth
-          required
-          placeholder='هرگز ؟ آنکه ؟ ؟ بعشق'
-          value={formState.firstMesra}
-          className={classes.textFieldMesra}
-          onChange={handleChange('firstMesra')}
-          margin='normal'
-          variant='filled'
-        />
-        <TextField
-          id='user-input'
-          fullWidth
-          required
-          placeholder='؟ است بر ؟ ؟ ؟‌ ما'
-          value={formState.secondMesra}
-          className={classes.textFieldMesra}
-          onChange={handleChange('secondMesra')}
-          margin='normal'
-          variant='filled'
-          inputRef={setInputTextRef.bind(this)}
-        />
-      </Grid>
-      {hint && !isLoading && (
+  const classes = useStyles();
+  return (
+    <form className={classes.container} noValidate autoComplete='off'>
+      <Grid container justify='space-around' spacing={2}>
         <Grid item xs={12}>
-          <HintBox hint={hint} />
+          <Typography variant='h5'>همسُرایی تک بیت</Typography>
         </Grid>
-      )}
-      {formState.inlineHelpVisible && (
-        <InlineHelp
-          onRandomSampleClick={onRandomSampleClick}
-          anchor={inputTextRef}
-        />
-      )}
-      <Grid item xs={12}>
-        <Button
-          variant='contained'
-          color='primary'
-          fullWidth
-          className={classes.button}
-          onClick={handleSubmit}
-        >
-          بسُرای
+        <Grid item xs={6}>
+          <Paper
+            className={classes.paper}
+            onClick={() => {
+              setFormState({ ...formState, style: 'free' });
+            }}
+          >
+            <Grid container alignItems='center'>
+              <Radio
+                checked={formState.style === 'free'}
+                onChange={handleChange('style')}
+                value='free'
+                color='primary'
+              />
+              <Typography variant='subtitle1'>سبک آزاد</Typography>
+            </Grid>
+          </Paper>
+        </Grid>
+        <Grid item xs={6}>
+          <Paper
+            className={classes.paper}
+            onClick={() => {
+              setFormState({ ...formState, style: 'ferd' });
+            }}
+          >
+            <Grid container alignItems='center'>
+              <Radio
+                checked={formState.style === 'ferd'}
+                onChange={handleChange('style')}
+                value='ferd'
+                color='primary'
+              />
+              <Typography variant='subtitle1'>سبک فردوسی</Typography>
+            </Grid>
+          </Paper>
+        </Grid>
+        <Grid item xs={12}>
+          <Typography variant='subtitle1'>
+            الگوی بیتی را که می‌خواهید بسُرایید، با ترکیب کلمات و علامت سوال
+            «؟»، مانند نمونه زیر وارد کنید. بلبل زبان سعی می‌کند با حفظ کلمات
+            شما و جایگزینی هر «؟» با یک کلمه‌ی مناسب، بیت را کامل کند.
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <Button
+            onClick={onRandomSampleClick}
+            className={classes.randomTextButton}
+            disabled={isLoading}
+            color='inherit'
+            size='small'
+          >
+            الگوی نمونه
           </Button>
+          <TextField
+            id='user-input'
+            fullWidth
+            required
+            placeholder='هرگز ؟ آنکه ؟ ؟ بعشق'
+            value={formState.firstMesra}
+            className={classes.textFieldMesra}
+            onChange={handleChange('firstMesra')}
+            margin='normal'
+            variant='filled'
+          />
+          <TextField
+            id='user-input'
+            fullWidth
+            required
+            placeholder='؟ است بر ؟ ؟ ؟‌ ما'
+            value={formState.secondMesra}
+            className={classes.textFieldMesra}
+            onChange={handleChange('secondMesra')}
+            margin='normal'
+            variant='filled'
+            inputRef={setInputTextRef.bind(this)}
+          />
+        </Grid>
+        {formState.hint && !isLoading && (
+          <Grid item xs={12}>
+            <HintBox text={formState.hint} />
+          </Grid>
+        )}
+        {formState.inlineHelpVisible && (
+          <InlineHelp
+            onRandomSampleClick={onRandomSampleClick}
+            anchor={inputTextRef}
+          />
+        )}
+        <Grid item xs={12}>
+          <Button
+            variant='contained'
+            color='primary'
+            fullWidth
+            className={classes.button}
+            onClick={handleSubmit}
+          >
+            بسُرای
+          </Button>
+        </Grid>
       </Grid>
-    </Grid>
-  </form>
-);
+    </form>
+  );
 };
 
 InputForm.propTypes = {

@@ -2,26 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Grid, Typography } from '@material-ui/core/';
 import AnnouncementIcon from '@material-ui/icons/AnnouncementOutlined';
-import withStyles from '@material-ui/core/styles/withStyles';
+import { makeStyles } from '@material-ui/core/styles';
 
-const HintBox = propos => {
-  return ( 
-    <Grid item className={props.classes.root}>
-      <AnnouncementIcon color="primary" />
-      <Typography className={classes.text}>{props.hint}</Typography>
-    </Grid>
-  );
-}
-
-HintBox.propTypes = {
-  classes: PropTypes.object.isRequired,
-  hint: PropTypes.string.isRequired,
-};
-
-HintBox.defaultProps = {
-};
-
-const styles = () => ({
+const useStyles = () => makeStyles({
   root: {
     display: 'flex',
     alignItems: 'center',
@@ -31,4 +14,22 @@ const styles = () => ({
   },
 });
 
-export default withStyles(styles, { withTheme: true })(HintBox);
+const HintBox = ({ text }) => {
+  const classes = useStyles();
+  return (
+    <Grid item className={classes.root}>
+      <AnnouncementIcon color="primary" />
+      <Typography className={classes.text}>{text}</Typography>
+    </Grid>
+  );
+}
+
+HintBox.propTypes = {
+  text: PropTypes.string.isRequired,
+};
+
+HintBox.defaultProps = {
+};
+
+
+export default HintBox;
