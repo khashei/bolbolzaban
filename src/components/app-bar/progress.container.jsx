@@ -8,8 +8,6 @@ import IndeterminateLinearProgress from '@components/progress';
 // }))
 class ApplicationProgressContainer extends React.Component {
   render() {
-    // TODO
-    // const { loadings } = this.props;
     const loadings = false;
 
     let result = null;

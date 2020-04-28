@@ -22,7 +22,7 @@ const predefinedPatterns = [
   {
     style: 'free',
     first: 'سالم بود ؟ ؟ ؟ ؟ ؟ ؟ ؟',
-    second: '؟ ؟ ؟ ؟ ؟ ؟ بیمار ‌نباشد'
+    second: 'کس ؟ ؟ ؟ ؟ ؟ بیمار ‌نباشد'
   },
   {
     style: 'ferd',

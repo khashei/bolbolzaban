@@ -16,19 +16,22 @@ const request = async ({
     finalHeaders['Content-Type'] = contentType;
   }
 
-  console.log('URL ===>', url);
   let response = await fetch(url, {
     method,
     headers: finalHeaders,
     ...(method === 'POST' && { body: body }),
   });
-  let data = await response.json();
-  console.log('got this from server', data);
-  return data;
+
+  return await response.json();
 };
 
-export const getRequest = ({ url, headers = {}, body = {}, token = null }) =>
-  request({
+export const getRequest = async ({ 
+  url, 
+  headers = {}, 
+  body = {}, 
+  token = null 
+}) =>
+  await request({
     url,
     headers,
     body,
@@ -67,7 +70,13 @@ export const putRequest = ({
     contentType: (json && 'application/json') || null,
   });
 
-export const deleteRequest = ({ url, headers = {}, body = {}, token = null }) =>
+export const deleteRequest = 
+({ 
+  url, 
+  headers = {}, 
+  body = {}, 
+  token = null 
+}) =>
   request({
     url,
     headers,
