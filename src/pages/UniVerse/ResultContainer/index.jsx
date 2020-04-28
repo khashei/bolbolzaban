@@ -27,22 +27,20 @@ const useStyles = makeStyles(
   })
 );
 
-const ResultContainer = props => {
-  console.log({props});
-
+const ResultContainer = (isLoading, outputs, error) => {
   const classes = useStyles();
 
-  if (props.isLoading) {
+  if (isLoading) {
     return (
       <div className={classes.root}>
         <BeytLoader />
       </div>
     );
-  } else if (!props.isLoading) {
-    if (props.error == null || props.error?.code === 200) {
+  } else if (!isLoading) {
+    if (error == null || error?.code === 200) {
       return (
         <div className={classes.root}>
-          {props.outputs?.map((line, index) => (
+          {outputs?.map((line, index) => (
             <BeytCard
               key={index}
               firstMesra={line.m1}
@@ -56,8 +54,8 @@ const ResultContainer = props => {
     return (
       <div className={classes.root}>
         <ErrorCard
-          statusCode={props.error.code}
-          error={props.error.message}
+          statusCode={error.code}
+          error={error.message}
         />
       </div>
     );

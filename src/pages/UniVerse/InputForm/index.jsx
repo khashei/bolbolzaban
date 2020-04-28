@@ -60,11 +60,11 @@ const useStyles = makeStyles(
   })
 );
 
-const InputForm = props => {
+const InputForm = (isLoading, firstMesra, secondMesra, style, hint, onSubmit ) => {
   const [formState, setFormState] = useState({
-    firstMesra: props.firstMesra,
-    secondMesra: props.secondMesra,
-    style: props.style,
+    firstMesra: firstMesra,
+    secondMesra: secondMesra,
+    style: style,
     hint: "",
     inlineHelpVisible: false,
     isUserDefined: false,
@@ -92,7 +92,7 @@ const InputForm = props => {
         hint,
       });
 
-      props.onSubmit(firstMesra, secondMesra, formState.style, true);
+      onSubmit(firstMesra, secondMesra, formState.style, true);
     }
     
   };
@@ -109,7 +109,7 @@ const InputForm = props => {
       isUserDefined: false,
     });
 
-    props.onSubmit(randomInput.first, randomInput.second, randomInput.style, false);
+    onSubmit(randomInput.first, randomInput.second, randomInput.style, false);
   };
 
 
@@ -174,7 +174,7 @@ return (
         <Button
           onClick={onRandomSampleClick}
           className={classes.randomTextButton}
-          disabled={props.isLoading}
+          disabled={isLoading}
           color='inherit'
           size='small'
         >
@@ -204,9 +204,9 @@ return (
           inputRef={setInputTextRef.bind(this)}
         />
       </Grid>
-      {props.hint && !props.isLoading && (
+      {hint && !isLoading && (
         <Grid item xs={12}>
-          <HintBox hint={props.hint} />
+          <HintBox hint={hint} />
         </Grid>
       )}
       {formState.inlineHelpVisible && (

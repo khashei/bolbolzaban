@@ -21,7 +21,7 @@ const useStyles = makeStyles(({ palette, typography }) => ({
   },
 }));
 
-const UniVerse = props => {
+const UniVerse = () => {
   const { state, dispatch } = useUniVerseContext();
   const [isLoading, setIsLoading] = useState(false);
 

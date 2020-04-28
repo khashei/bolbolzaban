@@ -41,7 +41,7 @@ const useStyles = makeStyles(
   })
 );
 
-const InlineHelp = props => {
+const InlineHelp = (anchor, onRandomSampleClick) => {
   const [arrowRef, setArrowRef] = useState();
   const classes = useStyles();
   return (
@@ -49,7 +49,7 @@ const InlineHelp = props => {
       placement="bottom"
       disablePortal
       open
-      anchorEl={props.anchor}
+      anchorEl={anchor}
       className={classes.popper}
       modifiers={{
         flip: {
@@ -77,7 +77,7 @@ const InlineHelp = props => {
           <Button
             size="small"
             className={classes.button}
-            onClick={props.onRandomSampleClick}>تولید الگوی نمونه</Button>
+            onClick={onRandomSampleClick}>تولید الگوی نمونه</Button>
         </CardActions>
       </Card>
     </Popper>
