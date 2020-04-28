@@ -27,7 +27,7 @@ const useStyles = makeStyles(
   })
 );
 
-const ResultContainer = (isLoading, outputs, error) => {
+const ResultContainer = ({ isLoading, outputs, error }) => {
   const classes = useStyles();
 
   if (isLoading) {
@@ -45,7 +45,7 @@ const ResultContainer = (isLoading, outputs, error) => {
               key={index}
               firstMesra={line.m1}
               secondMesra={line.m2}
-              //onCopy={this.copyText}
+            //onCopy={this.copyText}
             />
           ))}
         </div>

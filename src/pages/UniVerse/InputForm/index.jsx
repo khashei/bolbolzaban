@@ -60,7 +60,9 @@ const useStyles = makeStyles(
   })
 );
 
-const InputForm = (isLoading, firstMesra, secondMesra, style, hint, onSubmit ) => {
+const InputForm = ({isLoading, firstMesra, secondMesra, style, hint, onSubmit}) => {
+  console.log("inputForm", {isLoading, firstMesra, secondMesra, style, hint, onSubmit});
+
   const [formState, setFormState] = useState({
     firstMesra: firstMesra,
     secondMesra: secondMesra,

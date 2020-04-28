@@ -41,7 +41,7 @@ const useStyles = makeStyles(
   })
 );
 
-const InlineHelp = (anchor, onRandomSampleClick) => {
+const InlineHelp = ({anchor, onRandomSampleClick}) => {
   const [arrowRef, setArrowRef] = useState();
   const classes = useStyles();
   return (

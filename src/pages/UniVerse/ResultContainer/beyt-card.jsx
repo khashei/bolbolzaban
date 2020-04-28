@@ -41,7 +41,8 @@ const useStyles = makeStyles(
   })
 );
 
-const BeytCard = (firstMesra, secondMesra) => {
+const BeytCard = ({firstMesra, secondMesra}) => {
+  console.log("BeytCard", {firstMesra, secondMesra});
   // this.text = React.createRef();
   const copyText = () => {
     //CopyToClipboardAPICALL(`${firstline}     ${secondline}`);

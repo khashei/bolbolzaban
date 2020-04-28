@@ -15,7 +15,7 @@ const useStyles = makeStyles(
   })
 );
 
-const ErrorCard = (code, message) => {
+const ErrorCard = ({code, message}) => {
   const classes = useStyles();
   return (
     <Card className={classes.card}>
