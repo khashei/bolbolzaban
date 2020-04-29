@@ -1,21 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { connect } from 'react-redux';
 import IndeterminateLinearProgress from '@components/progress';
 
-// @connect(state => ({
-//   loadings: state.get('application').toJS().loadings,
-// }))
-class ApplicationProgressContainer extends React.Component {
-  render() {
-    const loadings = false;
+const ApplicationProgressContainer = () => {
+  //todo4a
+  const loadings = false;
 
-    let result = null;
-    if (loadings && Object.keys(loadings).length > 0) {
-      result = <IndeterminateLinearProgress />;
-    }
-    return result;
+  let result = null;
+  if (loadings && Object.keys(loadings).length > 0) {
+    result = <IndeterminateLinearProgress />;
   }
+  return result;
 }
 
 ApplicationProgressContainer.propTypes = {

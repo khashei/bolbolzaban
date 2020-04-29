@@ -1,4 +1,4 @@
-export default class InputPreprocessor {
+class InputPreprocessor {
   static normalizeText(text) {
     return text
       .replace(/\?/g, '؟')
@@ -50,3 +50,5 @@ export default class InputPreprocessor {
     return { firstMesra, secondMesra, hint };
   }
 }
+
+export default InputPreprocessor;
