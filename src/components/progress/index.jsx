@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import LinearProgress from '@material-ui/core/LinearProgress';
+import StylizedLinearProgress from './stylized-linear-progress';
 // import SvgIconElement from '../icons/index';
 // import LogoImage from '../../../resources/images/logo.svg';
 
-const styles = {
+const useStyles = makeStyles({
   image: {
     zIndex: 99999,
     position: 'fixed',
@@ -35,21 +34,11 @@ const styles = {
     opacity: 0.7,
     pointerEvents: 'none',
   },
-};
-
-const ProgressStyles = {
-  root: {
-    height: 4,
-  },
-};
-
-const StylizedLinearProgress = withStyles(ProgressStyles)((props) => {
-  const { classes } = props;
-  return (<LinearProgress color="primary" className={classes.root} />);
 });
 
-const IndeterminateLinearProgress = (props) => {
-  const { classes } = props;
+const IndeterminateLinearProgress = () => {
+  const classes = useStyles();
+
   return (
     <div className={classes.root}>
       <div className={classes.cover} />
@@ -61,8 +50,4 @@ const IndeterminateLinearProgress = (props) => {
   );
 };
 
-IndeterminateLinearProgress.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(IndeterminateLinearProgress);
+export default IndeterminateLinearProgress;

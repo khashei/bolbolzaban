@@ -6,15 +6,6 @@ const initialState = {
     },
     isLoading: true,
   },
-  deepsher: {
-    input: '',
-    modelName: '',
-    outputs: [],
-    responseTime: null,
-    error: null,
-    statusCode: 200,
-    isLoading: null,
-  },
   feedback: {},
   snackbar: {},
   subscription: {

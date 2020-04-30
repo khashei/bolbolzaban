@@ -15,9 +15,8 @@ const useStyles = makeStyles(
   })
 );
 
-const ErrorCard = props => {
+const ErrorCard = ({code, message}) => {
   const classes = useStyles();
-  const { code, message } = props;
   return (
     <Card className={classes.card}>
       <CardContent>
@@ -35,7 +34,6 @@ const ErrorCard = props => {
 }
 
 ErrorCard.propTypes = {
-  classes: PropTypes.object.isRequired,
   code: PropTypes.number.isRequired,
   message: PropTypes.string.isRequired,
 };

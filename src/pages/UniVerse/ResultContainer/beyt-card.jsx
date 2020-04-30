@@ -41,15 +41,14 @@ const useStyles = makeStyles(
   })
 );
 
-const BeytCard = props => {
+const BeytCard = ({firstMesra, secondMesra}) => {
+  console.log("BeytCard", {firstMesra, secondMesra});
   // this.text = React.createRef();
   const copyText = () => {
-    const { firstMesra, secondMesra } = props;
     //CopyToClipboardAPICALL(`${firstline}     ${secondline}`);
   };
 
   const classes = useStyles();
-  const { firstMesra, secondMesra } = props;
   return (
     <Card className={classes.card}>
       <CardContent className={classes.content}>
