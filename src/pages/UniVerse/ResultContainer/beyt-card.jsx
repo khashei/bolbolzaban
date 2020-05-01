@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Typography, Card, CardContent, CardActions, IconButton } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import copyToClipboard from '@utils/copy-to-clipboard';
+
 // import FilterNone from '@material-ui/icons/FilterNone';
 // import ShareIcon from '@material-ui/icons/Share';
 // import IconElement from '../../../shared-blocks/icons';
@@ -42,10 +44,8 @@ const useStyles = makeStyles(
 );
 
 const BeytCard = ({firstMesra, secondMesra}) => {
-  console.log("BeytCard", {firstMesra, secondMesra});
-  // this.text = React.createRef();
   const copyText = () => {
-    //CopyToClipboardAPICALL(`${firstline}     ${secondline}`);
+    copyToClipboard(`${firstMesra}     ${secondMesra}`);
   };
 
   const classes = useStyles();

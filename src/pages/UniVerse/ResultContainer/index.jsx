@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-//import { nanoid } from 'nanoid';
 import BeytCard from './beyt-card';
 import BeytLoader from './beyt-loader';
 import ErrorCard from './error-card';
 import { makeStyles } from '@material-ui/core/styles';
-// import { copyResultToClipboard } from '../../../../../actions/bolbolzaban/copy-result-to-clipboard';
 
 const useStyles = makeStyles(
   theme => ({
@@ -45,7 +43,6 @@ const ResultContainer = ({ isLoading, outputs, error }) => {
               key={index}
               firstMesra={line.m1}
               secondMesra={line.m2}
-            //onCopy={this.copyText}
             />
           ))}
         </div>
