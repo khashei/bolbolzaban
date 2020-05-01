@@ -1,5 +1,5 @@
 /* eslint-disable no-bitwise */
-export default (text) => {
+const copyToClipboard = (text) => {
   if (navigator.userAgent.match(/ipad|ipod|iphone/i)) {
     const el = document.createElement('textarea');
     el.contentEditable = true;
@@ -36,3 +36,4 @@ export default (text) => {
   }
 };
 
+export default copyToClipboard;
