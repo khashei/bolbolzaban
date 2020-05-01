@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import InputForm from './InputForm';
 import ResultContainer from './ResultContainer';
@@ -9,10 +9,10 @@ import { generatePoemRequest } from './api';
 import useUniVerseContext from '@pages/Home/context/uni-verse-context';
 import { GENERATE_VERSE_FULLFILLED } from '@pages/Home/context/uni-verse-reducer';
 
-const useStyles = makeStyles(({ palette, typography }) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
-    backgroundColor: palette.common.lightBackground,
+    backgroundColor: theme.palette.common.lightBackground,
     marginTop: '-50px',
     paddingTop: '50px',
   },

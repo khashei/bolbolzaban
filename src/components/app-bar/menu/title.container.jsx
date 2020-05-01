@@ -2,11 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
-import theme from '@app/theme'
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core';
 
-const useStyles = () => makeStyles({
+const useStyles = makeStyles(theme => ({
   title: {
     fontSize: '1.5rem',
     display: 'block',
@@ -16,17 +15,20 @@ const useStyles = () => makeStyles({
     },
   },
   titleText: {
-    color: theme.palette.common.verylightColor,
+    color: theme.palette.primary.contrastText, 
   },
-});
+}));
 
-const ApplicationTitleContainer = ({text, link}) => {
+const ApplicationTitleContainer = ({ text, link }) => {
   // state = {
   //   // auth: true,
   //   // anchorEl: null,
   // };
 
   const classes = useStyles();
+
+  console.log("classes", classes.title);
+
   return (
     <Link to={link} className={classes.title}>
       <Typography

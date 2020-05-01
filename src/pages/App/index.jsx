@@ -1,25 +1,23 @@
-import React, { lazy, Suspense, useEffect, useState, useCallback } from 'react';
+import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
 import Provider from './context/provider';
 import theme from './theme';
 import ApplicationAppBar from '@components/app-bar';
-import Home from '@pages/Home';
 
-const useStyles = makeStyles(({ spacing, typography }) => ({
+const useStyles = makeStyles(theme => ({
   '@global': {
     html: {
       overflowX: 'hidden',
       fontSize: 15,
       backgroundColor: '#f0eee7',
     },
-    '.ml': { marginLeft: spacing.unit },
-    '.mt': { marginTop: spacing.unit },
-    '.mr': { marginRight: spacing.unit },
-    '.mb': { marginBottom: spacing.unit },
+    '.ml': { marginLeft: theme.spacing.unit },
+    '.mt': { marginTop: theme.spacing.unit },
+    '.mr': { marginRight: theme.spacing.unit },
+    '.mb': { marginBottom: theme.spacing.unit },
   },
   root: {
     // paddingTop: 64,
@@ -51,15 +49,6 @@ function App() {
     )
   );
 
-  const initialState = {
-    list: [
-      {
-        itemId: 1,
-        task: 'Add the delete functionality',
-        completed: false,
-      },
-    ],
-  };
   const classes = useStyles();
   return (
     <Suspense fallback={<div>loading...</div>}>

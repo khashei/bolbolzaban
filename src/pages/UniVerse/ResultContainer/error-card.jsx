@@ -3,19 +3,17 @@ import PropTypes from 'prop-types';
 import { Typography, Card, CardContent } from '@material-ui/core/';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(
-  theme => ({
-    card: {
-      minWidth: 275,
-      margin: 20,
-    },
-    button: {
-      margin: theme.spacing.unit,
-    },
-  })
-);
+const useStyles = makeStyles(theme => ({
+  card: {
+    minWidth: 275,
+    margin: 20,
+  },
+  button: {
+    margin: theme.spacing.unit,
+  },
+}));
 
-const ErrorCard = ({code, message}) => {
+const ErrorCard = ({ code, message }) => {
   const classes = useStyles();
   return (
     <Card className={classes.card}>

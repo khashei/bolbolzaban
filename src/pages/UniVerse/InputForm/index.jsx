@@ -14,50 +14,48 @@ import HintBox from '@components/hint-box';
 import InlineHelp from './inline-help';
 import predefinedPatterns from './predefined-patterns';
 import InputPreprocessor from "./input-preprocessor";
-import theme from "@app/theme"
 
-const useStyles = makeStyles(
-  ({ breakpoints, palette, typography }) => ({
-    container: {
-      display: 'flex',
-      flexWrap: 'wrap',
-      padding: 20,
-      margin: '0 auto',
-      [breakpoints.up('md')]: {
-        width: '40%',
-      },
-      [breakpoints.between('sm', 'md')]: {
-        width: '60%',
-      },
-      [breakpoints.down('sm')]: {
-        width: '100%',
-      },
+const useStyles = makeStyles(theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    padding: 20,
+    margin: '0 auto',
+    [theme.breakpoints.up('md')]: {
+      width: '40%',
     },
-    textFieldMesra: {
-      margin: 0,
-      padding: 0,
+    [theme.breakpoints.between('sm', 'md')]: {
+      width: '60%',
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+    },
+  },
+  textFieldMesra: {
+    margin: 0,
+    padding: 0,
+    fontSize: '16px',
+    '& input': {
+      padding: 15,
+    },
+    'select:focus,textarea:focus,input:focus': {
       fontSize: '16px',
-      '& input': {
-        padding: 15,
-      },
-      'select:focus,textarea:focus,input:focus': {
-        fontSize: '16px',
-      },
     },
-    randomTextButton: {
-      marginBottom: theme.spacing(0.5),
-      float: 'right',
-      color: palette.common.noSokhanPrimary,
-    },
-    menu: {
-      width: 200,
-    },
-    button: {},
-    input: {
-      display: 'none',
-    },
-    group: {},
-  })
+  },
+  randomTextButton: {
+    marginBottom: theme.spacing(0.5),
+    float: 'right',
+    color: theme.palette.common.noSokhanPrimary,
+  },
+  menu: {
+    width: 200,
+  },
+  button: {},
+  input: {
+    display: 'none',
+  },
+  group: {},
+})
 );
 
 const InputForm = ({ isLoading, firstMesra, secondMesra, style, onSubmit }) => {

@@ -5,25 +5,23 @@ import BeytLoader from './beyt-loader';
 import ErrorCard from './error-card';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(
-  theme => ({
-    root: {
-      margin: '0 auto',
-      [theme.breakpoints.up('md')]: {
-        width: '40%',
-      },
-      [theme.breakpoints.between('sm', 'md')]: {
-        width: '60%',
-      },
-      // [theme.breakpoints.between('xs', 'sm')]: {
-      //   width: '60%',
-      // },
-      [theme.breakpoints.down('sm')]: {
-        width: '100%',
-      },
+const useStyles = makeStyles(theme => ({
+  root: {
+    margin: '0 auto',
+    [theme.breakpoints.up('md')]: {
+      width: '40%',
     },
-  })
-);
+    [theme.breakpoints.between('sm', 'md')]: {
+      width: '60%',
+    },
+    // [theme.breakpoints.between('xs', 'sm')]: {
+    //   width: '60%',
+    // },
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+    },
+  },
+}));
 
 const ResultContainer = ({ isLoading, outputs, error }) => {
   const classes = useStyles();

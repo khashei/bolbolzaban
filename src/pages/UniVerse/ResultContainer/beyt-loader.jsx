@@ -3,13 +3,11 @@ import React from 'react';
 import ContentLoader from 'react-content-loader';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(
-  theme => ({
-    loader: {
-      margin: theme.spacing.unit,
-    },
-  })
-);
+const useStyles = makeStyles(theme => ({
+  loader: {
+    margin: theme.spacing.unit,
+  },
+}));
 
 const BeytLoader = () => {
   const classes = useStyles();
