@@ -3,26 +3,24 @@ import React from 'react';
 import ContentLoader from 'react-content-loader';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(
-  theme => ({
-    loader: {
-      margin: theme.spacing.unit,
-    },
-  })
-);
+const useStyles = makeStyles(theme => ({
+  loader: {
+    margin: theme.spacing(2),
+  },
+}));
 
 const BeytLoader = () => {
   const classes = useStyles();
   return (
     <ContentLoader
       className={classes.loader}
-      rtl={false}
-      primaryColor="#635139"
-      primaryOpacity={0.1}
-      secondaryColor="#826a4a"
-      secondaryOpacity={0.31}>
-      <rect x="80" y="17" rx="2" ry="2" width="300" height="10" />
-      <rect x="130" y="40" rx="2" ry="2" width="250" height="10" />
+      rtl={true}
+      backgroundColor="#635139"
+      backgroundOpacity={0.1}
+      foregroundColor="#826a4a"
+      foregroundOpacity={0.31}>
+      <rect x="10" y="1rem" rx="2" ry="2" width="250" height="1rem" />
+      <rect x="10" y="3rem" rx="2" ry="2" width="220" height="1rem" />
     </ContentLoader>
   );
 }

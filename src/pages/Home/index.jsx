@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button, AppBar, Tabs, Tab, Typography } from '@material-ui/core';
+import { AppBar, Tabs, Tab, Typography } from '@material-ui/core';
 import UniVerse from '@pages/UniVerse'
 import MultiVerse from '@pages/MultiVerse'
 import About from '@pages/About'
 import PropTypes from 'prop-types';
 import Provider from './context/provider';
+import TabContainer from './tab-container';
 
-const useStyles = makeStyles(({ palette, typography }) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
-    backgroundColor: palette.common.lightBackground,
+    backgroundColor: theme.palette.common.lightBackground,
     marginTop: '-50px',
     paddingTop: '50px',
   },
@@ -19,22 +20,8 @@ const useStyles = makeStyles(({ palette, typography }) => ({
   },
 }));
 
-function TabContainer(props) {
-  return (
-    <Typography component='div' style={{ padding: 8 * 3 }}>
-      {props.children}
-    </Typography>
-  );
-}
-
-TabContainer.propTypes = {
-  children: PropTypes.node.isRequired,
-};
 function Home() {
   const [tabIndex, setTabIndex] = useState(0);
-  // const updatedSubscriptionHeight = (value) => {
-  //   this.setState({ footerHeight: value });
-  // }
 
   const handleChange = (event, value) => {
     setTabIndex(value);

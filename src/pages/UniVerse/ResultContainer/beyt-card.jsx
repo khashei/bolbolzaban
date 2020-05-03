@@ -8,42 +8,41 @@ import copyToClipboard from '@utils/copy-to-clipboard';
 // import ShareIcon from '@material-ui/icons/Share';
 // import IconElement from '../../../shared-blocks/icons';
 
-const useStyles = makeStyles(
-  theme => ({
-    card: {
-      minWidth: 275,
-      margin: 20,
-    },
-    button: {
-      margin: theme.spacing.unit,
-    },
-    content: {
-      paddingRight: 15,
-      paddingTop: 10,
-      paddingBottom: 0,
-      paddingLeft: 15,
-    },
-    actions: {
-      padding: 0,
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'flex-end',
-    },
-    // icon: {
-    //   width: 10,
-    //   height: 10,
-    // },
-    hiddenInput: {
-      opacity: 0,
-      position: 'absolute',
-      left: 0,
-      top: 0,
-      zIndex: -2,
-    },
-  })
+const useStyles = makeStyles(theme => ({
+  card: {
+    minWidth: 275,
+    margin: 20,
+  },
+  button: {
+    margin: theme.spacing(1),
+  },
+  content: {
+    paddingRight: 15,
+    paddingTop: 10,
+    paddingBottom: 0,
+    paddingLeft: 15,
+  },
+  actions: {
+    padding: 0,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
+  // icon: {
+  //   width: 10,
+  //   height: 10,
+  // },
+  hiddenInput: {
+    opacity: 0,
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    zIndex: -2,
+  },
+})
 );
 
-const BeytCard = ({firstMesra, secondMesra}) => {
+const BeytCard = ({ firstMesra, secondMesra }) => {
   const copyText = () => {
     copyToClipboard(`${firstMesra}     ${secondMesra}`);
   };

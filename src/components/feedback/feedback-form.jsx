@@ -62,7 +62,7 @@ class InputForm extends React.Component {
       <form className={classes.container} noValidate autoComplete="off">
         <Grid container justify="space-around" spacing={10}> 
           {/* <Grid item xs={12}>
-            <Typography variant="h5">
+            <Typography variant="h6">
             نظرسنجی
             </Typography>
           </Grid>
@@ -183,9 +183,9 @@ const styles = theme => ({
   //   },
   // },
   // randomTextButton: {
-  //   marginBottom: theme.spacing.unit / 2,
+  //   marginBottom: theme.spacing(1) / 2,
   //   float: 'right',
-  //   color: theme.palette.common.noSokhanPrimary,
+  //   color: theme.palette.primary.main,
   // // },
   // menu: {
   //   width: 200,

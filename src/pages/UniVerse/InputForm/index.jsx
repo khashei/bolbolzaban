@@ -14,55 +14,51 @@ import HintBox from '@components/hint-box';
 import InlineHelp from './inline-help';
 import predefinedPatterns from './predefined-patterns';
 import InputPreprocessor from "./input-preprocessor";
-import theme from "@app/theme"
 
-const useStyles = makeStyles(
-  ({ breakpoints, palette, typography }) => ({
-    container: {
-      display: 'flex',
-      flexWrap: 'wrap',
-      padding: 20,
-      margin: '0 auto',
-      [breakpoints.up('md')]: {
-        width: '40%',
-      },
-      [breakpoints.between('sm', 'md')]: {
-        width: '60%',
-      },
-      [breakpoints.down('sm')]: {
-        width: '100%',
-      },
+const useStyles = makeStyles(theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    padding: 20,
+    margin: '0 auto',
+    [theme.breakpoints.up('md')]: {
+      width: '40%',
     },
-    textFieldMesra: {
-      margin: 0,
-      padding: 0,
+    [theme.breakpoints.between('sm', 'md')]: {
+      width: '60%',
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+    },
+  },
+  textFieldMesra: {
+    margin: 0,
+    padding: 0,
+    fontSize: '16px',
+    '& input': {
+      padding: 15,
+    },
+    'select:focus,textarea:focus,input:focus': {
       fontSize: '16px',
-      '& input': {
-        padding: 15,
-      },
-      'select:focus,textarea:focus,input:focus': {
-        fontSize: '16px',
-      },
     },
-    randomTextButton: {
-      marginBottom: theme.spacing(0.5),
-      float: 'right',
-      color: palette.common.noSokhanPrimary,
-    },
-    menu: {
-      width: 200,
-    },
-    button: {},
-    input: {
-      display: 'none',
-    },
-    group: {},
-  })
+  },
+  randomTextButton: {
+    marginBottom: theme.spacing(0.5),
+    float: 'left',
+    color: theme.palette.primary.main,
+  },
+  menu: {
+    width: 200,
+  },
+  button: {},
+  input: {
+    display: 'none',
+  },
+  group: {},
+})
 );
 
 const InputForm = ({ isLoading, firstMesra, secondMesra, style, onSubmit }) => {
-  console.log("inputForm", { isLoading, firstMesra, secondMesra, style, onSubmit });
-
   const [formState, setFormState] = useState({
     firstMesra: firstMesra,
     secondMesra: secondMesra,
@@ -125,9 +121,9 @@ const InputForm = ({ isLoading, firstMesra, secondMesra, style, onSubmit }) => {
   const classes = useStyles();
   return (
     <form className={classes.container} noValidate autoComplete='off'>
-      <Grid container justify='space-around' spacing={2}>
+      <Grid container justify="space-around" spacing={2}>
         <Grid item xs={12}>
-          <Typography variant='h5'>همسُرایی تک بیت</Typography>
+          <Typography variant="h5">همسُرایی تک بیت</Typography>
         </Grid>
         <Grid item xs={6}>
           <Paper
@@ -175,9 +171,10 @@ const InputForm = ({ isLoading, firstMesra, secondMesra, style, onSubmit }) => {
         <Grid item xs={12}>
           <Button
             onClick={onRandomSampleClick}
+            variant='outlined'
             className={classes.randomTextButton}
             disabled={isLoading}
-            color='inherit'
+            //color='inherit'
             size='small'
           >
             الگوی نمونه
@@ -186,7 +183,7 @@ const InputForm = ({ isLoading, firstMesra, secondMesra, style, onSubmit }) => {
             id='user-input'
             fullWidth
             required
-            placeholder='هرگز ؟ آنکه ؟ ؟ بعشق'
+            placeholder='هرگز نمیرد آنکه ؟ ؟ بعشق'
             value={formState.firstMesra}
             className={classes.textFieldMesra}
             onChange={handleChange('firstMesra')}

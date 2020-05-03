@@ -19,27 +19,25 @@ import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 
-const useStyles = makeStyles(
-  () => ({
-    menuButton: {
-      marginLeft: -12,
-      marginleft: 20,
-    },
-    list: {
-      width: 250,
-    },
-    title: {
-      display: 'block',
-    },
-    titleText: {
-      fontSize: 18,
-      display: 'inline-block',
-    },
-    fullList: {
-      width: 'auto',
-    },
-  })
-);
+const useStyles = makeStyles(() => ({
+  menuButton: {
+    marginLeft: -12,
+    marginleft: 20,
+  },
+  list: {
+    width: 250,
+  },
+  title: {
+    display: 'block',
+  },
+  titleText: {
+    fontSize: 18,
+    display: 'inline-block',
+  },
+  fullList: {
+    width: 'auto',
+  },
+}));
 
 const ApplicationMenuContainer = () => {
   const [drawerState, setDrawerState] = useState(false);

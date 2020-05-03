@@ -28,26 +28,24 @@ const TelegramIcon = (props) => (
   </SvgIcon>
 );
 
-const useStyles = makeStyles(
-  () => ({
-    root: {
-      height: '2.5em',
-    },
-    icon: {
-      color: 'rgba(0, 0, 0, 0.54)',
-    },
-    menuButton: {
-      marginLeft: -12,
-      marginleft: 20,
-    },
-    list: {
-      width: 250,
-    },
-    fullList: {
-      width: 'auto',
-    },
-  })
-);
+const useStyles = makeStyles(() => ({
+  root: {
+    height: '2.5em',
+  },
+  icon: {
+    color: 'rgba(0, 0, 0, 0.54)',
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginleft: 20,
+  },
+  list: {
+    width: 250,
+  },
+  fullList: {
+    width: 'auto',
+  },
+}));
 
 const ApplicationMenuContainer = () => {
   const [anchorEl, setAnchorEl] = useState(null);
