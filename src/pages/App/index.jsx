@@ -14,10 +14,10 @@ const useStyles = makeStyles(theme => ({
       fontSize: 15,
       backgroundColor: '#f0eee7',
     },
-    '.ml': { marginLeft: theme.spacing.unit },
-    '.mt': { marginTop: theme.spacing.unit },
-    '.mr': { marginRight: theme.spacing.unit },
-    '.mb': { marginBottom: theme.spacing.unit },
+    '.ml': { marginLeft: theme.spacing(1) },
+    '.mt': { marginTop: theme.spacing(1) },
+    '.mr': { marginRight: theme.spacing(1) },
+    '.mb': { marginBottom: theme.spacing(1) },
   },
   root: {
     // paddingTop: 64,
@@ -28,6 +28,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function App() {
+  console.log("App render 1");
+
   const ErrorBoundary = lazy(() =>
     import(
       /* webpackChunkName: "app" */

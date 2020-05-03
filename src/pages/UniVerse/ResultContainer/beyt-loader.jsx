@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
   loader: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing(1),
   },
 }));
 

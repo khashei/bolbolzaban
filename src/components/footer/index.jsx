@@ -92,7 +92,7 @@ const styles = theme => ({
     marginLeft: 15,
   },
   devider: {
-    borderTop: `2px dashed ${theme.palette.common.noSokhanPrimary}`,
+    borderTop: `2px dashed ${theme.palette.primary.main}`,
     marginTop: '3em',
   },
 });

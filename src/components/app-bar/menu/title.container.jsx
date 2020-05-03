@@ -32,9 +32,9 @@ const ApplicationTitleContainer = ({ text, link }) => {
   return (
     <Link to={link} className={classes.title}>
       <Typography
-        variant='h6'
+        variant="h6"
         className={classes.titleText}
-        component='h2'
+        component="h2"
         noWrap
       >
         {text}

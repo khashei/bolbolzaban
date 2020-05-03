@@ -44,8 +44,8 @@ const useStyles = makeStyles(theme => ({
   },
   randomTextButton: {
     marginBottom: theme.spacing(0.5),
-    float: 'right',
-    color: theme.palette.common.noSokhanPrimary,
+    float: 'left',
+    color: theme.palette.primary.main,
   },
   menu: {
     width: 200,
@@ -123,9 +123,9 @@ const InputForm = ({ isLoading, firstMesra, secondMesra, style, onSubmit }) => {
   const classes = useStyles();
   return (
     <form className={classes.container} noValidate autoComplete='off'>
-      <Grid container justify='space-around' spacing={2}>
+      <Grid container justify="space-around" spacing={2}>
         <Grid item xs={12}>
-          <Typography variant='h5'>همسُرایی تک بیت</Typography>
+          <Typography variant="h5">همسُرایی تک بیت</Typography>
         </Grid>
         <Grid item xs={6}>
           <Paper
@@ -173,9 +173,10 @@ const InputForm = ({ isLoading, firstMesra, secondMesra, style, onSubmit }) => {
         <Grid item xs={12}>
           <Button
             onClick={onRandomSampleClick}
+            variant='outlined'
             className={classes.randomTextButton}
             disabled={isLoading}
-            color='inherit'
+            //color='inherit'
             size='small'
           >
             الگوی نمونه
@@ -184,7 +185,7 @@ const InputForm = ({ isLoading, firstMesra, secondMesra, style, onSubmit }) => {
             id='user-input'
             fullWidth
             required
-            placeholder='هرگز ؟ آنکه ؟ ؟ بعشق'
+            placeholder='هرگز نمیرد آنکه ؟ ؟ بعشق'
             value={formState.firstMesra}
             className={classes.textFieldMesra}
             onChange={handleChange('firstMesra')}

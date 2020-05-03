@@ -6,6 +6,7 @@ import MultiVerse from '@pages/MultiVerse'
 import About from '@pages/About'
 import PropTypes from 'prop-types';
 import Provider from './context/provider';
+import TabContainer from './tab-container';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -19,17 +20,6 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function TabContainer(props) {
-  return (
-    <Typography component='div' style={{ padding: 8 * 3 }}>
-      {props.children}
-    </Typography>
-  );
-}
-
-TabContainer.propTypes = {
-  children: PropTypes.node.isRequired,
-};
 function Home() {
   const [tabIndex, setTabIndex] = useState(0);
 

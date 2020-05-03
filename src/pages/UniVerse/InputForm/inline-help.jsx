@@ -8,7 +8,7 @@ const useStyles = makeStyles(theme => ({
     minWidth: 200,
   },
   button: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing(1),
   },
   popper: {
     zIndex: 1,
@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   arrow: {
-    fontSize: 7,
+    fontSize: '0.5em',
     width: '3em',
     height: '3em',
     '&::before': {
@@ -67,14 +67,15 @@ const InlineHelp = ({ anchor, onRandomSampleClick }) => {
       <span className={classes.arrow} ref={setArrowRef.bind(this)} />
       <Card className={classes.card}>
         <CardContent>
-          <Typography>اگر خواهی بگویی شعر نابی</Typography>
-          <Typography>بپرس از من بگویم تا جوابی</Typography>
-          <Typography>بده الگـوی بیـتی را به بلبـل</Typography>
-          <Typography>همانند مثال ای دسته‌ی گل</Typography>
+          <Typography variant="body2">اگر خواهی بگویی شعر نابی</Typography>
+          <Typography variant="body2">بپرس از من بگویم تا جوابی</Typography>
+          <Typography variant="body2">بده الگـوی بیـتی را به بلبـل</Typography>
+          <Typography variant="body2">همانند مثال ای دسته‌ی گل</Typography>
         </CardContent>
         <CardActions>
           <Button
             size="small"
+            variant="outlined"
             className={classes.button}
             onClick={onRandomSampleClick}>تولید الگوی نمونه</Button>
         </CardActions>

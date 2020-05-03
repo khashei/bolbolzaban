@@ -85,7 +85,7 @@ const styles = theme => ({
     backgroundColor: theme.palette.common.textBackgroundColor,
   },
   button: {
-    color: theme.palette.common.noSokhanPrimary,
+    color: theme.palette.primary.main,
   },
 });
 
