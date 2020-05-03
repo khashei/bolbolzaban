@@ -59,8 +59,6 @@ const useStyles = makeStyles(theme => ({
 );
 
 const InputForm = ({ isLoading, firstMesra, secondMesra, style, onSubmit }) => {
-  console.log("inputForm", { isLoading, firstMesra, secondMesra, style, onSubmit });
-
   const [formState, setFormState] = useState({
     firstMesra: firstMesra,
     secondMesra: secondMesra,

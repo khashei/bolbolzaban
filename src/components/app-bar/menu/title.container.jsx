@@ -27,8 +27,6 @@ const ApplicationTitleContainer = ({ text, link }) => {
 
   const classes = useStyles();
 
-  console.log("classes", classes.title);
-
   return (
     <Link to={link} className={classes.title}>
       <Typography

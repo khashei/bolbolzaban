@@ -28,8 +28,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function App() {
-  console.log("App render 1");
-
   const ErrorBoundary = lazy(() =>
     import(
       /* webpackChunkName: "app" */
