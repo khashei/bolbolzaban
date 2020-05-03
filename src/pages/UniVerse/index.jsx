@@ -10,13 +10,13 @@ import useUniVerseContext from '@pages/Home/context/uni-verse-context';
 import { GENERATE_VERSE_FULLFILLED } from '@pages/Home/context/uni-verse-reducer';
 
 const useStyles = makeStyles(theme => ({
+  // root: {
+  //   width: '100%',
+  //   backgroundColor: theme.palette.common.lightBackground,
+  //   //marginTop: '-50px',
+  //   //paddingTop: '50px',
+  // },
   root: {
-    width: '100%',
-    backgroundColor: theme.palette.common.lightBackground,
-    marginTop: '-50px',
-    paddingTop: '50px',
-  },
-  mainContent: {
     position: 'relative',
   },
 }));
@@ -50,7 +50,7 @@ const UniVerse = () => {
 
   const classes = useStyles();
   return (
-    <div className={classes.mainContent}>
+    <div className={classes.root}>
       <InputForm
         isLoading={isLoading}
         firstMesra={state.firstMesra}
