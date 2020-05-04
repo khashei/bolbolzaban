@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, AppBar, Tabs, Tab, Typography } from '@material-ui/core';
+import Introduction from './introduction';
 
 import PropTypes from 'prop-types';
 import Context from '@app-context';
+
 const useStyles = makeStyles(({ palette, typography }) => ({
   root: {
     width: '100%',
@@ -15,41 +17,16 @@ const useStyles = makeStyles(({ palette, typography }) => ({
     position: 'relative',
   },
 }));
-
-function TabContainer(props) {
-  return (
-    <Typography component='div' style={{ padding: 8 * 3 }}>
-      {props.children}
-    </Typography>
-  );
-}
-
-TabContainer.propTypes = {
-  children: PropTypes.node.isRequired,
-};
-
 function About() {
-  // const { globalState, dispatch } = React.useContext(Context);
-  // console.log('Global State', globalState);
-  const [value, setValue] = useState(0);
-  // const updatedSubscriptionHeight = (value) => {
-  //   this.setState({ footerHeight: value });
-  // }
-
   const handleChange = (event, value) => {
     setValue(value);
   };
   const classes = useStyles();
   return (
-    <div className={classes.mainContent}>
-      <p>درباره</p>
-      {/* {(!this.props.hasSubscribed || this.props.justSubscribed) && (
-        <SubscriptionContainer
-          subscriptionHeight={this.updatedSubscriptionHeight}
-        />
-      )}
-      {!this.props.hasIntroDismissed && <LandingIntro />} */}
-    </div>
+    <Introduction></Introduction>
+    // <SupportUs></SupportUs>
+    // <Feedback></Feedback>
+    // <Links></Links>
   );
 }
 

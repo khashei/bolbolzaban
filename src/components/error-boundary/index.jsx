@@ -1,5 +1,4 @@
 import React from 'react';
-
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
@@ -11,8 +10,7 @@ class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, errorInfo) {
-    // TODO log the error to Sentry or somewhere
-    //logErrorToMyService(error, errorInfo);
+    console.log("Error boundry:", error, errorInfo);
   }
 
   render() {
@@ -20,8 +18,7 @@ class ErrorBoundary extends React.Component {
       return <h1>Something went wrong.</h1>;
     }
 
-    return this.props.children;
+    return this.props.children; 
   }
 }
-
 export default ErrorBoundary;
