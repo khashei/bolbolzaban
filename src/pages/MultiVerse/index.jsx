@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button, AppBar, Tabs, Tab, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 
 import PropTypes from 'prop-types';
-import Context from '@app-context';
-const useStyles = makeStyles(({ palette, typography }) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
-    backgroundColor: palette.common.lightBackground,
+    backgroundColor: theme.palette.common.lightBackground,
     marginTop: '-50px',
     paddingTop: '50px',
   },
@@ -29,13 +28,7 @@ TabContainer.propTypes = {
 };
 
 function MultiVerse() {
-  // const { globalState, dispatch } = React.useContext(Context);
-  // console.log('Global State', globalState);
   const [value, setValue] = useState(0);
-  // const updatedSubscriptionHeight = (value) => {
-  //   this.setState({ footerHeight: value });
-  // }
-
   const handleChange = (event, value) => {
     setValue(value);
   };

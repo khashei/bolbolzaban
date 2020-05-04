@@ -4,22 +4,22 @@ import { Grid, Typography } from '@material-ui/core/';
 import AnnouncementIcon from '@material-ui/icons/AnnouncementOutlined';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = () => makeStyles({
+const useStyles = makeStyles(() => ({
   root: {
     display: 'flex',
     alignItems: 'center',
   },
   text: {
-    marginLeft: 15,
+    marginRight: 15,
   },
-});
+}));
 
 const HintBox = ({ text }) => {
   const classes = useStyles();
   return (
     <Grid item className={classes.root}>
       <AnnouncementIcon color="primary" />
-      <Typography className={classes.text}>{text}</Typography>
+      <Typography variant='body2' className={classes.text}>{text}</Typography>
     </Grid>
   );
 }

@@ -1,11 +1,10 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
-import Context from '@app-context';
 
-const useStyles = makeStyles(({ palette, typography }) => ({
+const useStyles = makeStyles(theme => ({
   root: {
-    backgroundColor: palette.primary.light,
+    backgroundColor: theme.palette.primary.light,
     height: '100vh',
     display: 'flex',
     alignItems: 'center',

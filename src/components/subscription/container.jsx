@@ -56,7 +56,7 @@ const styles = (theme) => ({
   },
   root: {},
   devider: {
-    borderTop: `2px dashed ${theme.palette.common.noSokhanPrimary}`,
+    borderTop: `2px dashed ${theme.palette.primary.main}`,
     marginTop: '3em',
   },
 });
