@@ -11,8 +11,8 @@ const useStyles = makeStyles(theme => ({
   '@global': {
     html: {
       overflowX: 'hidden',
-      fontSize: 15,
-      backgroundColor: '#f0eee7',
+      //fontSize: 15,
+      //backgroundColor: '#f0eee7',
     },
     '.ml': { marginLeft: theme.spacing(1) },
     '.mt': { marginTop: theme.spacing(1) },
@@ -51,7 +51,7 @@ function App() {
 
   const classes = useStyles();
   return (
-    <Suspense fallback={<div>loading...</div>}>
+    <Suspense fallback={<div>گر صبر کنی ز غوره حلوا سازی</div>}>
       <ErrorBoundary>
         <Provider>
           <Router>
