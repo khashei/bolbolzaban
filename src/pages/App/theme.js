@@ -27,7 +27,7 @@ const verylightColor = '#ffffff';
 
 
 // const tagsBackgroundColor = '#EAF2FF';
-const textBackgroundColor = '#F5F9FF';
+// const textBackgroundColor = '#F5F9FF';
 // const iconColor = '#53698D';
 
 
@@ -106,7 +106,7 @@ const theme = createMuiTheme({
 //       eventTextColor: '#6b7a88',
 //       iconColor,
 //       tagsBackgroundColor,
-       textBackgroundColor,
+//       textBackgroundColor,
 //       darkColor,
 //       mediumColor,
 //       lightColor,

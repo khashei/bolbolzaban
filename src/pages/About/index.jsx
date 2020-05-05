@@ -9,7 +9,7 @@ import Context from '@app-context';
 const useStyles = makeStyles(({ palette, typography }) => ({
   root: {
     width: '100%',
-    backgroundColor: theme.palette.common.lightBackground,
+    //backgroundColor: theme.palette.common.lightBackground,
     marginTop: '-50px',
     paddingTop: '50px',
   },
