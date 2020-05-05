@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button, AppBar, Tabs, Tab, Typography } from '@material-ui/core';
 import Introduction from './introduction';
+import SupportUs from './support-us';
+import Links from './links';
 
-import PropTypes from 'prop-types';
-import Context from '@app-context';
 
 const useStyles = makeStyles(({ palette, typography }) => ({
   root: {
@@ -23,11 +22,13 @@ function About() {
   };
   const classes = useStyles();
   return (
-    <Introduction></Introduction>
-    // <SupportUs></SupportUs>
+    <Fragment>
+      <Introduction></Introduction>
+      <SupportUs></SupportUs>
+      <Links></Links>
+    </Fragment>
     // <Feedback></Feedback>
-    // <Links></Links>
-  );
+    );
 }
 
 About.defaultProps = {};
