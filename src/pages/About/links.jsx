@@ -1,7 +1,5 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
-
 import {
   Button,
   Grid,
@@ -12,6 +10,7 @@ import {
   CardActions,
   Typography,
   List,
+  Link,
   ListItem,
 } from '@material-ui/core';
 
@@ -31,7 +30,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Links = () => {
+export default function Links() {
   const classes = useStyles();
   return (
     <Grid container justify="center">
@@ -47,10 +46,10 @@ const Links = () => {
       /> */}
         <CardContent>
           <List className={classes.root}>
-            <ListItem>
+            <ListItem justify='left'>
               <Link href="https://medium.com/@khashei/writing-persian-poetry-with-gpt-2-0-71b7197317ea">Writing Persian Poetry with GPT-2.0</Link>
             </ListItem>
-            <ListItem>
+            <ListItem justify='right'>
               <Link href="">Trying RNN based character models on Persian poetry</Link>
             </ListItem>
             <ListItem>
@@ -80,5 +79,3 @@ const Links = () => {
     </Grid>
   );
 }
-
-export default Links;
