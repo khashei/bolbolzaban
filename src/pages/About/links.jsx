@@ -1,25 +1,19 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {
-  Button,
-  Grid,
-  Card,
-  CardContent,
-  CardHeader,
-  CardMedia,
-  CardActions,
-  Typography,
-  List,
-  Link,
-  ListItem,
-} from '@material-ui/core';
+import { Grid, Card, CardContent, List, Link, ListItem, Typography } from '@material-ui/core';
+import PropTypes from 'prop-types';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   card: {
     minWidth: 275,
     maxWidth: 600,
     margin: 20,
-
+  },
+  farsiLink: {
+    textAlign: 'right',
+  },
+  englishLink: {
+    textAlign: 'left',
   },
   media: {
     height: 0,
@@ -30,52 +24,67 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Links() {
+const LinkItem = ({ url, text, className }) => {
+  return (
+    <ListItem className={className}>
+      <Link href={url} rel="noopener" target="_blank">
+        {text}
+      </Link>
+    </ListItem>
+  );
+};
+
+LinkItem.propTypes = {
+  url: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  className: PropTypes.object.isRequired,
+};
+
+const Links = () => {
   const classes = useStyles();
   return (
     <Grid container justify="center">
-      <Card className={classes.card} >
-        <CardHeader
-          title="پیوند‌ها"
-        //subheader="ربات هوشمند سُراینده‌ی شعر"
-        />
-        {/* <CardMedia
-        className={classes.media}
-        image="https://miro.medium.com/max/875/1*eXldw_yG5U_1MBQnYl8IqQ.jpeg"
-        title="Paella dish"
-      /> */}
+      <Card className={classes.card}>
         <CardContent>
-          <List className={classes.root}>
-            <ListItem justify='left'>
-              <Link href="https://medium.com/@khashei/writing-persian-poetry-with-gpt-2-0-71b7197317ea">Writing Persian Poetry with GPT-2.0</Link>
-            </ListItem>
-            <ListItem justify='right'>
-              <Link href="">Trying RNN based character models on Persian poetry</Link>
-            </ListItem>
-            <ListItem>
-              <Link>A Not-so-Dangerous AI in the Persian Language</Link>
-            </ListItem>
-            <ListItem>
-              <Link >Detecting Persian poem metre (وزن شعر) using a sequence to sequence deep learning model</Link>
-            </ListItem>
-            <ListItem>
-              <Link >بلبل زبان - ربات هوشمند سُراینده شعر</Link>
-            </ListItem>
-            <ListItem>
-              <Link>بلبل زبان - ربات هوشمند سُراینده شعر</Link>
-            </ListItem>
-            <ListItem>
-              <Link>بلبل زبان - ربات هوشمند سُراینده شعر</Link>
-            </ListItem>
-
-          </List>
+          <Typography variant="h5">پیوندها</Typography>
+          <Grid container>
+            <List>
+              <LinkItem
+                url="https://vrgl.ir/SR9Qb"
+                text="بلبل زبان - ربات هوشمند سُراینده شعر"
+                className={classes.farsiLink}
+              />
+            </List>
+          </Grid>
+          <Typography variant="h5">اطلاعات فنی</Typography>
+          <Grid container align-items="flex-end">
+            <List>
+              <LinkItem
+                url="https://medium.com/@khashei/writing-persian-poetry-with-gpt-2-0-71b7197317ea"
+                text="Writing Persian Poetry with GPT-2.0"
+                className={classes.englishLink}
+              />
+              <LinkItem
+                url="https://medium.com/@khashei/a-not-so-dangerous-ai-in-the-persian-language-39172a641c84"
+                text="A Not-so-Dangerous AI in the Persian Language"
+                className={classes.englishLink}
+              />
+              <LinkItem
+                url="https://medium.com/@khashei/bolbol-zaban-writing-persian-poetry-with-ai-305f2c96c77"
+                text="Bolbol-Zaban — Writing Persian Poetry with AI:"
+                className={classes.englishLink}
+              />
+              <LinkItem
+                url="https://medium.com/@khashei/trying-rnn-based-character-models-on-persian-poetry-d0ecc7c014d8"
+                text="Trying RNN based character models on Persian poetry"
+                className={classes.englishLink}
+              />
+            </List>
+          </Grid>
         </CardContent>
-        <CardActions>
-          <Button className={classes.button} component={Link} key="help" to="/help">
-            توضیحات بیشتر
-        </Button>
-        </CardActions>
       </Card>
     </Grid>
   );
-}
+};
+
+export default Links;

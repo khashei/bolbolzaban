@@ -1,35 +1,18 @@
-import React, { useState, Fragment } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React from 'react';
 import Introduction from './introduction';
 import SupportUs from './support-us';
 import Links from './links';
 
-
-const useStyles = makeStyles(({ palette, typography }) => ({
-  root: {
-    width: '100%',
-    //backgroundColor: theme.palette.common.lightBackground,
-    marginTop: '-50px',
-    paddingTop: '50px',
-  },
-  mainContent: {
-    position: 'relative',
-  },
-}));
-function About() {
-  const handleChange = (event, value) => {
-    setValue(value);
-  };
-  const classes = useStyles();
+const About = () => {
   return (
-    <Fragment>
-      <Introduction></Introduction>
-      <SupportUs></SupportUs>
-      <Links></Links>
-    </Fragment>
+    <>
+      <Introduction />
+      <SupportUs />
+      <Links />
+    </>
     // <Feedback></Feedback>
-    );
-}
+  );
+};
 
 About.defaultProps = {};
 About.propTypes = {};
