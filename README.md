@@ -5,6 +5,8 @@ install NodeJS
 
 Install Yarn: `npm install -g yarn`
 
+install Prettier + ESLint + Airbnb Style Guide 
+
 ## Available Scripts
 
 The code is based on an ejected create-react-app so you know how it works!
@@ -46,3 +48,4 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
