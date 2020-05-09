@@ -19,17 +19,17 @@ const HintBox = ({ text }) => {
   return (
     <Grid item className={classes.root}>
       <AnnouncementIcon color="primary" />
-      <Typography variant='body2' className={classes.text}>{text}</Typography>
+      <Typography variant="body2" className={classes.text}>
+        {text}
+      </Typography>
     </Grid>
   );
-}
+};
 
 HintBox.propTypes = {
   text: PropTypes.string.isRequired,
 };
 
-HintBox.defaultProps = {
-};
-
+HintBox.defaultProps = {};
 
 export default HintBox;

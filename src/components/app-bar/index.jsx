@@ -10,7 +10,7 @@ import ApplicationMenuContainer from './menu/index.container';
 import ApplicationTitleContainer from './menu/title.container';
 import ApplicationDrawerContainer from './drawer/index.container';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     alignContent: 'space-between',
@@ -78,7 +78,7 @@ const ApplicationAppBar = () => {
   const classes = useStyles();
   return (
     <Fade in>
-      <AppBar position='static'>
+      <AppBar position="static">
         <ApplicationProgressContainer />
         <Toolbar className={classes.root}>
           <ApplicationDrawerContainer />
@@ -88,8 +88,7 @@ const ApplicationAppBar = () => {
         </Toolbar>
       </AppBar>
     </Fade>
-  )
+  );
 };
-
 
 export default ApplicationAppBar;

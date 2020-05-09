@@ -1,21 +1,12 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-// import { connect } from 'react-redux';
-// import MenuItem from './item';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-// import Menu from '@material-ui/core/Menu';
-// import MenuItem from '@material-ui/core/MenuItem';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-// import AccountCircle from '@material-ui/icons/AccountCircle';
-import MenuIcon from '@material-ui/icons/Menu';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import HomeIcon from '@material-ui/icons/Home';
 import LocalLibraryIcon from '@material-ui/icons/LocalLibrary';
-// import Drawer from '@material-ui/core/Drawer';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-// import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 
@@ -44,7 +35,7 @@ const ApplicationMenuContainer = () => {
 
   const toggleDrawer = (open) => () => {
     window.location = 'http://nosokhan.com/';
-    // setDrawerState(open);
+    setDrawerState(open);
     // setState({
     //   [side]: open,
     // });
@@ -54,7 +45,6 @@ const ApplicationMenuContainer = () => {
 
   const sideList = (
     <div className={classes.list}>
-
       <IconButton
         onClick={toggleDrawer(true)}
         className={classes.title}
@@ -68,19 +58,19 @@ const ApplicationMenuContainer = () => {
         <HomeIcon />
         <Typography variant="h6" className={classes.titleText} component="h2" noWrap>
           صفحه اصلی
-          </Typography>
+        </Typography>
       </Link>
       <Link to="/library" className={classes.title}>
         <LocalLibraryIcon />
         <Typography variant="h6" className={classes.titleText} component="h2" noWrap>
           کتابخانه اشعار
-          </Typography>
+        </Typography>
       </Link>
       <Link to="/bolbolzaban" className={classes.title}>
         <LocalLibraryIcon />
         <Typography variant="h6" className={classes.titleText} component="h2" noWrap>
           بلبل‌زبان
-          </Typography>
+        </Typography>
       </Link>
       {/* <List>my item</List> */}
       <Divider />
@@ -125,14 +115,10 @@ const ApplicationMenuContainer = () => {
       </SwipeableDrawer>
     </div>
   );
-}
-
-ApplicationMenuContainer.propTypes = {
-  items: PropTypes.array,
 };
 
-ApplicationMenuContainer.defaultProps = {
-  items: [],
-};
+ApplicationMenuContainer.propTypes = {};
+
+ApplicationMenuContainer.defaultProps = {};
 
 export default ApplicationMenuContainer;

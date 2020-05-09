@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Typography, Card, CardContent, CardActions, Button, Popper } from '@material-ui/core/';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   card: {
     minWidth: 200,
   },
@@ -37,8 +37,7 @@ const useStyles = makeStyles(theme => ({
       borderStyle: 'solid',
     },
   },
-})
-);
+}));
 
 const InlineHelp = ({ anchor, onRandomSampleClick }) => {
   const [arrowRef, setArrowRef] = useState();
@@ -77,12 +76,15 @@ const InlineHelp = ({ anchor, onRandomSampleClick }) => {
             size="small"
             variant="outlined"
             className={classes.button}
-            onClick={onRandomSampleClick}>تولید الگوی نمونه</Button>
+            onClick={onRandomSampleClick}
+          >
+            تولید الگوی نمونه
+          </Button>
         </CardActions>
       </Card>
     </Popper>
   );
-}
+};
 
 InlineHelp.propTypes = {
   onRandomSampleClick: PropTypes.func.isRequired,

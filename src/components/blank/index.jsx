@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.primary.light,
     height: '100vh',
@@ -19,7 +19,7 @@ const Blank = () => {
       <Button>Blank It Is</Button>
     </div>
   );
-}
+};
 
 Blank.defaultProps = {};
 Blank.propTypes = {};

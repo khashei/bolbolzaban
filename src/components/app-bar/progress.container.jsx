@@ -1,9 +1,10 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 import PropTypes from 'prop-types';
 import IndeterminateLinearProgress from '@components/progress';
 
 const ApplicationProgressContainer = () => {
-  //todo4a
+  // todo4a
   const loadings = false;
 
   let result = null;
@@ -11,7 +12,7 @@ const ApplicationProgressContainer = () => {
     result = <IndeterminateLinearProgress />;
   }
   return result;
-}
+};
 
 ApplicationProgressContainer.propTypes = {
   loadings: PropTypes.object,
