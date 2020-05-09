@@ -6,11 +6,7 @@ import { Context } from './uni-verse-context';
 const Provider = (props) => {
   const [state, dispatch] = React.useReducer(reducer, initialState);
 
-  return (
-    <Context.Provider value={{ state, dispatch }}>
-      {props.children}
-    </Context.Provider>
-  );
+  return <Context.Provider value={{ state, dispatch }}>{props.children}</Context.Provider>;
 };
 
 export default Provider;
