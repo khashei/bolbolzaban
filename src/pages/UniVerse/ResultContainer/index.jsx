@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
 import BeytCard from './beyt-card';
 import BeytLoader from './beyt-loader';
 import ErrorCard from './error-card';
-import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     margin: '0 auto',
     [theme.breakpoints.up('md')]: {
@@ -32,44 +32,37 @@ const ResultContainer = ({ isLoading, outputs, error }) => {
         <BeytLoader />
       </div>
     );
-  } else if (!isLoading) {
+  }
+  if (!isLoading) {
     if (error == null || error?.code === 200) {
       return (
         <div className={classes.root}>
           {outputs?.map((line, index) => (
-            <BeytCard
-              key={index}
-              firstMesra={line.m1}
-              secondMesra={line.m2}
-            />
+            <BeytCard key={index} firstMesra={line.m1} secondMesra={line.m2} />
           ))}
         </div>
       );
     }
     return (
       <div className={classes.root}>
-        <ErrorCard
-          statusCode={error.code}
-          error={error.message}
-        />
+        <ErrorCard statusCode={error.code} error={error.message} />
       </div>
     );
   }
   return null;
 };
 
-
 ResultContainer.propTypes = {
   isLoading: PropTypes.bool,
   outputs: PropTypes.arrayOf(
     PropTypes.exact({
       m1: PropTypes.string,
-      m2: PropTypes.string
+      m2: PropTypes.string,
     })
   ),
   error: PropTypes.exact({
     code: PropTypes.number,
-    message: PropTypes.string
+    message: PropTypes.string,
   }),
 };
 

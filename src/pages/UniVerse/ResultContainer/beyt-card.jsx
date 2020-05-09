@@ -1,14 +1,11 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Typography, Card, CardContent, CardActions, IconButton } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import copyToClipboard from '@utils/copy-to-clipboard';
 
-// import FilterNone from '@material-ui/icons/FilterNone';
-// import ShareIcon from '@material-ui/icons/Share';
-// import IconElement from '../../../shared-blocks/icons';
-
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   card: {
     minWidth: 275,
     margin: 20,
@@ -39,8 +36,7 @@ const useStyles = makeStyles(theme => ({
     top: 0,
     zIndex: -2,
   },
-})
-);
+}));
 
 const BeytCard = ({ firstMesra, secondMesra }) => {
   const copyText = () => {
@@ -51,8 +47,12 @@ const BeytCard = ({ firstMesra, secondMesra }) => {
   return (
     <Card className={classes.card}>
       <CardContent className={classes.content}>
-        <Typography variant="body1" color="primary" className={classes.resultText}>{firstMesra}</Typography>
-        <Typography variant="body1" color="primary" className={classes.resultText}>{secondMesra}</Typography>
+        <Typography variant="body1" color="primary" className={classes.resultText}>
+          {firstMesra}
+        </Typography>
+        <Typography variant="body1" color="primary" className={classes.resultText}>
+          {secondMesra}
+        </Typography>
         {/* <input
             contentEditable
             // readOnly
@@ -63,13 +63,8 @@ const BeytCard = ({ firstMesra, secondMesra }) => {
           /> */}
       </CardContent>
       <CardActions className={classes.actions}>
-        <IconButton
-          className={classes.copier}
-          onClick={copyText}
-        >
-          <Typography>
-            کپی
-          </Typography>
+        <IconButton className={classes.copier} onClick={copyText}>
+          <Typography>کپی</Typography>
 
           {/* <FilterNone className={classes.icon} /> */}
         </IconButton>
@@ -92,18 +87,16 @@ const BeytCard = ({ firstMesra, secondMesra }) => {
             <ShareIcon className={classes.icon} />
           </IconButton>
         } */}
-
       </CardActions>
     </Card>
   );
-}
+};
 
 BeytCard.propTypes = {
   firstMesra: PropTypes.string.isRequired,
   secondMesra: PropTypes.string.isRequired,
 };
 
-BeytCard.defaultProps = {
-};
+BeytCard.defaultProps = {};
 
 export default BeytCard;

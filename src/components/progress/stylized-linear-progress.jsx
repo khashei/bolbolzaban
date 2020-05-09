@@ -10,7 +10,7 @@ const useStyles = makeStyles({
 
 const StylizedLinearProgress = () => {
   const classes = useStyles();
-  return (<LinearProgress color="primary" className={classes.root} />);
+  return <LinearProgress color="primary" className={classes.root} />;
 };
 
 export default StylizedLinearProgress;
