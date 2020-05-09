@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
+/* eslint-disable import/no-unresolved */
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Tabs, Tab, Typography } from '@material-ui/core';
-import UniVerse from '@pages/UniVerse'
-import MultiVerse from '@pages/MultiVerse'
-import About from '@pages/About'
-import PropTypes from 'prop-types';
-import Provider from './context/provider';
+import { AppBar, Tabs, Tab } from '@material-ui/core';
+import UniVerse from '@pages/UniVerse';
+import MultiVerse from '@pages/MultiVerse';
+import About from '@pages/About';
 import TabContainer from './tab-container';
+import Provider from './context/provider';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     backgroundColor: theme.palette.common.lightBackground,
@@ -30,11 +30,11 @@ function Home() {
   return (
     <Provider>
       <div className={classes.root}>
-        <AppBar position='static'>
+        <AppBar position="static">
           <Tabs value={tabIndex} onChange={handleChange} centered>
-            <Tab label='تک بیت' />
-            <Tab label='شعر' />
-            <Tab label='درباره' />
+            <Tab label="تک بیت" />
+            <Tab label="شعر" />
+            <Tab label="درباره" />
           </Tabs>
         </AppBar>
         {tabIndex === 0 && (
