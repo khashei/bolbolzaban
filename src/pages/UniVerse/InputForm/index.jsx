@@ -64,9 +64,9 @@ const InputForm = ({ isLoading, firstMesra, secondMesra, style, onSubmit }) => {
   const [inputTextRef, setInputTextRef] = useState();
 
   const handleSubmit = () => {
-    const { m1, m2, hint } = InputPreprocessor.process(formState.firstMesra, formState.secondMesra);
+    const input = InputPreprocessor.process(formState.firstMesra, formState.secondMesra);
 
-    if (!m1 && !m2) {
+    if (!input.firstMesra && !input.secondMesra) {
       setFormState({
         ...formState,
         inlineHelpVisible: true,
@@ -75,12 +75,12 @@ const InputForm = ({ isLoading, firstMesra, secondMesra, style, onSubmit }) => {
       setFormState({
         ...formState,
         inlineHelpVisible: false,
-        firstMesra: m1,
-        secondMesra: m2,
-        hint,
+        firstMesra: input.firstMesra,
+        secondMesra: input.secondMesra,
+        hint: input.hint,
       });
 
-      onSubmit(firstMesra, secondMesra, formState.style, true);
+      onSubmit(input.firstMesra, input.secondMesra, formState.style, true);
     }
   };
 
