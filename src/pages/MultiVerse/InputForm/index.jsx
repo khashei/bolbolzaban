@@ -3,11 +3,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { TextField, Typography, Grid, Paper, Radio, Button, makeStyles } from '@material-ui/core';
-
 import HintBox from '@components/hint-box';
 import InlineHelp from './inline-help';
 import predefinedPatterns from './predefined-patterns';
 import InputPreprocessor from './input-preprocessor';
+// import InputText from './input-text';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -53,13 +53,14 @@ const useStyles = makeStyles((theme) => ({
 
 const InputForm = ({ isLoading, inputLines, style, onSubmit }) => {
   const [formState, setFormState] = useState({
-    inputLines,
+    inputLines: '',
     style,
     hint: '',
     inlineHelpVisible: false,
     isUserDefined: false,
   });
 
+  // eslint-disable-next-line no-unused-vars
   const [inputTextRef, setInputTextRef] = useState();
 
   const handleSubmit = () => {
@@ -114,24 +115,6 @@ const InputForm = ({ isLoading, inputLines, style, onSubmit }) => {
           <Paper
             className={classes.paper}
             onClick={() => {
-              setFormState({ ...formState, style: 'free' });
-            }}
-          >
-            <Grid container alignItems="center">
-              <Radio
-                checked={formState.style === 'free'}
-                onChange={handleChange('style')}
-                value="free"
-                color="primary"
-              />
-              <Typography variant="subtitle1">شعر نو</Typography>
-            </Grid>
-          </Paper>
-        </Grid>
-        <Grid item xs={6}>
-          <Paper
-            className={classes.paper}
-            onClick={() => {
               setFormState({ ...formState, style: 'classic' });
             }}
           >
@@ -143,6 +126,24 @@ const InputForm = ({ isLoading, inputLines, style, onSubmit }) => {
                 color="primary"
               />
               <Typography variant="subtitle1">شعر کلاسیک</Typography>
+            </Grid>
+          </Paper>
+        </Grid>
+        <Grid item xs={6}>
+          <Paper
+            className={classes.paper}
+            onClick={() => {
+              setFormState({ ...formState, style: 'free' });
+            }}
+          >
+            <Grid container alignItems="center">
+              <Radio
+                checked={formState.style === 'free'}
+                onChange={handleChange('style')}
+                value="free"
+                color="primary"
+              />
+              <Typography variant="subtitle1">شعر نو</Typography>
             </Grid>
           </Paper>
         </Grid>
@@ -163,15 +164,16 @@ const InputForm = ({ isLoading, inputLines, style, onSubmit }) => {
             نمونه
           </Button>
           <TextField
-            id="user-input"
+            id="text-input"
             fullWidth
             required
-            placeholder="هرگز نمیرد آنکه دلش زنده شد بعشق"
-            value={formState.firstMesra}
             className={classes.textFieldMesra}
-            onChange={handleChange('firstMesra')}
+            value={formState.inputLines}
+            onChange={handleChange('inputLines')}
+            placeholder="هرگز نمیرد آنکه دلش زنده شد بعشق"
+            multiline
             margin="normal"
-            variant="filled"
+            variant="outlined"
             inputRef={setInputTextRef.bind(this)}
           />
         </Grid>

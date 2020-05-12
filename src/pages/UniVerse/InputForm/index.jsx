@@ -169,7 +169,7 @@ const InputForm = ({ isLoading, firstMesra, secondMesra, style, onSubmit }) => {
             الگوی نمونه
           </Button>
           <TextField
-            id="user-input"
+            id="first-mesra-input"
             fullWidth
             required
             placeholder="هرگز نمیرد آنکه ؟ ؟ بعشق"
@@ -180,7 +180,7 @@ const InputForm = ({ isLoading, firstMesra, secondMesra, style, onSubmit }) => {
             variant="filled"
           />
           <TextField
-            id="user-input"
+            id="second-mesra-input"
             fullWidth
             required
             placeholder="؟ است بر ؟ ؟ ؟‌ ما"
