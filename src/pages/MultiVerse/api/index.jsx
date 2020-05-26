@@ -1,10 +1,10 @@
 /* eslint-disable import/no-unresolved */
 import { getRequest } from '@utils/request';
-import { BASE_PATH } from '@app-settings';
+import BASE_PATH from '@app-settings';
 
-const generateLineRequest = async ({ style, mask }) =>
+const generateTextRequest = async ({ style, input, topk, temper }) =>
   getRequest({
-    url: `${BASE_PATH}/deepsher/${style}/${mask}`,
+    url: `${BASE_PATH}/deeptext/${style}/${input}/${topk}/${temper}`,
   });
 
-export default generateLineRequest;
+export default generateTextRequest;
