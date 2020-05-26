@@ -1,15 +1,14 @@
 import React from 'react';
 
-export const UniVerseContext = React.createContext();
-UniVerseContext.displayName = 'uniVerseContext';
+export const Context = React.createContext();
 
 const useUniVerseContext = () => {
-  const context = React.useContext(UniVerseContext);
+  const context = React.useContext(Context);
   if (context == null) {
-    console.error('use uniVerseContext within provider block', context);
-  }
+    console.error("use uniVerseContext within provider block", context);
+  } 
 
   return context;
-};
+}
 
 export default useUniVerseContext;

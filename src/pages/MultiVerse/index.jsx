@@ -1,11 +1,11 @@
 /* eslint-disable import/no-unresolved */
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import useMultiVerseContext from '@pages/Home/context/multi-verse-context';
-import { GENERATE_TEXT_FULLFILLED } from '@pages/Home/context/multi-verse-reducer';
+import useUniVerseContext from '@pages/Home/context/uni-verse-context';
+import { GENERATE_VERSE_FULLFILLED } from '@pages/Home/context/uni-verse-reducer';
 import InputForm from './InputForm/index';
 import ResultContainer from './ResultContainer';
-import generateTextRequest from './api';
+import generateLineRequest from './api';
 
 const useStyles = makeStyles(() => ({
   // root: {
@@ -20,26 +20,25 @@ const useStyles = makeStyles(() => ({
 }));
 
 const MultiVerse = () => {
-  const { state, dispatch } = useMultiVerseContext();
+  const { state, dispatch } = useUniVerseContext();
   const [isLoading, setIsLoading] = useState(false);
 
-  const generateBeyt = async (input, style, byUser) => {
+  const generateBeyt = async (firstMesra, secondMesra, style, byUser) => {
     setIsLoading(true);
 
-    const data = await generateTextRequest({
+    const data = await generateLineRequest({
       style,
-      input: `${input}`,
-      topk: 40,
-      temper: 75,
+      mask: `${firstMesra || '?'}-${secondMesra || '?'}`,
       isUserDefined: byUser,
     });
 
     dispatch({
-      type: GENERATE_TEXT_FULLFILLED,
+      type: GENERATE_VERSE_FULLFILLED,
       payload: {
-        input,
+        firstMesra,
+        secondMesra,
         style,
-        output: data.output,
+        outputs: data.output,
         error: data.statusCode === 200 ? null : { code: data.statusCode, message: data.error },
       },
     });
