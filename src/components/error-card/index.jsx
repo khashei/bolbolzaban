@@ -1,4 +1,4 @@
-// prettier disable due to this error: https://github.com/prettier/prettier/issues/5814
+// prettier disable due to error in handling <> </> tag: https://github.com/prettier/prettier/issues/5814
 /* eslint-disable prettier/prettier */
 
 import React from 'react';

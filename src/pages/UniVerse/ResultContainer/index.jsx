@@ -1,9 +1,10 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
+import BeytLoader from '@components/progress/beyt-loader';
+import ErrorCard from '@components/error-card';
 import BeytCard from './beyt-card';
-import BeytLoader from './beyt-loader';
-import ErrorCard from './error-card';
 
 const useStyles = makeStyles((theme) => ({
   root: {
