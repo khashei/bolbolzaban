@@ -51,9 +51,9 @@ const useStyles = makeStyles((theme) => ({
   group: {},
 }));
 
-const InputForm = ({ isLoading, inputLines, style, onSubmit }) => {
+const InputForm = ({ isLoading, input, style, onSubmit }) => {
   const [formState, setFormState] = useState({
-    inputLines: '',
+    input: '',
     style,
     hint: '',
     inlineHelpVisible: false,
@@ -64,7 +64,7 @@ const InputForm = ({ isLoading, inputLines, style, onSubmit }) => {
   const [inputTextRef, setInputTextRef] = useState();
 
   const handleSubmit = () => {
-    const { lines, hint } = InputPreprocessor.process(inputLines);
+    const { lines, hint } = InputPreprocessor.process(input);
 
     if (!lines) {
       setFormState({
@@ -75,7 +75,7 @@ const InputForm = ({ isLoading, inputLines, style, onSubmit }) => {
       setFormState({
         ...formState,
         inlineHelpVisible: false,
-        inputLines: lines,
+        input: lines,
         hint,
       });
 
@@ -87,7 +87,7 @@ const InputForm = ({ isLoading, inputLines, style, onSubmit }) => {
     const randomInput = predefinedPatterns[Math.floor(Math.random() * predefinedPatterns.length)];
     setFormState({
       ...formState,
-      inputLines: randomInput.lines,
+      input: randomInput.lines,
       style: randomInput.style,
       hint: 'حالا ادامه بدید',
       inlineHelpVisible: false,
@@ -133,14 +133,14 @@ const InputForm = ({ isLoading, inputLines, style, onSubmit }) => {
           <Paper
             className={classes.paper}
             onClick={() => {
-              setFormState({ ...formState, style: 'free' });
+              setFormState({ ...formState, style: 'modern' });
             }}
           >
             <Grid container alignItems="center">
               <Radio
-                checked={formState.style === 'free'}
+                checked={formState.style === 'modern'}
                 onChange={handleChange('style')}
-                value="free"
+                value="modern"
                 color="primary"
               />
               <Typography variant="subtitle1">شعر نو</Typography>
@@ -149,7 +149,7 @@ const InputForm = ({ isLoading, inputLines, style, onSubmit }) => {
         </Grid>
         <Grid item xs={12}>
           <Typography variant="subtitle1">
-            یک یا چند سطر آغازین یک شعر را وارد کنید و بلبل‌زبان شعر را ادامه می‌دهد
+            یک یا چند سطر آغازین یک شعر را وارد کنید و بلبل‌زبان نوشته شما را ادامه می‌دهد
           </Typography>
         </Grid>
         <Grid item xs={12}>
@@ -168,8 +168,8 @@ const InputForm = ({ isLoading, inputLines, style, onSubmit }) => {
             fullWidth
             required
             className={classes.textFieldMesra}
-            value={formState.inputLines}
-            onChange={handleChange('inputLines')}
+            value={formState.input}
+            onChange={handleChange('input')}
             placeholder="هرگز نمیرد آنکه دلش زنده شد بعشق"
             multiline
             margin="normal"
@@ -203,14 +203,14 @@ const InputForm = ({ isLoading, inputLines, style, onSubmit }) => {
 
 InputForm.propTypes = {
   isLoading: PropTypes.bool,
-  inputLines: PropTypes.string,
+  input: PropTypes.string,
   style: PropTypes.string,
   onSubmit: PropTypes.func,
 };
 
 InputForm.defaultProps = {
   isLoading: false,
-  inputLines: '',
+  input: '',
   style: 'classic',
   onSubmit: null,
 };

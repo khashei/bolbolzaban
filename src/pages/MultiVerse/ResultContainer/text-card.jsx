@@ -38,9 +38,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const BeytCard = ({ firstMesra, secondMesra }) => {
+const TextCard = ({ text }) => {
   const copyText = () => {
-    copyToClipboard(`${firstMesra}     ${secondMesra}`);
+    copyToClipboard(`${text}`);
   };
 
   const classes = useStyles();
@@ -48,10 +48,7 @@ const BeytCard = ({ firstMesra, secondMesra }) => {
     <Card className={classes.card}>
       <CardContent className={classes.content}>
         <Typography variant="body1" color="primary" className={classes.resultText}>
-          {firstMesra}
-        </Typography>
-        <Typography variant="body1" color="primary" className={classes.resultText}>
-          {secondMesra}
+          {text}
         </Typography>
         {/* <input
             contentEditable
@@ -92,11 +89,10 @@ const BeytCard = ({ firstMesra, secondMesra }) => {
   );
 };
 
-BeytCard.propTypes = {
-  firstMesra: PropTypes.string.isRequired,
-  secondMesra: PropTypes.string.isRequired,
+TextCard.propTypes = {
+  text: PropTypes.string.isRequired,
 };
 
-BeytCard.defaultProps = {};
+TextCard.defaultProps = {};
 
-export default BeytCard;
+export default TextCard;

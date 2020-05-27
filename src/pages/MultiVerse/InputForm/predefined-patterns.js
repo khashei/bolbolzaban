@@ -1,38 +1,23 @@
 const predefinedPatterns = [
   {
-    style: 'free',
-    first: '؟ بار ؟ کردی و دیدی ثمرش را',
-    second: 'نیکی چه بدی داشت که ؟ نکردی',
+    style: 'classic',
+    lines: 'هرگز نمیرد آنکه دلش زنده شد به عشق \n ثبت است بر جریده عالم دوام ما \n',
   },
   {
-    style: 'free',
-    first: 'هرگز ؟ آنکه ؟ ؟ بعشق',
-    second: '؟ است بر ؟ ؟ ؟ ما',
+    style: 'classic',
+    lines: 'با ما به از آن باش که با خلق جهانی',
   },
   {
-    style: 'free',
-    first: 'بده ؟ بیتی را به بلبل',
-    second: 'همانند ؟ ای دسته‌ی ؟',
+    style: 'classic',
+    lines: 'سالم بود آنکس که تو را یار نباشد',
   },
   {
-    style: 'free',
-    first: 'با ما به از آن باش که با خلق جهانی',
-    second: '؟ ؟ ؟ ؟ ؟ ؟ بیمار ‌نباشد',
+    style: 'modern',
+    lines: 'زمستان بس ناجوانمردانه سرد است',
   },
   {
-    style: 'free',
-    first: 'سالم بود ؟ ؟ ؟ ؟ ؟ ؟ ؟',
-    second: 'کس ؟ ؟ ؟ ؟ ؟ بیمار ‌نباشد',
-  },
-  {
-    style: 'ferd',
-    first: 'بنام خداوند ؟ و ؟',
-    second: '؟ ؟ ؟ ؟ ؟',
-  },
-  {
-    style: 'free',
-    first: 'روان را به دانش به کار آوری',
-    second: '؟ ؟ ؟ ؟ ؟ ؟ ؟',
+    style: 'modern',
+    lines: 'سلام',
   },
 ];
 

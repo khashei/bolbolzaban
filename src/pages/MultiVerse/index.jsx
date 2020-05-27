@@ -23,7 +23,7 @@ const MultiVerse = () => {
   const { state, dispatch } = useMultiVerseContext();
   const [isLoading, setIsLoading] = useState(false);
 
-  const generateBeyt = async (input, style, byUser) => {
+  const generateText = async (input, style, byUser) => {
     setIsLoading(true);
 
     const data = await generateTextRequest({
@@ -52,12 +52,11 @@ const MultiVerse = () => {
     <div className={classes.root}>
       <InputForm
         isLoading={isLoading}
-        firstMesra={state.firstMesra}
-        secondMesra={state.secondMesra}
+        input={state.input}
         style={state.style}
-        onSubmit={generateBeyt}
+        onSubmit={generateText}
       />
-      <ResultContainer isLoading={isLoading} outputs={state.outputs} error={state.error} />
+      <ResultContainer isLoading={isLoading} output={state.output} error={state.error} />
     </div>
   );
 };
