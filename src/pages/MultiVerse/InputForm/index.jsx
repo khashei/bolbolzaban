@@ -65,6 +65,7 @@ const InputForm = ({ isLoading, input, style, onSubmit }) => {
 
   const handleSubmit = () => {
     const { lines, hint } = InputPreprocessor.process(input);
+    console.log({ lines, hint });
 
     if (!lines) {
       setFormState({

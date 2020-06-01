@@ -64,9 +64,12 @@ const InputForm = ({ isLoading, firstMesra, secondMesra, style, onSubmit }) => {
   const [inputTextRef, setInputTextRef] = useState();
 
   const handleSubmit = () => {
-    const { m1, m2, hint } = InputPreprocessor.process(formState.firstMesra, formState.secondMesra);
+    const { normalizedFirstMesra, normalizedSecondMesra, hint } = InputPreprocessor.process(
+      formState.firstMesra,
+      formState.secondMesra
+    );
 
-    if (!m1 && !m2) {
+    if (!firstMesra && !firstMesra) {
       setFormState({
         ...formState,
         inlineHelpVisible: true,
@@ -75,12 +78,12 @@ const InputForm = ({ isLoading, firstMesra, secondMesra, style, onSubmit }) => {
       setFormState({
         ...formState,
         inlineHelpVisible: false,
-        firstMesra: m1,
-        secondMesra: m2,
+        firstMesra: normalizedFirstMesra,
+        secondMesra: normalizedSecondMesra,
         hint,
       });
 
-      onSubmit(firstMesra, secondMesra, formState.style, true);
+      onSubmit(normalizedFirstMesra, normalizedSecondMesra, formState.style, true);
     }
   };
 
@@ -88,8 +91,8 @@ const InputForm = ({ isLoading, firstMesra, secondMesra, style, onSubmit }) => {
     const randomInput = predefinedPatterns[Math.floor(Math.random() * predefinedPatterns.length)];
     setFormState({
       ...formState,
-      firstMesra: randomInput.first,
-      secondMesra: randomInput.second,
+      firstMesra: randomInput.firstMesra,
+      secondMesra: randomInput.secondMesra,
       style: randomInput.style,
       hint:
         'حالا سعی کنید بعضی از کلمات را عوض کنید یا بجای آن علامت سوال بگذارید و دوباره امتحان کنید',
@@ -97,7 +100,7 @@ const InputForm = ({ isLoading, firstMesra, secondMesra, style, onSubmit }) => {
       isUserDefined: false,
     });
 
-    onSubmit(randomInput.first, randomInput.second, randomInput.style, false);
+    onSubmit(randomInput.firstMesra, randomInput.secondMesra, randomInput.style, false);
   };
 
   const handleChange = (name) => (event) => {
