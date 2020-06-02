@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
 
 const InputForm = ({ isLoading, input, style, onSubmit }) => {
   const [formState, setFormState] = useState({
-    input: '',
+    input,
     style,
     hint: '',
     inlineHelpVisible: false,
@@ -64,8 +64,7 @@ const InputForm = ({ isLoading, input, style, onSubmit }) => {
   const [inputTextRef, setInputTextRef] = useState();
 
   const handleSubmit = () => {
-    const { lines, hint } = InputPreprocessor.process(input);
-    console.log({ lines, hint });
+    const { lines, hint } = InputPreprocessor.process(formState.input);
 
     if (!lines) {
       setFormState({
