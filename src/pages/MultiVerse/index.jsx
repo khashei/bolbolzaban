@@ -1,44 +1,65 @@
-import React, { useEffect, useState } from 'react';
+/* eslint-disable import/no-unresolved */
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
+import useMultiVerseContext from '@pages/Home/context/multi-verse-context';
+import { GENERATE_TEXT_FULLFILLED } from '@pages/Home/context/multi-verse-reducer';
+import InputForm from './InputForm/index';
+import ResultContainer from './ResultContainer';
+import generateTextRequest from './api';
 
-import PropTypes from 'prop-types';
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
+  // root: {
+  //   width: '100%',
+  //   backgroundColor: theme.palette.common.lightBackground,
+  //   //marginTop: '-50px',
+  //   //paddingTop: '50px',
+  // },
   root: {
-    width: '100%',
-    backgroundColor: theme.palette.common.lightBackground,
-    marginTop: '-50px',
-    paddingTop: '50px',
-  },
-  mainContent: {
     position: 'relative',
   },
 }));
 
-function TabContainer(props) {
-  return (
-    <Typography component='div' style={{ padding: 8 * 3 }}>
-      {props.children}
-    </Typography>
-  );
-}
+const MultiVerse = () => {
+  const { state, dispatch } = useMultiVerseContext();
+  const [isLoading, setIsLoading] = useState(false);
 
-TabContainer.propTypes = {
-  children: PropTypes.node.isRequired,
-};
+  const generateText = async (input, style, byUser) => {
+    setIsLoading(true);
 
-function MultiVerse() {
-  const [value, setValue] = useState(0);
-  const handleChange = (event, value) => {
-    setValue(value);
+    const data = await generateTextRequest({
+      style,
+      input: `${input}`,
+      topk: 40,
+      temper: 75,
+      isUserDefined: byUser,
+    });
+
+    dispatch({
+      type: GENERATE_TEXT_FULLFILLED,
+      payload: {
+        input,
+        style,
+        output: data.output,
+        error: data.statusCode === 200 ? null : { code: data.statusCode, message: data.error },
+      },
+    });
+
+    setIsLoading(false);
   };
+
   const classes = useStyles();
   return (
-    <div className={classes.mainContent}>
-      <p>سرایش شعر</p>
+    <div className={classes.root}>
+      <InputForm
+        isLoading={isLoading}
+        input={state.input}
+        style={state.style}
+        onSubmit={generateText}
+      />
+      <ResultContainer isLoading={isLoading} output={state.output} error={state.error} />
     </div>
   );
-}
+};
 
 MultiVerse.defaultProps = {};
 MultiVerse.propTypes = {};

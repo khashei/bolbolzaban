@@ -3,11 +3,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { TextField, Typography, Grid, Paper, Radio, Button, makeStyles } from '@material-ui/core';
-
 import HintBox from '@components/hint-box';
 import InlineHelp from './inline-help';
 import predefinedPatterns from './predefined-patterns';
 import InputPreprocessor from './input-preprocessor';
+// import InputText from './input-text';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -51,25 +51,22 @@ const useStyles = makeStyles((theme) => ({
   group: {},
 }));
 
-const InputForm = ({ isLoading, firstMesra, secondMesra, style, onSubmit }) => {
+const InputForm = ({ isLoading, input, style, onSubmit }) => {
   const [formState, setFormState] = useState({
-    firstMesra,
-    secondMesra,
+    input,
     style,
     hint: '',
     inlineHelpVisible: false,
     isUserDefined: false,
   });
 
+  // eslint-disable-next-line no-unused-vars
   const [inputTextRef, setInputTextRef] = useState();
 
   const handleSubmit = () => {
-    const { normalizedFirstMesra, normalizedSecondMesra, hint } = InputPreprocessor.process(
-      formState.firstMesra,
-      formState.secondMesra
-    );
+    const { lines, hint } = InputPreprocessor.process(formState.input);
 
-    if (!firstMesra && !firstMesra) {
+    if (!lines) {
       setFormState({
         ...formState,
         inlineHelpVisible: true,
@@ -78,12 +75,11 @@ const InputForm = ({ isLoading, firstMesra, secondMesra, style, onSubmit }) => {
       setFormState({
         ...formState,
         inlineHelpVisible: false,
-        firstMesra: normalizedFirstMesra,
-        secondMesra: normalizedSecondMesra,
+        input: lines,
         hint,
       });
 
-      onSubmit(normalizedFirstMesra, normalizedSecondMesra, formState.style, true);
+      onSubmit(lines, formState.style, true);
     }
   };
 
@@ -91,16 +87,14 @@ const InputForm = ({ isLoading, firstMesra, secondMesra, style, onSubmit }) => {
     const randomInput = predefinedPatterns[Math.floor(Math.random() * predefinedPatterns.length)];
     setFormState({
       ...formState,
-      firstMesra: randomInput.firstMesra,
-      secondMesra: randomInput.secondMesra,
+      input: randomInput.lines,
       style: randomInput.style,
-      hint:
-        'حالا سعی کنید بعضی از کلمات را عوض کنید یا بجای آن علامت سوال بگذارید و دوباره امتحان کنید',
+      hint: 'حالا ادامه بدید',
       inlineHelpVisible: false,
       isUserDefined: false,
     });
 
-    onSubmit(randomInput.firstMesra, randomInput.secondMesra, randomInput.style, false);
+    onSubmit(randomInput.lines, randomInput.style, false);
   };
 
   const handleChange = (name) => (event) => {
@@ -115,23 +109,23 @@ const InputForm = ({ isLoading, firstMesra, secondMesra, style, onSubmit }) => {
     <form className={classes.container} noValidate autoComplete="off">
       <Grid container justify="space-around" spacing={2}>
         <Grid item xs={12}>
-          <Typography variant="h5">همسُرایی تک بیت</Typography>
+          <Typography variant="h5">سرایش شعر</Typography>
         </Grid>
         <Grid item xs={6}>
           <Paper
             className={classes.paper}
             onClick={() => {
-              setFormState({ ...formState, style: 'free' });
+              setFormState({ ...formState, style: 'classic' });
             }}
           >
             <Grid container alignItems="center">
               <Radio
-                checked={formState.style === 'free'}
+                checked={formState.style === 'classic'}
                 onChange={handleChange('style')}
-                value="free"
+                value="classic"
                 color="primary"
               />
-              <Typography variant="subtitle1">سبک آزاد</Typography>
+              <Typography variant="subtitle1">شعر کلاسیک</Typography>
             </Grid>
           </Paper>
         </Grid>
@@ -139,25 +133,23 @@ const InputForm = ({ isLoading, firstMesra, secondMesra, style, onSubmit }) => {
           <Paper
             className={classes.paper}
             onClick={() => {
-              setFormState({ ...formState, style: 'ferd' });
+              setFormState({ ...formState, style: 'modern' });
             }}
           >
             <Grid container alignItems="center">
               <Radio
-                checked={formState.style === 'ferd'}
+                checked={formState.style === 'modern'}
                 onChange={handleChange('style')}
-                value="ferd"
+                value="modern"
                 color="primary"
               />
-              <Typography variant="subtitle1">سبک فردوسی</Typography>
+              <Typography variant="subtitle1">شعر نو</Typography>
             </Grid>
           </Paper>
         </Grid>
         <Grid item xs={12}>
           <Typography variant="subtitle1">
-            الگوی بیتی را که می‌خواهید بسُرایید، با ترکیب کلمات و علامت سوال «؟»، مانند نمونه زیر
-            وارد کنید. بلبل زبان سعی می‌کند با حفظ کلمات شما و جایگزینی هر «؟» با یک کلمه‌ی مناسب،
-            بیت را کامل کند.
+            یک یا چند سطر آغازین یک شعر را وارد کنید و بلبل‌زبان نوشته شما را ادامه می‌دهد
           </Typography>
         </Grid>
         <Grid item xs={12}>
@@ -169,29 +161,19 @@ const InputForm = ({ isLoading, firstMesra, secondMesra, style, onSubmit }) => {
             // color='inherit'
             size="small"
           >
-            الگوی نمونه
+            نمونه
           </Button>
           <TextField
-            id="first-mesra-input"
+            id="text-input"
             fullWidth
             required
-            placeholder="هرگز نمیرد آنکه ؟ ؟ بعشق"
-            value={formState.firstMesra}
             className={classes.textFieldMesra}
-            onChange={handleChange('firstMesra')}
+            value={formState.input}
+            onChange={handleChange('input')}
+            placeholder="هرگز نمیرد آنکه دلش زنده شد بعشق"
+            multiline
             margin="normal"
-            variant="filled"
-          />
-          <TextField
-            id="second-mesra-input"
-            fullWidth
-            required
-            placeholder="؟ است بر ؟ ؟ ؟‌ ما"
-            value={formState.secondMesra}
-            className={classes.textFieldMesra}
-            onChange={handleChange('secondMesra')}
-            margin="normal"
-            variant="filled"
+            variant="outlined"
             inputRef={setInputTextRef.bind(this)}
           />
         </Grid>
@@ -221,17 +203,15 @@ const InputForm = ({ isLoading, firstMesra, secondMesra, style, onSubmit }) => {
 
 InputForm.propTypes = {
   isLoading: PropTypes.bool,
-  firstMesra: PropTypes.string,
-  secondMesra: PropTypes.string,
+  input: PropTypes.string,
   style: PropTypes.string,
   onSubmit: PropTypes.func,
 };
 
 InputForm.defaultProps = {
   isLoading: false,
-  firstMesra: '',
-  secondMesra: '',
-  style: 'free',
+  input: '',
+  style: 'classic',
   onSubmit: null,
 };
 

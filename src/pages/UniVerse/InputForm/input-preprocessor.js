@@ -11,24 +11,24 @@ class InputPreprocessor {
 
   static wordCount = (text) => text.split(' ').filter((w) => w !== '').length;
 
-  static process(firstMesraText, secondMesraText) {
+  static process(firstMesra, secondMesra) {
     let hint = null;
-    let firstMesra = InputPreprocessor.normalizeText(firstMesraText);
-    let secondMesra = InputPreprocessor.normalizeText(secondMesraText);
-    let m1WordCount = InputPreprocessor.wordCount(firstMesra);
-    let m2WordCount = InputPreprocessor.wordCount(secondMesra);
+    let normalizedFirstMesra = InputPreprocessor.normalizeText(firstMesra);
+    let normalizedSecondMesra = InputPreprocessor.normalizeText(secondMesra);
+    let m1WordCount = InputPreprocessor.wordCount(normalizedFirstMesra);
+    let m2WordCount = InputPreprocessor.wordCount(normalizedSecondMesra);
     // return if no input
     if (m1WordCount === 0 && m2WordCount === 0) {
-      return { firstMesra, secondMesra, hint };
+      return { normalizedFirstMesra, normalizedSecondMesra, hint };
     }
     if (m1WordCount === 0) {
-      firstMesra = Array(m2WordCount + 1)
+      normalizedFirstMesra = Array(m2WordCount + 1)
         .join(' ؟')
         .trim();
       m1WordCount = m2WordCount;
     }
     if (m2WordCount === 0) {
-      secondMesra = Array(m1WordCount + 1)
+      normalizedSecondMesra = Array(m1WordCount + 1)
         .join(' ؟')
         .trim();
       m2WordCount = m1WordCount;
@@ -36,16 +36,16 @@ class InputPreprocessor {
     if (m1WordCount < 3 || (m2WordCount < 3 && m2WordCount > 0)) {
       hint = 'هر مصرع حداقل سه کلمه است. بجای کلماتی که معلوم مشخص نشده بود «؟» اضافه شد.';
       if (m1WordCount < 3) {
-        firstMesra = `${firstMesra} ${Array(4 - m1WordCount)
+        normalizedFirstMesra = `${normalizedFirstMesra} ${Array(4 - m1WordCount)
           .join(' ؟')
           .trim()}`;
       }
       if (m2WordCount < 3 && m2WordCount > 0) {
-        secondMesra = `${secondMesra} ${Array(4 - m2WordCount)
+        normalizedSecondMesra = `${normalizedSecondMesra} ${Array(4 - m2WordCount)
           .join(' ؟')
           .trim()}`;
       }
-    } else if (firstMesra.indexOf('؟') < 0 && secondMesra.indexOf('؟') < 0) {
+    } else if (normalizedFirstMesra.indexOf('؟') < 0 && normalizedSecondMesra.indexOf('؟') < 0) {
       hint =
         'بجای بعضی از کلمات علامت سوال بگذارید تا بلبل‌زبان برای شما انتخاب‌های متنوعی پیشنهاد کند.';
     } else if (m1WordCount > 10 || m2WordCount > 10) {
@@ -55,7 +55,7 @@ class InputPreprocessor {
       hint =
         'بطور معمول تعداد کلمات دو مصرع از یک بیت تقریبا برابرند. برای گرفتن نتیجه بهتر تعداد کلمات دو مصرع را با اضافه کردن «؟» متعادل کنید.';
     }
-    return { firstMesra, secondMesra, hint };
+    return { normalizedFirstMesra, normalizedSecondMesra, hint };
   }
 }
 

@@ -1,38 +1,38 @@
 const predefinedPatterns = [
   {
     style: 'free',
-    first: '؟ بار ؟ کردی و دیدی ثمرش را',
-    second: 'نیکی چه بدی داشت که ؟ نکردی',
+    firstMesra: '؟ بار ؟ کردی و دیدی ثمرش را',
+    secondMesra: 'نیکی چه بدی داشت که ؟ نکردی',
   },
   {
     style: 'free',
-    first: 'هرگز ؟ آنکه ؟ ؟ بعشق',
-    second: '؟ است بر ؟ ؟ ؟ ما',
+    firstMesra: 'هرگز ؟ آنکه ؟ ؟ بعشق',
+    secondMesra: '؟ است بر ؟ ؟ ؟ ما',
   },
   {
     style: 'free',
-    first: 'بده ؟ بیتی را به بلبل',
-    second: 'همانند ؟ ای دسته‌ی ؟',
+    firstMesra: 'بده ؟ بیتی را به بلبل',
+    secondMesra: 'همانند ؟ ای دسته‌ی ؟',
   },
   {
     style: 'free',
-    first: 'با ما به از آن باش که با خلق جهانی',
-    second: '؟ ؟ ؟ ؟ ؟ ؟ بیمار ‌نباشد',
+    firstMesra: 'با ما به از آن باش که با خلق جهانی',
+    secondMesra: '؟ ؟ ؟ ؟ ؟ ؟ بیمار ‌نباشد',
   },
   {
     style: 'free',
-    first: 'سالم بود ؟ ؟ ؟ ؟ ؟ ؟ ؟',
-    second: 'کس ؟ ؟ ؟ ؟ ؟ بیمار ‌نباشد',
+    firstMesra: 'سالم بود ؟ ؟ ؟ ؟ ؟ ؟ ؟',
+    secondMesra: 'کس ؟ ؟ ؟ ؟ ؟ بیمار ‌نباشد',
   },
   {
     style: 'ferd',
-    first: 'بنام خداوند ؟ و ؟',
-    second: '؟ ؟ ؟ ؟ ؟',
+    firstMesra: 'بنام خداوند ؟ و ؟',
+    secondMesra: '؟ ؟ ؟ ؟ ؟',
   },
   {
     style: 'free',
-    first: 'روان را به دانش به کار آوری',
-    second: '؟ ؟ ؟ ؟ ؟ ؟ ؟',
+    firstMesra: 'روان را به دانش به کار آوری',
+    secondMesra: '؟ ؟ ؟ ؟ ؟ ؟ ؟',
   },
 ];
 
