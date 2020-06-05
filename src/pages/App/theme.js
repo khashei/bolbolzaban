@@ -15,21 +15,19 @@ const secondaryColorAlternative = '#82B1FF';
 const lightBackground = '#f0eee7';
 const darkBackground = '#e5e0d7';
 
-//const green = '#00C853';
+// const green = '#00C853';
 const white = '#FFFFFF';
 // const red = '#F44336';
-//const black = '#000000';
+// const black = '#000000';
 
 const darkColor = '#555555';
 const mediumColor = '#826a4a';
 // const lightColor = green;
 const verylightColor = '#ffffff';
 
-
 // const tagsBackgroundColor = '#EAF2FF';
 // const textBackgroundColor = '#F5F9FF';
 // const iconColor = '#53698D';
-
 
 // A custom theme for this app
 const theme = createMuiTheme({
@@ -48,7 +46,7 @@ const theme = createMuiTheme({
     h5: {
       color: mediumColor,
       fontWeight: 600,
-      fontSize: "1.125rem",
+      fontSize: '1.125rem',
     },
     h6: {
       color: darkColor,
@@ -61,8 +59,8 @@ const theme = createMuiTheme({
     body2: {
       color: mediumColor,
       fontWeight: 400,
-      fontSize: "0.875rem",
-    },  
+      fontSize: '0.875rem',
+    },
     // subtitle1: {
     //   color: darkColor,
     //   fontSize: '1rem',
@@ -87,35 +85,35 @@ const theme = createMuiTheme({
       alternative: secondaryColorAlternative,
       contrastText: white,
     },
- common: {
-//       lightPistachioGreen: { bg: '#CEFFDB', border: null },
-//       lightBlue: { bg: '#CEF6FF', border: null },
-//       lighterYellow: { bg: '#FFFFCE', border: null },
-//       lightPink: { bg: '#FFCFDF', border: null },
-//       lightPurple: { bg: '#CED4FF', border: null },
-//       lightRed: { bg: '#FFD7D2', border: null },
-//       lightGreen: { bg: '#f1f7ef', border: '#aed581' },
-//       lightNavyBlue: { bg: '#D2D4FF', border: null },
-//       lighterPurple: { bg: '#E9D2FF', border: null },
-//       lighterPistachioGreen: { bg: '#D2FFF1', border: null },
-//       lighterBlue: { bg: '#D2ECFF', border: null },
-//       lightOrange: { bg: '#FFE5D2', border: null },
-//       lightestPurple: { bg: '#F8D2FF', border: null },
-//       lightGrey: { bg: '#EDEDED', border: null },
-//       lightYellow: { bg: '#FFF3D2', border: null },
-//       eventTextColor: '#6b7a88',
-//       iconColor,
-//       tagsBackgroundColor,
-//       textBackgroundColor,
-//       darkColor,
-//       mediumColor,
-//       lightColor,
-//       verylightColor,
+    common: {
+      //       lightPistachioGreen: { bg: '#CEFFDB', border: null },
+      //       lightBlue: { bg: '#CEF6FF', border: null },
+      //       lighterYellow: { bg: '#FFFFCE', border: null },
+      //       lightPink: { bg: '#FFCFDF', border: null },
+      //       lightPurple: { bg: '#CED4FF', border: null },
+      //       lightRed: { bg: '#FFD7D2', border: null },
+      //       lightGreen: { bg: '#f1f7ef', border: '#aed581' },
+      //       lightNavyBlue: { bg: '#D2D4FF', border: null },
+      //       lighterPurple: { bg: '#E9D2FF', border: null },
+      //       lighterPistachioGreen: { bg: '#D2FFF1', border: null },
+      //       lighterBlue: { bg: '#D2ECFF', border: null },
+      //       lightOrange: { bg: '#FFE5D2', border: null },
+      //       lightestPurple: { bg: '#F8D2FF', border: null },
+      //       lightGrey: { bg: '#EDEDED', border: null },
+      //       lightYellow: { bg: '#FFF3D2', border: null },
+      //       eventTextColor: '#6b7a88',
+      //       iconColor,
+      //       tagsBackgroundColor,
+      //       textBackgroundColor,
+      //       darkColor,
+      //       mediumColor,
+      //       lightColor,
+      //       verylightColor,
       lightBackground,
       darkBackground,
       white,
-//       red,
-//       green,
+      //       red,
+      //       green,
     },
     error: {
       main: red.A400,
@@ -124,10 +122,9 @@ const theme = createMuiTheme({
       default: '#fff',
     },
   },
-//  spacing: [0, 8, 16, 24, 32, 40]
-//  spacing: [0, 2, 3, 4, 32, 40]
+  //  spacing: [0, 8, 16, 24, 32, 40]
+  //  spacing: [0, 2, 3, 4, 32, 40]
 });
-
 
 // // overrides
 // import MuiInput from './overrides/MuiInput';
@@ -140,7 +137,7 @@ const theme = createMuiTheme({
 
 //     hexToRGBA,
 //   },
-//   
+//
 //   overrides: {
 //     // MuiInput,
 
