@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import { useState } from 'react';
 import Fuse from 'fuse.js';
 
@@ -18,7 +19,7 @@ function useFuse({ data, options }) {
 
   const fuseOptions = {
     threshold: 0.2,
-    ...options
+    ...options,
   };
 
   const fuse = new Fuse(data, fuseOptions);

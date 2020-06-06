@@ -1,4 +1,6 @@
+/* eslint-disable import/no-unresolved */
 import { get } from 'lodash-es';
+
 function useRowValue({ value: valueKey }, { value = {}, row = {} }) {
   let rowValue = value;
   if (valueKey === null) {

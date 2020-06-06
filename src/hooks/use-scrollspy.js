@@ -1,3 +1,5 @@
+/* eslint-disable no-continue */
+/* eslint-disable import/no-unresolved */
 import { useState, useEffect } from 'react';
 import throttle from 'lodash-es/throttle';
 
@@ -11,7 +13,7 @@ export default ({
 
   const handle = throttle(() => {
     let currentSectionId = activeSection;
-    for (let i = 0; i < sectionElementRefs.length; i++) {
+    for (let i = 0; i < sectionElementRefs.length; i += 1) {
       const section = sectionElementRefs[i].current;
       // Needs to be a valid DOM Element
       if (!section || !(section instanceof Element)) continue;

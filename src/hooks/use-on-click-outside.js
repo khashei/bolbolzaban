@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 
 // Usage
 // function App() {
@@ -43,7 +43,7 @@ function useOnClickOutside(ref, handler) {
     },
 
     // NOTE: you may need to wrap the hanlder in a useCallback before sending it to this hook, apply if needed
-    [ref, handler],
+    [ref, handler]
   );
 }
 

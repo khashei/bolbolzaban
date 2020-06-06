@@ -1,18 +1,18 @@
+/* eslint-disable import/no-unresolved */
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeProvider } from '@material-ui/core/styles';
-import Provider from './context/provider';
-import theme from './theme';
-import ApplicationAppBar from '@components/app-bar';
 
-const useStyles = makeStyles(theme => ({
+import ApplicationAppBar from '@components/app-bar';
+import muiTheme from './theme';
+
+const useStyles = makeStyles((theme) => ({
   '@global': {
     html: {
       overflowX: 'hidden',
-      //fontSize: 15,
-      //backgroundColor: '#f0eee7',
+      // fontSize: 15,
+      // backgroundColor: '#f0eee7',
     },
     '.ml': { marginLeft: theme.spacing(1) },
     '.mt': { marginTop: theme.spacing(1) },
@@ -53,25 +53,25 @@ function App() {
   return (
     <Suspense fallback={<div>گر صبر کنی ز غوره حلوا سازی</div>}>
       <ErrorBoundary>
-        <Provider>
-          <Router>
-            {/* <ThirdPartyServices /> */}
-            <ThemeProvider theme={theme}>
-              <div id='app-wrapper' className={classes.root}>
-                <CssBaseline />
-                <ApplicationAppBar />
-                <Switch>
-                  <Route exact path='/'>
-                    <Home />
-                  </Route>
-                  <Route>
-                    <NotFound />
-                  </Route>
-                </Switch>
-              </div>
-            </ThemeProvider>
-          </Router>
-        </Provider>
+        {/* <Provider> */}
+        <Router>
+          {/* <ThirdPartyServices /> */}
+          <ThemeProvider theme={muiTheme}>
+            <div id="app-wrapper" className={classes.root}>
+              <CssBaseline />
+              <ApplicationAppBar />
+              <Switch>
+                <Route exact path="/">
+                  <Home />
+                </Route>
+                <Route>
+                  <NotFound />
+                </Route>
+              </Switch>
+            </div>
+          </ThemeProvider>
+        </Router>
+        {/* </Provider> */}
       </ErrorBoundary>
     </Suspense>
   );
