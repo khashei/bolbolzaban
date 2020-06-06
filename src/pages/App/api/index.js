@@ -1,4 +1,5 @@
-import { postRequest, getRequest } from '@utils/request';
+/* eslint-disable import/no-unresolved */
+import { postRequest } from '@utils/request';
 import { BASE_PATH } from '@app-settings';
 
 export const subscribeRequest = ({ contact }) =>
@@ -10,7 +11,7 @@ export const feedbackRequest = ({ email, body }) =>
   postRequest({
     url: `${BASE_PATH}/feedback`,
     body: {
-      email: email,
-      body: body,
+      email,
+      body,
     },
   });
