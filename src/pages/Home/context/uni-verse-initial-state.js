@@ -1,12 +1,11 @@
-const UniVerseInitialState = {
-  firstMesra: '', 
-  secondMesra: '', 
-  style: 'free', 
+const uniVerseInitialState = {
+  firstMesra: '',
+  secondMesra: '',
+  style: 'free',
   byUser: false,
   responseTime: null,
   outputs: [],
   error: null,
-  // TODO4A: prune
 };
 
-export default UniVerseInitialState;
+export default uniVerseInitialState;

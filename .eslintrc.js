@@ -56,7 +56,9 @@ module.exports = {
         aspects: ["noHref", "invalidHref", "preferButton"]
       }
     ],
-    "react/forbid-prop-types": [1, { forbid: ['any', 'array'] }],
+    "react/forbid-prop-types": ["warn", { forbid: ['any', 'array'] }],
+    "no-console": ["warn", { allow: ["warn", "error"] }],
+    //"import/no-unresolved": "off",
     "linebreak-style": ["off", "windows"]
   },
   "plugins": [

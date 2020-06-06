@@ -1,15 +1,13 @@
+/* eslint-disable import/no-unresolved */
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import InputForm from './InputForm';
-import ResultContainer from './ResultContainer';
-// import PropTypes from 'prop-types';
-// import { GenerateSW } from 'workbox-webpack-plugin';
-// import { generatePath } from 'react-router-dom';
-import { generatePoemRequest } from './api';
 import useUniVerseContext from '@pages/Home/context/uni-verse-context';
 import { GENERATE_VERSE_FULLFILLED } from '@pages/Home/context/uni-verse-reducer';
+import InputForm from './InputForm';
+import ResultContainer from './ResultContainer';
+import generatePoemRequest from './api';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   // root: {
   //   width: '100%',
   //   backgroundColor: theme.palette.common.lightBackground,
@@ -29,24 +27,24 @@ const UniVerse = () => {
     setIsLoading(true);
 
     const data = await generatePoemRequest({
-      style: style,
+      style,
       mask: `${firstMesra || '?'}-${secondMesra || '?'}`,
       isUserDefined: byUser,
     });
-    
+
     dispatch({
       type: GENERATE_VERSE_FULLFILLED,
       payload: {
-        firstMesra, 
-        secondMesra, 
+        firstMesra,
+        secondMesra,
         style,
         outputs: data.output,
-        error: data.statusCode === 200 ? null : { code: data.statusCode, message: data.error }
-      }
+        error: data.statusCode === 200 ? null : { code: data.statusCode, message: data.error },
+      },
     });
 
     setIsLoading(false);
-  }
+  };
 
   const classes = useStyles();
   return (
@@ -56,15 +54,12 @@ const UniVerse = () => {
         firstMesra={state.firstMesra}
         secondMesra={state.secondMesra}
         style={state.style}
-        onSubmit={generateBeyt} />
-      <ResultContainer 
-        isLoading={isLoading}
-        outputs={state.outputs}
-        error={state.error}
-        />
+        onSubmit={generateBeyt}
+      />
+      <ResultContainer isLoading={isLoading} outputs={state.outputs} error={state.error} />
     </div>
   );
-}
+};
 
 UniVerse.defaultProps = {};
 UniVerse.propTypes = {};

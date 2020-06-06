@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   title: {
     fontSize: '1.5rem',
     display: 'block',
@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   titleText: {
-    color: theme.palette.primary.contrastText, 
+    color: theme.palette.primary.contrastText,
   },
 }));
 
@@ -29,12 +29,7 @@ const ApplicationTitleContainer = ({ text, link }) => {
 
   return (
     <Link to={link} className={classes.title}>
-      <Typography
-        variant="h6"
-        className={classes.titleText}
-        component="h2"
-        noWrap
-      >
+      <Typography variant="h6" className={classes.titleText} component="h2" noWrap>
         {text}
       </Typography>
     </Link>
@@ -46,7 +41,6 @@ ApplicationTitleContainer.propTypes = {
   link: PropTypes.string.isRequired,
 };
 
-ApplicationTitleContainer.defaultProps = {
-};
+ApplicationTitleContainer.defaultProps = {};
 
 export default ApplicationTitleContainer;
