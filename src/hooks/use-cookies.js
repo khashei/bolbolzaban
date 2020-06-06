@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+/* eslint-disable no-console */
 import { useState } from 'react';
 
 // Usage
@@ -21,9 +23,9 @@ import { useState } from 'react';
 function useCookies(key, initialValue, daysToExpire) {
   const [storedValue, setStoredValue] = useState(() => {
     try {
-      var date = new Date();
+      const date = new Date();
       date.setTime(date.getTime() + daysToExpire * 24 * 60 * 60 * 1000);
-      document.cookie = key + '=' + initialValue + '; expires=' + date.toGMTString();
+      document.cookie = `${key}=${initialValue}; expires=${date.toGMTString()}`;
       // const item = window.localStorage.getItem(key);
       // return item ? JSON.parse(item) : initialValue;
     } catch (error) {

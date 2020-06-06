@@ -1,3 +1,4 @@
+/* eslint-disable */
 'use strict';
 
 const fs = require('fs');
@@ -25,7 +26,7 @@ function validateKeyAndCerts({ cert, key, keyFile, crtFile }) {
   } catch (err) {
     throw new Error(
       `The certificate key "${chalk.yellow(keyFile)}" is invalid.\n${
-        err.message
+      err.message
       }`
     );
   }

@@ -3,7 +3,7 @@ const request = async ({
   method = 'GET',
   headers = {},
   body = {},
-  token = null,
+  // token = null,
   contentType = null,
 }) => {
   const finalHeaders = { ...headers };
@@ -16,35 +16,24 @@ const request = async ({
     finalHeaders['Content-Type'] = contentType;
   }
 
-  let response = await fetch(url, {
+  const response = await fetch(url, {
     method,
     headers: finalHeaders,
-    ...(method === 'POST' && { body: body }),
+    ...(method === 'POST' && { body }),
   });
 
-  return await response.json();
+  return response.json();
 };
 
-export const getRequest = async ({ 
-  url, 
-  headers = {}, 
-  body = {}, 
-  token = null 
-}) =>
-  await request({
+export const getRequest = async ({ url, headers = {}, body = {}, token = null }) =>
+  request({
     url,
     headers,
     body,
     token,
   });
 
-export const postRequest = ({
-  url,
-  headers = {},
-  body = {},
-  token = null,
-  json = true,
-}) =>
+export const postRequest = ({ url, headers = {}, body = {}, token = null, json = true }) =>
   request({
     url,
     headers,
@@ -54,13 +43,7 @@ export const postRequest = ({
     contentType: (json && 'application/json') || null,
   });
 
-export const putRequest = ({
-  url,
-  headers = {},
-  body = {},
-  token = null,
-  json = true,
-}) =>
+export const putRequest = ({ url, headers = {}, body = {}, token = null, json = true }) =>
   request({
     url,
     headers,
@@ -70,13 +53,7 @@ export const putRequest = ({
     contentType: (json && 'application/json') || null,
   });
 
-export const deleteRequest = 
-({ 
-  url, 
-  headers = {}, 
-  body = {}, 
-  token = null 
-}) =>
+export const deleteRequest = ({ url, headers = {}, body = {}, token = null }) =>
   request({
     url,
     headers,

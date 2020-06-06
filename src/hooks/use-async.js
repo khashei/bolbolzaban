@@ -14,8 +14,8 @@ const useAsync = (asyncCall, condition = []) => {
       try {
         const data = await asyncCall();
         if (data && !isCancelled) setResponse(data);
-      } catch (error) {
-        setError(error);
+      } catch (e) {
+        setError(e);
       }
       setIsLoading(false);
     };
@@ -23,7 +23,10 @@ const useAsync = (asyncCall, condition = []) => {
     // Fetch for data
     performAsync();
 
-    return () => (isCancelled = true);
+    return () => {
+      // eslint-disable-next-line no-return-assign
+      return (isCancelled = true);
+    };
   }, [asyncCall, ...condition]);
 
   return { isLoading, response, error };
