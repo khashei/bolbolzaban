@@ -38,18 +38,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const TextCard = ({ text }) => {
+const TextCard = ({ lines }) => {
   const copyText = () => {
-    copyToClipboard(`${text}`);
+    copyToClipboard(`${lines}`);
   };
 
   const classes = useStyles();
   return (
     <Card className={classes.card}>
       <CardContent className={classes.content}>
-        <Typography variant="body1" color="primary" className={classes.resultText}>
-          {text}
-        </Typography>
+        {lines?.map((line) => (
+          <Typography variant="body1" color="primary" className={classes.resultText}>
+            {line}
+          </Typography>
+        ))}
         {/* <input
             contentEditable
             // readOnly
@@ -90,7 +92,7 @@ const TextCard = ({ text }) => {
 };
 
 TextCard.propTypes = {
-  text: PropTypes.string.isRequired,
+  lines: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 TextCard.defaultProps = {};
