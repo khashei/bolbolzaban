@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import BeytLoader from '@components/progress/beyt-loader';
 import ErrorCard from '@components/error-card';
 import TextCard from './text-card';
+import OutputFormatter from './output-formatter';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,11 +35,16 @@ const ResultContainer = ({ isLoading, output, error }) => {
       </div>
     );
   }
+
+  const lines = OutputFormatter.formatRecords(output);
+  // eslint-disable-next-line no-console
+  console.log(lines);
+
   if (!isLoading) {
     if (error == null || error?.code === 200) {
       return (
         <div className={classes.root}>
-          {output?.map((line, index) => (
+          {lines?.map((line, index) => (
             <TextCard key={index} text={line} />
           ))}
         </div>
@@ -46,7 +52,7 @@ const ResultContainer = ({ isLoading, output, error }) => {
     }
     return (
       <div className={classes.root}>
-        <ErrorCard statusCode={error.code} error={error.message} />
+        <ErrorCard code={error.code} message={error.message} />
       </div>
     );
   }
