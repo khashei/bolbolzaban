@@ -46,7 +46,7 @@ const ResultContainer = ({ isLoading, outputs, error }) => {
     }
     return (
       <div className={classes.root}>
-        <ErrorCard statusCode={error.code} error={error.message} />
+        <ErrorCard code={error.code} message={error.message} />
       </div>
     );
   }
