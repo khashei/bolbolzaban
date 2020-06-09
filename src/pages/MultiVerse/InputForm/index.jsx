@@ -2,7 +2,7 @@
 /* eslint-disable react/jsx-no-bind */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { TextField, Typography, Grid, Paper, Radio, Button, makeStyles } from '@material-ui/core';
+import { TextField, Typography, Grid, Button, makeStyles } from '@material-ui/core';
 import HintBox from '@components/hint-box';
 import InlineHelp from './inline-help';
 import predefinedPatterns from './predefined-patterns';
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
       width: '100%',
     },
   },
-  textFieldMesra: {
+  textInput: {
     margin: 0,
     padding: 0,
     fontSize: '16px',
@@ -111,45 +111,10 @@ const InputForm = ({ isLoading, input, style, onSubmit }) => {
         <Grid item xs={12}>
           <Typography variant="h5">سرایش شعر</Typography>
         </Grid>
-        <Grid item xs={6}>
-          <Paper
-            className={classes.paper}
-            onClick={() => {
-              setFormState({ ...formState, style: 'classic' });
-            }}
-          >
-            <Grid container alignItems="center">
-              <Radio
-                checked={formState.style === 'classic'}
-                onChange={handleChange('style')}
-                value="classic"
-                color="primary"
-              />
-              <Typography variant="subtitle1">شعر کلاسیک</Typography>
-            </Grid>
-          </Paper>
-        </Grid>
-        <Grid item xs={6}>
-          <Paper
-            className={classes.paper}
-            onClick={() => {
-              setFormState({ ...formState, style: 'modern' });
-            }}
-          >
-            <Grid container alignItems="center">
-              <Radio
-                checked={formState.style === 'modern'}
-                onChange={handleChange('style')}
-                value="modern"
-                color="primary"
-              />
-              <Typography variant="subtitle1">شعر نو</Typography>
-            </Grid>
-          </Paper>
-        </Grid>
         <Grid item xs={12}>
           <Typography variant="subtitle1">
-            یک یا چند سطر آغازین یک شعر را وارد کنید و بلبل‌زبان نوشته شما را ادامه می‌دهد
+            چند سطر یا مصرع اول یک شعر را مانند نمونه وارد کنید و بلبل‌زبان نوشته شما را ادامه
+            می‌دهد.
           </Typography>
         </Grid>
         <Grid item xs={12}>
@@ -167,10 +132,10 @@ const InputForm = ({ isLoading, input, style, onSubmit }) => {
             id="text-input"
             fullWidth
             required
-            className={classes.textFieldMesra}
+            className={classes.textInput}
             value={formState.input}
             onChange={handleChange('input')}
-            placeholder="هرگز نمیرد آنکه دلش زنده شد بعشق"
+            placeholder="(مصرع) هرگز نمیرد آنکه دلش زنده شد بعشق"
             multiline
             margin="normal"
             variant="outlined"
@@ -211,7 +176,7 @@ InputForm.propTypes = {
 InputForm.defaultProps = {
   isLoading: false,
   input: '',
-  style: 'classic',
+  style: 'poetic',
   onSubmit: null,
 };
 
