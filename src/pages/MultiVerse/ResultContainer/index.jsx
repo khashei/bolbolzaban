@@ -36,9 +36,8 @@ const ResultContainer = ({ isLoading, output, error }) => {
     );
   }
 
-  const lines = outputConverter.convert(output);
-
-  if (!isLoading) {
+  if (!isLoading && output.length > 0) {
+    const lines = outputConverter.convert(output);
     if (error == null || error?.code === 200) {
       return (
         <div className={classes.root}>
