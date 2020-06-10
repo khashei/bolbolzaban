@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
 
 const TextCard = ({ lines }) => {
   const copyText = () => {
-    copyToClipboard(`${lines}`);
+    copyToClipboard(`${lines.join('\n')}`);
   };
 
   const classes = useStyles();

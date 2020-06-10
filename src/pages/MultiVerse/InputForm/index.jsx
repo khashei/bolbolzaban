@@ -89,7 +89,7 @@ const InputForm = ({ isLoading, input, style, onSubmit }) => {
       ...formState,
       input: randomInput.lines,
       style: randomInput.style,
-      hint: 'حالا ادامه بدید',
+      hint: 'دکمه بسُرای را دوباره بزنید، تا بلبل زبان یک متن جدید درست کند.',
       inlineHelpVisible: false,
       isUserDefined: false,
     });
