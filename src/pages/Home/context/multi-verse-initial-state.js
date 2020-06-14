@@ -1,6 +1,6 @@
 const multiVerseInitialState = {
   input: '',
-  style: 'poetic',
+  style: 'poetry',
   byUser: false,
   responseTime: null,
   output: [],

@@ -1,11 +1,21 @@
 /* eslint-disable import/no-unresolved */
-import { getRequest } from '@utils/request';
+import { postRequest } from '@utils/request';
 import BASE_PATH from '@app-settings';
 
 const generateTextRequest = async ({ style, input, topk, temper }) => {
-  const scapedInput = input.replace(/\n/g, '[EOS]');
-  return getRequest({
-    url: `${BASE_PATH}/deeptext/${style}/${scapedInput}/${topk}/${temper}`,
+  const body = JSON.stringify({
+    Context: input,
+    style,
+    topk,
+    Temperature: temper,
+  });
+
+  // eslint-disable-next-line no-console
+  console.log({ body });
+
+  return postRequest({
+    url: `${BASE_PATH}/deeptext/`,
+    body,
   });
 };
 

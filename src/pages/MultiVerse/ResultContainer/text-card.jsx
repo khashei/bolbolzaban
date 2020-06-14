@@ -25,10 +25,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'row',
     justifyContent: 'flex-end',
   },
-  // icon: {
-  //   width: 10,
-  //   height: 10,
-  // },
   hiddenInput: {
     opacity: 0,
     position: 'absolute',
@@ -43,49 +39,37 @@ const TextCard = ({ lines }) => {
     copyToClipboard(`${lines.join('\n')}`);
   };
 
+  // eslint-disable-next-line no-console
+  console.log({ lines });
+
   const classes = useStyles();
   return (
     <Card className={classes.card}>
       <CardContent className={classes.content}>
-        {lines?.map((line) => (
-          <Typography variant="body1" color="primary" className={classes.resultText}>
+        <Typography
+          variant="body1"
+          color="primary"
+          className={classes.resultText}
+          style={{ whiteSpace: 'pre-line' }}
+        >
+          <strong>{lines}</strong>
+          {lines}
+        </Typography>
+        {/* {lines?.map((line) => (
+          <Typography
+            variant="body1"
+            color="primary"
+            className={classes.resultText}
+            style={{ whiteSpace: 'pre-line' }}
+          >
             {line}
           </Typography>
-        ))}
-        {/* <input
-            contentEditable
-            // readOnly
-            type="input"
-            ref={this.text}
-            defaultValue={`${firstline}     ${secondline}`}
-            className={classes.hiddenInput}
-          /> */}
+        ))} */}
       </CardContent>
       <CardActions className={classes.actions}>
         <IconButton className={classes.copier} onClick={copyText}>
           <Typography>کپی</Typography>
-
-          {/* <FilterNone className={classes.icon} /> */}
         </IconButton>
-
-        {/* {navigator.share &&
-          <IconButton
-            className={classes.copier}
-            onClick={() => {
-              if (navigator.share) {
-                navigator.share({
-                  title: 'Web Fundamentals',
-                  text: 'Check out Web Fundamentals — it rocks!',
-                  url: 'https://developers.google.com/web',
-                })
-                  .then(() => console.log('Successful share'))
-                  .catch(error => console.log('Error sharing', error));
-              }
-          }}
-          >
-            <ShareIcon className={classes.icon} />
-          </IconButton>
-        } */}
       </CardActions>
     </Card>
   );

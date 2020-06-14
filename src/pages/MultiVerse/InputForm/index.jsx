@@ -176,7 +176,7 @@ InputForm.propTypes = {
 InputForm.defaultProps = {
   isLoading: false,
   input: '',
-  style: 'poetic',
+  style: 'poetry',
   onSubmit: null,
 };
 
