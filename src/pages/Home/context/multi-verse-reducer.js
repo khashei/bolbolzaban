@@ -4,11 +4,13 @@ const multiVerseReducer = (state, action) => {
   switch (action.type) {
     case GENERATE_TEXT_FULLFILLED: {
       const { input, style, output, error } = action.payload;
+      const outputStartIndex = input.length;
+
       return {
         ...state,
         input,
         style,
-        output,
+        output: output.map((o) => `${o.slice(0, outputStartIndex)}<s>${o.slice(outputStartIndex)}`),
         error,
       };
     }

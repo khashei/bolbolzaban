@@ -34,19 +34,18 @@ const ResultContainer = ({ isLoading, output, error }) => {
       </div>
     );
   }
-  if (!isLoading) {
+
+  if (!isLoading && output.length > 0) {
     if (error == null || error?.code === 200) {
       return (
         <div className={classes.root}>
-          {output?.map((line, index) => (
-            <TextCard key={index} text={line} />
-          ))}
+          <TextCard lines={output} />
         </div>
       );
     }
     return (
       <div className={classes.root}>
-        <ErrorCard statusCode={error.code} error={error.message} />
+        <ErrorCard code={error.code} message={error.message} />
       </div>
     );
   }

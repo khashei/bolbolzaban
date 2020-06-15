@@ -1,22 +1,22 @@
 const predefinedPatterns = [
   {
-    style: 'classic',
+    style: 'poetry',
     lines: 'هرگز نمیرد آنکه دلش زنده شد به عشق \n ثبت است بر جریده عالم دوام ما \n',
   },
   {
-    style: 'classic',
+    style: 'poetry',
     lines: 'با ما به از آن باش که با خلق جهانی',
   },
   {
-    style: 'classic',
+    style: 'poetry',
     lines: 'سالم بود آنکس که تو را یار نباشد',
   },
   {
-    style: 'modern',
+    style: 'poetry',
     lines: 'زمستان بس ناجوانمردانه سرد است',
   },
   {
-    style: 'modern',
+    style: 'poetry',
     lines: 'سلام',
   },
 ];

@@ -37,7 +37,7 @@ const MultiVerse = () => {
     dispatch({
       type: GENERATE_TEXT_FULLFILLED,
       payload: {
-        input,
+        input: data.input,
         style,
         output: data.output,
         error: data.statusCode === 200 ? null : { code: data.statusCode, message: data.error },

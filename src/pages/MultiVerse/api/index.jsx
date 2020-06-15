@@ -1,10 +1,19 @@
 /* eslint-disable import/no-unresolved */
-import { getRequest } from '@utils/request';
+import { postRequest } from '@utils/request';
 import BASE_PATH from '@app-settings';
 
-const generateTextRequest = async ({ style, input, topk, temper }) =>
-  getRequest({
-    url: `${BASE_PATH}/deeptext/${style}/${input}/${topk}/${temper}`,
+const generateTextRequest = async ({ style, input, topk, temper }) => {
+  const body = JSON.stringify({
+    Context: input,
+    style,
+    topk,
+    Temperature: temper,
   });
+
+  return postRequest({
+    url: `${BASE_PATH}/deeptext/`,
+    body,
+  });
+};
 
 export default generateTextRequest;

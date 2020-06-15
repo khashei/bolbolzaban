@@ -25,10 +25,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'row',
     justifyContent: 'flex-end',
   },
-  // icon: {
-  //   width: 10,
-  //   height: 10,
-  // },
   hiddenInput: {
     opacity: 0,
     position: 'absolute',
@@ -38,59 +34,59 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const TextCard = ({ text }) => {
+const TextCard = ({ lines }) => {
+  const formatLinesForDisplay = (allLines) =>
+    allLines.map((line) =>
+      line
+        .replace(/\[EOS\]/g, '\n')
+        .replace(/\[SEP\]/g, '\nپایان')
+        .replace(/\[BOM\]/g, '\n(مصرع)')
+    );
+
+  const formatLinesForCopy = (allLines) =>
+    allLines.map((line) =>
+      line
+        .replace(/\[EOS\]/g, '\n')
+        .replace(/\[SEP\]/g, '\nپایان')
+        .replace(/\[BOM\]\s+/g, '\n')
+        .replace(/<s>/g, '')
+        .trim()
+    );
+
   const copyText = () => {
-    copyToClipboard(`${text}`);
+    copyToClipboard(`${formatLinesForCopy(lines).join('\n')}`);
   };
 
   const classes = useStyles();
   return (
     <Card className={classes.card}>
       <CardContent className={classes.content}>
-        <Typography variant="body1" color="primary" className={classes.resultText}>
-          {text}
-        </Typography>
-        {/* <input
-            contentEditable
-            // readOnly
-            type="input"
-            ref={this.text}
-            defaultValue={`${firstline}     ${secondline}`}
-            className={classes.hiddenInput}
-          /> */}
+        {formatLinesForDisplay(lines).map((line) => {
+          const parts = line.split('<s>');
+          return (
+            <Typography
+              variant="body1"
+              color="primary"
+              className={classes.resultText}
+              style={{ whiteSpace: 'pre-line' }}
+            >
+              <strong>{parts[0]}</strong>
+              {parts[1]}
+            </Typography>
+          );
+        })}
       </CardContent>
       <CardActions className={classes.actions}>
         <IconButton className={classes.copier} onClick={copyText}>
           <Typography>کپی</Typography>
-
-          {/* <FilterNone className={classes.icon} /> */}
         </IconButton>
-
-        {/* {navigator.share &&
-          <IconButton
-            className={classes.copier}
-            onClick={() => {
-              if (navigator.share) {
-                navigator.share({
-                  title: 'Web Fundamentals',
-                  text: 'Check out Web Fundamentals — it rocks!',
-                  url: 'https://developers.google.com/web',
-                })
-                  .then(() => console.log('Successful share'))
-                  .catch(error => console.log('Error sharing', error));
-              }
-          }}
-          >
-            <ShareIcon className={classes.icon} />
-          </IconButton>
-        } */}
       </CardActions>
     </Card>
   );
 };
 
 TextCard.propTypes = {
-  text: PropTypes.string.isRequired,
+  lines: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 TextCard.defaultProps = {};
