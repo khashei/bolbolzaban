@@ -48,8 +48,9 @@ const TextCard = ({ lines }) => {
       line
         .replace(/\[EOS\]/g, '\n')
         .replace(/\[SEP\]/g, '\nپایان')
-        .replace(/\[BOM\]/g, '\n')
+        .replace(/\[BOM\]\s+/g, '\n')
         .replace(/<s>/g, '')
+        .trim()
     );
 
   const copyText = () => {
