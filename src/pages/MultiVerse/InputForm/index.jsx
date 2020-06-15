@@ -137,6 +137,9 @@ const InputForm = ({ isLoading, input, style, onSubmit }) => {
             onChange={handleChange('input')}
             placeholder="(مصرع) هرگز نمیرد آنکه دلش زنده شد بعشق"
             multiline
+            inputProps={{
+              maxLength: 2000,
+            }}
             margin="normal"
             variant="outlined"
             inputRef={setInputTextRef.bind(this)}

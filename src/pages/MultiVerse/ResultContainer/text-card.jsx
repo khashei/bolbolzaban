@@ -39,7 +39,7 @@ const TextCard = ({ lines }) => {
     allLines.map((line) =>
       line
         .replace(/\[EOS\]/g, '\n')
-        .replace(/\[SEP\]/g, '\n')
+        .replace(/\[SEP\]/g, '\nپایان')
         .replace(/\[BOM\]/g, '\n(مصرع)')
     );
 
@@ -47,7 +47,7 @@ const TextCard = ({ lines }) => {
     allLines.map((line) =>
       line
         .replace(/\[EOS\]/g, '\n')
-        .replace(/\[SEP\]/g, '\n')
+        .replace(/\[SEP\]/g, '\nپایان')
         .replace(/\[BOM\]/g, '\n')
         .replace(/<s>/g, '')
     );
@@ -69,8 +69,8 @@ const TextCard = ({ lines }) => {
               className={classes.resultText}
               style={{ whiteSpace: 'pre-line' }}
             >
-              {parts[0]}
-              <strong>{parts[1]}</strong>
+              <strong>{parts[0]}</strong>
+              {parts[1]}
             </Typography>
           );
         })}
