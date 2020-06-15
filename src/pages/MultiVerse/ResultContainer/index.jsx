@@ -5,7 +5,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import BeytLoader from '@components/progress/beyt-loader';
 import ErrorCard from '@components/error-card';
 import TextCard from './text-card';
-import outputConverter from './output-converter';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,11 +36,10 @@ const ResultContainer = ({ isLoading, output, error }) => {
   }
 
   if (!isLoading && output.length > 0) {
-    const lines = outputConverter.convert(output);
     if (error == null || error?.code === 200) {
       return (
         <div className={classes.root}>
-          <TextCard lines={lines} />
+          <TextCard lines={output} />
         </div>
       );
     }

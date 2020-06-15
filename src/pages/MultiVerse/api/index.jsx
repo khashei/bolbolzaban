@@ -10,9 +10,6 @@ const generateTextRequest = async ({ style, input, topk, temper }) => {
     Temperature: temper,
   });
 
-  // eslint-disable-next-line no-console
-  console.log({ body });
-
   return postRequest({
     url: `${BASE_PATH}/deeptext/`,
     body,

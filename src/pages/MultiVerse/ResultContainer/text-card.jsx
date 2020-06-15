@@ -35,36 +35,45 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const TextCard = ({ lines }) => {
-  const copyText = () => {
-    copyToClipboard(`${lines.join('\n')}`);
-  };
+  const formatLinesForDisplay = (allLines) =>
+    allLines.map((line) =>
+      line
+        .replace(/\[EOS\]/g, '\n')
+        .replace(/\[SEP\]/g, '\n')
+        .replace(/\[BOM\]/g, '\n(مصرع)')
+    );
 
-  // eslint-disable-next-line no-console
-  console.log({ lines });
+  const formatLinesForCopy = (allLines) =>
+    allLines.map((line) =>
+      line
+        .replace(/\[EOS\]/g, '\n')
+        .replace(/\[SEP\]/g, '\n')
+        .replace(/\[BOM\]/g, '\n')
+        .replace(/<s>/g, '')
+    );
+
+  const copyText = () => {
+    copyToClipboard(`${formatLinesForCopy(lines).join('\n')}`);
+  };
 
   const classes = useStyles();
   return (
     <Card className={classes.card}>
       <CardContent className={classes.content}>
-        <Typography
-          variant="body1"
-          color="primary"
-          className={classes.resultText}
-          style={{ whiteSpace: 'pre-line' }}
-        >
-          <strong>{lines}</strong>
-          {lines}
-        </Typography>
-        {/* {lines?.map((line) => (
-          <Typography
-            variant="body1"
-            color="primary"
-            className={classes.resultText}
-            style={{ whiteSpace: 'pre-line' }}
-          >
-            {line}
-          </Typography>
-        ))} */}
+        {formatLinesForDisplay(lines).map((line) => {
+          const parts = line.split('<s>');
+          return (
+            <Typography
+              variant="body1"
+              color="primary"
+              className={classes.resultText}
+              style={{ whiteSpace: 'pre-line' }}
+            >
+              {parts[0]}
+              <strong>{parts[1]}</strong>
+            </Typography>
+          );
+        })}
       </CardContent>
       <CardActions className={classes.actions}>
         <IconButton className={classes.copier} onClick={copyText}>
