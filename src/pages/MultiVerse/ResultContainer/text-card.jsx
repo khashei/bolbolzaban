@@ -34,13 +34,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const TextCard = ({ lines }) => {
+const TextCard = ({ lines, onGenerateMore }) => {
   const formatLinesForDisplay = (allLines) =>
     allLines.map((line) =>
       line
         .replace(/\[EOS\]/g, '\n')
         .replace(/\[SEP\]/g, '\nپایان')
         .replace(/\[BOM\]/g, '\n(مصرع)')
+        .trim()
     );
 
   const formatLinesForCopy = (allLines) =>
@@ -61,10 +62,12 @@ const TextCard = ({ lines }) => {
   return (
     <Card className={classes.card}>
       <CardContent className={classes.content}>
-        {formatLinesForDisplay(lines).map((line) => {
+        {formatLinesForDisplay(lines).map((line, index) => {
           const parts = line.split('<s>');
           return (
             <Typography
+              // eslint-disable-next-line react/no-array-index-key
+              key={index}
               variant="body1"
               color="primary"
               className={classes.resultText}
@@ -77,7 +80,10 @@ const TextCard = ({ lines }) => {
         })}
       </CardContent>
       <CardActions className={classes.actions}>
-        <IconButton className={classes.copier} onClick={copyText}>
+        <IconButton onClick={onGenerateMore}>
+          <Typography>ادامه بده</Typography>
+        </IconButton>
+        <IconButton onClick={copyText}>
           <Typography>کپی</Typography>
         </IconButton>
       </CardActions>
@@ -87,6 +93,7 @@ const TextCard = ({ lines }) => {
 
 TextCard.propTypes = {
   lines: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onGenerateMore: PropTypes.func.isRequired,
 };
 
 TextCard.defaultProps = {};

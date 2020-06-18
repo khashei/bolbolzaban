@@ -53,25 +53,14 @@ const BeytCard = ({ firstMesra, secondMesra }) => {
         <Typography variant="body1" color="primary" className={classes.resultText}>
           {secondMesra}
         </Typography>
-        {/* <input
-            contentEditable
-            // readOnly
-            type="input"
-            ref={this.text}
-            defaultValue={`${firstline}     ${secondline}`}
-            className={classes.hiddenInput}
-          /> */}
       </CardContent>
       <CardActions className={classes.actions}>
-        <IconButton className={classes.copier} onClick={copyText}>
+        <IconButton onClick={copyText}>
           <Typography>کپی</Typography>
-
-          {/* <FilterNone className={classes.icon} /> */}
         </IconButton>
 
         {/* {navigator.share &&
           <IconButton
-            className={classes.copier}
             onClick={() => {
               if (navigator.share) {
                 navigator.share({

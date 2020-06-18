@@ -15,16 +15,13 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.between('sm', 'md')]: {
       width: '60%',
     },
-    // [theme.breakpoints.between('xs', 'sm')]: {
-    //   width: '60%',
-    // },
     [theme.breakpoints.down('sm')]: {
       width: '100%',
     },
   },
 }));
 
-const ResultContainer = ({ isLoading, output, error }) => {
+const ResultContainer = ({ isLoading, output, error, onGenerateMore }) => {
   const classes = useStyles();
 
   if (isLoading) {
@@ -39,7 +36,7 @@ const ResultContainer = ({ isLoading, output, error }) => {
     if (error == null || error?.code === 200) {
       return (
         <div className={classes.root}>
-          <TextCard lines={output} />
+          <TextCard lines={output} onGenerateMore={onGenerateMore} />
         </div>
       );
     }
@@ -59,6 +56,7 @@ ResultContainer.propTypes = {
     code: PropTypes.number,
     message: PropTypes.string,
   }),
+  onGenerateMore: PropTypes.func.isRequired,
 };
 
 ResultContainer.defaultProps = {

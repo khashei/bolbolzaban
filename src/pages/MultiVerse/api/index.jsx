@@ -2,12 +2,12 @@
 import { postRequest } from '@utils/request';
 import BASE_PATH from '@app-settings';
 
-const generateTextRequest = async ({ style, input, topk, temper }) => {
+const generateTextRequest = async ({ style, input, topk, temperature }) => {
   const body = JSON.stringify({
-    Context: input,
+    context: input.trim(),
     style,
     topk,
-    Temperature: temper,
+    temperature,
   });
 
   return postRequest({

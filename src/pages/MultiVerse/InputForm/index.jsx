@@ -114,7 +114,7 @@ const InputForm = ({ isLoading, input, style, onSubmit }) => {
         <Grid item xs={12}>
           <Typography variant="subtitle1">
             چند سطر یا مصرع اول یک شعر را مانند نمونه وارد کنید و بلبل‌زبان نوشته شما را ادامه
-            می‌دهد.
+            می‌دهد. بین ابیات یک خط خالی وارد کنید.
           </Typography>
         </Grid>
         <Grid item xs={12}>

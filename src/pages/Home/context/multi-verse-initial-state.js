@@ -3,6 +3,7 @@ const multiVerseInitialState = {
   style: 'poetry',
   byUser: false,
   responseTime: null,
+  normalizedInput: '',
   output: [],
   error: null,
 };
