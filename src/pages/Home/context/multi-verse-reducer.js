@@ -6,7 +6,6 @@ const multiVerseReducer = (state, action) => {
     case GENERATE_TEXT_FULLFILLED: {
       const { input, normalizedInput, style, output, error } = action.payload;
       const outputStartIndex = normalizedInput.length;
-
       return {
         ...state,
         input,
@@ -19,6 +18,8 @@ const multiVerseReducer = (state, action) => {
 
     case UPDATE_INPUT: {
       const { input } = action.payload;
+      // eslint-disable-next-line no-console
+      console.log({ action });
       return {
         ...state,
         input,

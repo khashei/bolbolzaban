@@ -50,8 +50,6 @@ const MultiVerse = () => {
 
   const generateMoreText = async () => {
     const parts = state.output[0].split('<s>');
-    // eslint-disable-next-line no-console
-    console.log({ parts });
     const input = `${state.input} ${parts[1]
       .trim()
       .replace(/\[BOM\]/g, '\n(مصرع)')

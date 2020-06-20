@@ -1,13 +1,12 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable react/jsx-no-bind */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { TextField, Typography, Grid, Button, makeStyles } from '@material-ui/core';
 import HintBox from '@components/hint-box';
 import InlineHelp from './inline-help';
 import predefinedPatterns from './predefined-patterns';
 import InputPreprocessor from './input-preprocessor';
-// import InputText from './input-text';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -59,6 +58,10 @@ const InputForm = ({ isLoading, input, style, onSubmit }) => {
     inlineHelpVisible: false,
     isUserDefined: false,
   });
+
+  useEffect(() => {
+    setFormState({ ...formState, input });
+  }, [input]);
 
   // eslint-disable-next-line no-unused-vars
   const [inputTextRef, setInputTextRef] = useState();

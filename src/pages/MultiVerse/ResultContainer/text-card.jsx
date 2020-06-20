@@ -35,6 +35,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const TextCard = ({ lines, onGenerateMore }) => {
+  const copyText = () => {
+    const formattedlines = lines
+      .map((line) =>
+        line
+          .replace(/\[EOS\]/g, '\n')
+          .replace(/\[SEP\]/g, '\nپایان')
+          .replace(/\[BOM\]\s+/g, '\n')
+          .replace(/<s>/g, '')
+          .trim()
+      )
+      .join('\n');
+
+    copyToClipboard(formattedlines);
+  };
+
   const formatLinesForDisplay = (allLines) =>
     allLines.map((line) =>
       line
@@ -43,20 +58,6 @@ const TextCard = ({ lines, onGenerateMore }) => {
         .replace(/\[BOM\]/g, '\n(مصرع)')
         .trim()
     );
-
-  const formatLinesForCopy = (allLines) =>
-    allLines.map((line) =>
-      line
-        .replace(/\[EOS\]/g, '\n')
-        .replace(/\[SEP\]/g, '\nپایان')
-        .replace(/\[BOM\]\s+/g, '\n')
-        .replace(/<s>/g, '')
-        .trim()
-    );
-
-  const copyText = () => {
-    copyToClipboard(`${formatLinesForCopy(lines).join('\n')}`);
-  };
 
   const classes = useStyles();
   return (
