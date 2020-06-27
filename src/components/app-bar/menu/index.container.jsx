@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 
 import IconButton from '@material-ui/core/IconButton';
-import FeedbackIcon from '@material-ui/icons/FeedbackOutlined';
-import HelpIcon from '@material-ui/icons/HelpOutline';
+// import FeedbackIcon from '@material-ui/icons/FeedbackOutlined';
+// import HelpIcon from '@material-ui/icons/HelpOutline';
 import Typography from '@material-ui/core/Typography';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Menu from '@material-ui/core/Menu';
@@ -102,7 +102,7 @@ const ApplicationMenuContainer = () => {
           },
         }}
       >
-        <MenuItem key="help-option" onClick={handleClose} component={Link} to="/help">
+        {/* <MenuItem key="help-option" onClick={handleClose} component={Link} to="/help">
           <ListItemIcon>
             <HelpIcon />
           </ListItemIcon>
@@ -113,7 +113,7 @@ const ApplicationMenuContainer = () => {
             <FeedbackIcon />
           </ListItemIcon>
           <Typography variant="inherit">ارسال نظر</Typography>
-        </MenuItem>
+        </MenuItem> */}
         <MenuItem key="telegram-option" onClick={goToTelegram}>
           <ListItemIcon>
             <TelegramIcon className={classes.icon} />

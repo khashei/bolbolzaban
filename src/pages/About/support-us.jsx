@@ -52,7 +52,7 @@ const SupportUs = () => {
   return (
     <Grid container justify="center">
       <Card className={classes.card}>
-        <CardHeader title="حمایت از بلبل‌زبان" />
+        <CardHeader title="از بلبل‌زبان حمایت کنید" />
         {/* <CardMedia
         className={classes.media}
         image="https://miro.medium.com/max/875/1*eXldw_yG5U_1MBQnYl8IqQ.jpeg"
@@ -61,7 +61,7 @@ const SupportUs = () => {
         <CardContent>
           <Typography>
             بلبل زبان تازه متولد شده است و برای سرپا ماندن و یادگیری بهتر زبان فارسی نیاز به حمایت
-            شما دارد. از پروژه بلبل‌زبان حمایت کنید.
+            شما دارد.
           </Typography>
         </CardContent>
         <Collapse in={isExpanded} timeout="auto" unmountOnExit>
@@ -73,12 +73,14 @@ const SupportUs = () => {
         </Collapse>
         <CardActions>
           <Button
+            target="_blank"
+            href="https://www.buymeacoffee.com/bolbolzaban"
             className={classes.button}
             variant="contained"
             color="primary"
             startIcon={<LocalCafeIcon />}
           >
-            برای من یک قهوه بخر
+            برای بلبل زبان یک قهوه بخرید
           </Button>
           <IconButton
             className={`${classes.expand} ${isExpanded ? classes.expandOpen : ''}`}
