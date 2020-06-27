@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
+import Collapse from '@material-ui/core/Collapse';
+import LocalCafeIcon from '@material-ui/icons/LocalCafe';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import {
   Button,
+  IconButton,
   Grid,
   Card,
   CardContent,
@@ -22,13 +25,30 @@ const useStyles = makeStyles((theme) => ({
     height: 0,
     paddingTop: '56.25%', // 16:9
   },
+  expand: {
+    transform: 'rotate(0deg)',
+    marginLeft: 'auto',
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shortest,
+    }),
+  },
+  expandOpen: {
+    transform: 'rotate(180deg)',
+  },
   button: {
+    direction: 'ltr',
+  },
+  actionButton: {
     color: theme.palette.primary.main,
   },
 }));
 
 const SupportUs = () => {
   const classes = useStyles();
+  const [isExpanded, setIsExpanded] = useState(false);
+  const handleExpandClick = () => {
+    setIsExpanded(!isExpanded);
+  };
   return (
     <Grid container justify="center">
       <Card className={classes.card}>
@@ -44,11 +64,46 @@ const SupportUs = () => {
             شما دارد. از پروژه بلبل‌زبان حمایت کنید.
           </Typography>
         </CardContent>
+        <Collapse in={isExpanded} timeout="auto" unmountOnExit>
+          <CardContent>
+            <Typography paragraph>
+              اگر از استفاده از این ابزار <strong>لذت بردید</strong> برای بلبل زبان یک قهوه بخرید.
+            </Typography>
+          </CardContent>
+        </Collapse>
         <CardActions>
-          <Button className={classes.button} component={Link} key="help" to="/help">
-            توضیحات بیشتر
+          <Button
+            className={classes.button}
+            variant="contained"
+            color="primary"
+            startIcon={<LocalCafeIcon />}
+          >
+            برای من یک قهوه بخر
           </Button>
+          <IconButton
+            className={`${classes.expand} ${isExpanded ? classes.expandOpen : ''}`}
+            onClick={handleExpandClick}
+            aria-expanded={isExpanded}
+            aria-label="توضیحات بیشتر"
+          >
+            <ExpandMoreIcon />
+          </IconButton>
         </CardActions>
+        {/* <CardActions>
+          {!isExpanded && (
+            <Button className={classes.actionButton} onClick={expandCard}>
+              توضیحات بیشتر
+            </Button>
+          )}
+          <Button
+            className={classes.button}
+            variant="contained"
+            color="primary"
+            startIcon={<LocalCafeIcon />}
+          >
+            برای من یک قهوه بخر
+          </Button>
+        </CardActions> */}
       </Card>
     </Grid>
   );

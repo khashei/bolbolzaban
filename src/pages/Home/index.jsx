@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Home() {
-  const [tabIndex, setTabIndex] = useState(1);
+  const [tabIndex, setTabIndex] = useState(2);
 
   const handleChange = (event, value) => {
     setTabIndex(value);
