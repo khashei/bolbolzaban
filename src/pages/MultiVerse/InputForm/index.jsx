@@ -1,13 +1,12 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable react/jsx-no-bind */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { TextField, Typography, Grid, Button, makeStyles } from '@material-ui/core';
 import HintBox from '@components/hint-box';
 import InlineHelp from './inline-help';
 import predefinedPatterns from './predefined-patterns';
 import InputPreprocessor from './input-preprocessor';
-// import InputText from './input-text';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -60,6 +59,10 @@ const InputForm = ({ isLoading, input, style, onSubmit }) => {
     isUserDefined: false,
   });
 
+  useEffect(() => {
+    setFormState({ ...formState, input });
+  }, [input]);
+
   // eslint-disable-next-line no-unused-vars
   const [inputTextRef, setInputTextRef] = useState();
 
@@ -109,12 +112,12 @@ const InputForm = ({ isLoading, input, style, onSubmit }) => {
     <form className={classes.container} noValidate autoComplete="off">
       <Grid container justify="space-around" spacing={2}>
         <Grid item xs={12}>
-          <Typography variant="h5">سرایش شعر</Typography>
+          <Typography variant="h5">سُرایش شعر</Typography>
         </Grid>
         <Grid item xs={12}>
           <Typography variant="subtitle1">
             چند سطر یا مصرع اول یک شعر را مانند نمونه وارد کنید و بلبل‌زبان نوشته شما را ادامه
-            می‌دهد.
+            می‌دهد. بین ابیات یک خط خالی وارد کنید.
           </Typography>
         </Grid>
         <Grid item xs={12}>
@@ -159,6 +162,7 @@ const InputForm = ({ isLoading, input, style, onSubmit }) => {
             color="primary"
             fullWidth
             className={classes.button}
+            disabled={isLoading}
             onClick={handleSubmit}
           >
             بسُرای

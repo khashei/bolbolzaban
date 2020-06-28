@@ -69,7 +69,7 @@ const InputForm = ({ isLoading, firstMesra, secondMesra, style, onSubmit }) => {
       formState.secondMesra
     );
 
-    if (!firstMesra && !firstMesra) {
+    if (!normalizedFirstMesra && !normalizedSecondMesra) {
       setFormState({
         ...formState,
         inlineHelpVisible: true,
@@ -175,7 +175,7 @@ const InputForm = ({ isLoading, firstMesra, secondMesra, style, onSubmit }) => {
             id="first-mesra-input"
             fullWidth
             required
-            placeholder="هرگز نمیرد آنکه ؟ ؟ بعشق"
+            placeholder="؟ بار ؟ کردی و دیدی ثمرش را"
             value={formState.firstMesra}
             className={classes.textFieldMesra}
             onChange={handleChange('firstMesra')}
@@ -186,7 +186,7 @@ const InputForm = ({ isLoading, firstMesra, secondMesra, style, onSubmit }) => {
             id="second-mesra-input"
             fullWidth
             required
-            placeholder="؟ است بر ؟ ؟ ؟‌ ما"
+            placeholder="نیکی چه بدی داشت که ؟ نکردی"
             value={formState.secondMesra}
             className={classes.textFieldMesra}
             onChange={handleChange('secondMesra')}
