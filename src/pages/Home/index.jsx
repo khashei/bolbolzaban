@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Home() {
-  const [tabIndex, setTabIndex] = useState(2);
+  const [tabIndex, setTabIndex] = useState(0);
 
   const handleChange = (event, value) => {
     setTabIndex(value);
@@ -34,19 +34,19 @@ function Home() {
         <div className={classes.root}>
           <AppBar position="static">
             <Tabs value={tabIndex} onChange={handleChange} centered>
-              <Tab label="تک بیت" />
               <Tab label="شعر" />
+              <Tab label="تک بیت" />
               <Tab label="درباره" />
             </Tabs>
           </AppBar>
           {tabIndex === 0 && (
             <TabContainer>
-              <UniVerse />
+              <MultiVerse />
             </TabContainer>
           )}
           {tabIndex === 1 && (
             <TabContainer>
-              <MultiVerse />
+              <UniVerse />
             </TabContainer>
           )}
           {tabIndex === 2 && (

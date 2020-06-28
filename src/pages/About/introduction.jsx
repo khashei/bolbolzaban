@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { Grid, Card, CardContent, CardMedia, CardHeader, Typography } from '@material-ui/core';
+import { Grid, Card, CardContent, CardHeader, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -24,11 +24,11 @@ const Introduction = () => {
     <Grid container justify="center">
       <Card className={classes.card}>
         <CardHeader title="درباره بلبل‌زبان" />
-        <CardMedia
+        {/* <CardMedia
           className={classes.media}
           image="https://miro.medium.com/max/875/1*eXldw_yG5U_1MBQnYl8IqQ.jpeg"
           title="Paella dish"
-        />
+        /> */}
         <CardContent>
           <Typography>
             بلبل‌زبان یک ربات هوشمند سُراینده‌ی شعر است، که با کمک هوش مصنوعی، اشعاری با وزن و

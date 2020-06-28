@@ -112,7 +112,7 @@ const InputForm = ({ isLoading, input, style, onSubmit }) => {
     <form className={classes.container} noValidate autoComplete="off">
       <Grid container justify="space-around" spacing={2}>
         <Grid item xs={12}>
-          <Typography variant="h5">سرایش شعر</Typography>
+          <Typography variant="h5">سُرایش شعر</Typography>
         </Grid>
         <Grid item xs={12}>
           <Typography variant="subtitle1">

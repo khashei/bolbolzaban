@@ -67,7 +67,7 @@ const SupportUs = () => {
         <Collapse in={isExpanded} timeout="auto" unmountOnExit>
           <CardContent>
             <Typography paragraph>
-              اگر از استفاده از این ابزار <strong>لذت بردید</strong> برای بلبل زبان یک قهوه بخرید.
+              اگر از استفاده از این ابزار لذت بردید برای بلبل زبان یک قهوه بخرید.
             </Typography>
           </CardContent>
         </Collapse>
