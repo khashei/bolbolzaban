@@ -162,6 +162,7 @@ const InputForm = ({ isLoading, input, style, onSubmit }) => {
             color="primary"
             fullWidth
             className={classes.button}
+            disabled={isLoading}
             onClick={handleSubmit}
           >
             بسُرای
