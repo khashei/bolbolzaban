@@ -90,7 +90,7 @@ const InputForm = ({ isLoading, input, onSubmit }) => {
     setFormState({
       ...formState,
       input: randomInput.lines,
-      hint: 'دکمه بنویس را دوباره بزنید، تا بلبل زبان یک متن جدید درست کند.',
+      hint: 'دکمه بنویس را دوباره بزنید، تا بلبل زبان یک متن جدید بنویسد.',
       inlineHelpVisible: false,
       isUserDefined: false,
     });
@@ -110,12 +110,11 @@ const InputForm = ({ isLoading, input, onSubmit }) => {
     <form className={classes.container} noValidate autoComplete="off">
       <Grid container justify="space-around" spacing={2}>
         <Grid item xs={12}>
-          <Typography variant="h5">سُرایش شعر</Typography>
+          <Typography variant="h5">نوشتن متن</Typography>
         </Grid>
         <Grid item xs={12}>
           <Typography variant="subtitle1">
-            چند کلمه یا سطر اول یک متن را مانند نمونه وارد کنید و بلبل‌زبان نوشته شما را ادامه
-            می‌دهد. صبور باشید و به بلبل‌زبان فرصت فکر کردن بدهید!
+            چند کلمه یا سطر نخستین یک متن را وارد کنید و بلبل‌زبان نوشته شما را ادامه می‌دهد.
           </Typography>
         </Grid>
         <Grid item xs={12}>
@@ -163,7 +162,7 @@ const InputForm = ({ isLoading, input, onSubmit }) => {
             disabled={isLoading}
             onClick={handleSubmit}
           >
-            بسُرای
+            بنویس
           </Button>
         </Grid>
       </Grid>

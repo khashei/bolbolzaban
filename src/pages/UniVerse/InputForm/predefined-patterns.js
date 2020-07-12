@@ -11,6 +11,11 @@ const predefinedPatterns = [
   },
   {
     style: 'free',
+    firstMesra: 'به من گفتی ؟ ؟ ؟',
+    secondMesra: 'عجب جالب ؟ ؟ ؟ ؟',
+  },
+  {
+    style: 'free',
     firstMesra: 'بده ؟ بیتی را به بلبل',
     secondMesra: 'همانند ؟ ای دسته‌ی ؟',
   },
