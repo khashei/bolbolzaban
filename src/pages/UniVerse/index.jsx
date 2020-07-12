@@ -1,8 +1,8 @@
 /* eslint-disable import/no-unresolved */
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import useUniVerseContext from '@pages/Home/context/uni-verse-context';
-import { GENERATE_VERSE_FULLFILLED } from '@pages/Home/context/uni-verse-reducer';
+import useUniVerseContext from '@pages/Home/context/uni-verse/context';
+import { GENERATE_VERSE_FULLFILLED } from '@pages/Home/context/uni-verse/reducer';
 import InputForm from './InputForm';
 import ResultContainer from './ResultContainer';
 import generatePoemRequest from './api';

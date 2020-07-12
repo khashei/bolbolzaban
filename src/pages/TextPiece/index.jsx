@@ -1,8 +1,8 @@
 /* eslint-disable import/no-unresolved */
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import useMultiVerseContext from '@pages/Home/context/multi-verse/context';
-import { GENERATE_FULLFILLED, UPDATE_INPUT } from '@pages/Home/context/multi-verse/reducer';
+import useTextPieceContext from '@pages/Home/context/text-piece/context';
+import { GENERATE_FULLFILLED, UPDATE_INPUT } from '@pages/Home/context/text-piece/reducer';
 import InputForm from './InputForm/index';
 import ResultContainer from './ResultContainer';
 import generateTextRequest from './api';
@@ -13,11 +13,11 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const MultiVerse = () => {
-  const { state, dispatch } = useMultiVerseContext();
+const TextPiece = () => {
+  const { state, dispatch } = useTextPieceContext();
   const [isLoading, setIsLoading] = useState(false);
 
-  const generateText = async (input, style, byUser) => {
+  const generateText = async (input, byUser) => {
     setIsLoading(true);
 
     const data = await generateTextRequest({
@@ -72,7 +72,7 @@ const MultiVerse = () => {
   );
 };
 
-MultiVerse.defaultProps = {};
-MultiVerse.propTypes = {};
+TextPiece.defaultProps = {};
+TextPiece.propTypes = {};
 
-export default MultiVerse;
+export default TextPiece;

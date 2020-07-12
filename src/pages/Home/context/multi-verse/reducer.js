@@ -1,9 +1,9 @@
-export const GENERATE_TEXT_FULLFILLED = 'GENERATE_TEXT_FULLFILLED';
+export const GENERATE_FULLFILLED = 'GENERATE_FULLFILLED';
 export const UPDATE_INPUT = 'UPDATE_INPUT';
 
 const multiVerseReducer = (state, action) => {
   switch (action.type) {
-    case GENERATE_TEXT_FULLFILLED: {
+    case GENERATE_FULLFILLED: {
       const { input, normalizedInput, style, output, error } = action.payload;
       const outputStartIndex = normalizedInput.length;
       return {

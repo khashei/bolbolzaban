@@ -4,9 +4,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Tabs, Tab } from '@material-ui/core';
 import UniVerse from '@pages/UniVerse';
 import MultiVerse from '@pages/MultiVerse';
+import TextPiece from '@pages/TextPiece';
 import About from '@pages/About';
-import UniVerseProvider from './context/uni-verse-provider';
-import MultiVerseProvider from './context/multi-verse-provider';
+import UniVerseProvider from './context/uni-verse/provider';
+import MultiVerseProvider from './context/multi-verse/provider';
+import TextPieceProvider from './context/text-piece/provider';
 import TabContainer from './tab-container';
 
 const useStyles = makeStyles((theme) => ({
@@ -29,34 +31,42 @@ function Home() {
   };
   const classes = useStyles();
   return (
-    <MultiVerseProvider>
-      <UniVerseProvider>
-        <div className={classes.root}>
-          <AppBar position="static">
-            <Tabs value={tabIndex} onChange={handleChange} centered>
-              <Tab label="شعر" />
-              <Tab label="تک بیت" />
-              <Tab label="درباره" />
-            </Tabs>
-          </AppBar>
-          {tabIndex === 0 && (
-            <TabContainer>
-              <MultiVerse />
-            </TabContainer>
-          )}
-          {tabIndex === 1 && (
-            <TabContainer>
-              <UniVerse />
-            </TabContainer>
-          )}
-          {tabIndex === 2 && (
-            <TabContainer>
-              <About />
-            </TabContainer>
-          )}
-        </div>
-      </UniVerseProvider>
-    </MultiVerseProvider>
+    <TextPieceProvider>
+      <MultiVerseProvider>
+        <UniVerseProvider>
+          <div className={classes.root}>
+            <AppBar position="static">
+              <Tabs value={tabIndex} onChange={handleChange} centered>
+                <Tab label="شعر" />
+                <Tab label="تک بیت" />
+                <Tab label="متن" />
+                <Tab label="درباره" />
+              </Tabs>
+            </AppBar>
+            {tabIndex === 0 && (
+              <TabContainer>
+                <MultiVerse />
+              </TabContainer>
+            )}
+            {tabIndex === 1 && (
+              <TabContainer>
+                <UniVerse />
+              </TabContainer>
+            )}
+            {tabIndex === 2 && (
+              <TabContainer>
+                <TextPiece />
+              </TabContainer>
+            )}
+            {tabIndex === 3 && (
+              <TabContainer>
+                <About />
+              </TabContainer>
+            )}
+          </div>
+        </UniVerseProvider>
+      </MultiVerseProvider>
+    </TextPieceProvider>
   );
 }
 

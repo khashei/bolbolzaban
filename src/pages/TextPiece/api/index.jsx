@@ -5,7 +5,7 @@ import BASE_PATH from '@app-settings';
 const generateTextRequest = async ({ input, topk, temperature }) => {
   const body = JSON.stringify({
     context: input.trim(),
-    style: 'poetry',
+    style: 'text',
     topk,
     temperature,
   });

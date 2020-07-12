@@ -90,12 +90,12 @@ const InputForm = ({ isLoading, input, onSubmit }) => {
     setFormState({
       ...formState,
       input: randomInput.lines,
-      hint: 'دکمه بسُرای را دوباره بزنید، تا بلبل زبان یک متن جدید درست کند.',
+      hint: 'دکمه بنویس را دوباره بزنید، تا بلبل زبان یک متن جدید درست کند.',
       inlineHelpVisible: false,
       isUserDefined: false,
     });
 
-    onSubmit(randomInput.lines, false);
+    onSubmit(randomInput.lines, randomInput.style, false);
   };
 
   const handleChange = (name) => (event) => {
@@ -114,8 +114,8 @@ const InputForm = ({ isLoading, input, onSubmit }) => {
         </Grid>
         <Grid item xs={12}>
           <Typography variant="subtitle1">
-            چند سطر یا مصرع اول یک شعر را مانند نمونه وارد کنید و بلبل‌زبان نوشته شما را ادامه
-            می‌دهد. بین ابیات یک خط خالی وارد کنید.
+            چند کلمه یا سطر اول یک متن را مانند نمونه وارد کنید و بلبل‌زبان نوشته شما را ادامه
+            می‌دهد. صبور باشید و به بلبل‌زبان فرصت فکر کردن بدهید!
           </Typography>
         </Grid>
         <Grid item xs={12}>
@@ -136,7 +136,7 @@ const InputForm = ({ isLoading, input, onSubmit }) => {
             className={classes.textInput}
             value={formState.input}
             onChange={handleChange('input')}
-            placeholder="(مصرع) هرگز نمیرد آنکه دلش زنده شد بعشق"
+            placeholder="در یک اتفاق شگفت انگیز، پژوهشگران موفق به یافتن یک گونه اسب شاخدار شدند که می‌تواند فارسی صحبت کند."
             multiline
             inputProps={{
               maxLength: 2000,
