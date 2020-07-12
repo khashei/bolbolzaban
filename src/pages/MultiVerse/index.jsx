@@ -45,6 +45,8 @@ const MultiVerse = () => {
     const input = `${state.input} ${parts[1]
       .trim()
       .replace(/\[BOM\]/g, '\n(مصرع)')
+      .replace(/\[KRK\]/g, '[فُلان]')
+      .replace(/\[LAT\]/g, '[فُلان]')
       .replace(/\[EOS\]/g, '\n')
       .replace(/\[SEP\]/g, '\n')}`.trim();
 
