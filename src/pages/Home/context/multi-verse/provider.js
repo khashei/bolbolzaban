@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import reducer from './multi-verse-reducer';
-import initialState from './multi-verse-initial-state';
-import { MultiVerseContext } from './multi-verse-context';
+import reducer from './reducer';
+import initialState from './initial-state';
+import { MultiVerseContext } from './context';
 
 const MultiVerseProvider = (props) => {
   const [state, dispatch] = React.useReducer(reducer, initialState);

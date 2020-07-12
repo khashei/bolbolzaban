@@ -1,9 +1,9 @@
 import React, { useReducer } from 'react';
 import PropTypes from 'prop-types';
 
-import reducer from './uni-verse-reducer';
-import initialState from './uni-verse-initial-state';
-import { UniVerseContext } from './uni-verse-context';
+import reducer from './reducer';
+import initialState from './initial-state';
+import { UniVerseContext } from './context';
 
 const UniVerseProvider = (props) => {
   const [state, dispatch] = useReducer(reducer, initialState);

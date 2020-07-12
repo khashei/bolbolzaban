@@ -57,8 +57,8 @@ const TextCard = ({ lines, onGenerateMore }) => {
       line
         .replace(/\[EOS\]/g, '\n')
         .replace(/\[SEP\]/g, '\nپایان')
-        .replace(/\[LAT\]/g, '[فُلان]')
         .replace(/\[KRK\]/g, '[فُلان]')
+        .replace(/\[LAT\]/g, '[فُلان]')
         .replace(/\[BOM\]/g, '\n(مصرع)')
         .trim()
     );

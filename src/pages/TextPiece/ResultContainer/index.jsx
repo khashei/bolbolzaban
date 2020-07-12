@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import BeytLoader from '@components/progress/beyt-loader';
 import ErrorCard from '@components/error-card';
-import BeytCard from './beyt-card';
+import TextCard from './text-card';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ResultContainer = ({ isLoading, outputs, error }) => {
+const ResultContainer = ({ isLoading, output, error, onGenerateMore }) => {
   const classes = useStyles();
 
   if (isLoading) {
@@ -31,13 +31,12 @@ const ResultContainer = ({ isLoading, outputs, error }) => {
       </div>
     );
   }
-  if (!isLoading) {
+
+  if (!isLoading && output.length > 0) {
     if (error == null || error?.code === 200) {
       return (
         <div className={classes.root}>
-          {outputs?.map((line, index) => (
-            <BeytCard key={index} firstMesra={line.m1} secondMesra={line.m2} />
-          ))}
+          <TextCard lines={output} onGenerateMore={onGenerateMore} />
         </div>
       );
     }
@@ -52,20 +51,16 @@ const ResultContainer = ({ isLoading, outputs, error }) => {
 
 ResultContainer.propTypes = {
   isLoading: PropTypes.bool,
-  outputs: PropTypes.arrayOf(
-    PropTypes.exact({
-      m1: PropTypes.string,
-      m2: PropTypes.string,
-    })
-  ),
+  output: PropTypes.arrayOf(PropTypes.string),
   error: PropTypes.exact({
     code: PropTypes.number,
     message: PropTypes.string,
   }),
+  onGenerateMore: PropTypes.func.isRequired,
 };
 
 ResultContainer.defaultProps = {
-  outputs: [],
+  output: [],
   isLoading: false,
   error: null,
 };
