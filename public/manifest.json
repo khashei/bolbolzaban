@@ -1,22 +1,16 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
-  "icons": [
-    {
-      "src": "favicon.ico",
+  "short_name": "بلبل‌زبان",
+  "name": "بلبل‌زبان - ربات هوشمند سُراینده‌ی شعر",
+  "icons": [{
+      "src": "fav-ico.svg",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "type": "image/svg"
     },
     {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
+      "src": "logo.svg",
+      "type": "image/svg",
+      "sizes": "512x512 192x192"
     },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    }
   ],
   "start_url": ".",
   "display": "standalone",

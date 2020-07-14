@@ -114,9 +114,15 @@ const InputForm = ({ isLoading, input, onSubmit }) => {
         </Grid>
         <Grid item xs={12}>
           <Typography variant="subtitle1">
-            چند سطر یا مصرع اول یک شعر را مانند نمونه وارد کنید و بلبل‌زبان نوشته شما را ادامه
-            می‌دهد. بین ابیات یک خط خالی وارد کنید.
+            چند سطر یا مصرع اول یک شعر را مانند نمونه وارد کنید و با همراهی بلبل‌زبان ادامه شعر را
+            بسرایید.
           </Typography>
+          <ul>
+            <li>
+              هر مصرع را با عبارت <b>(مصرع)</b> شروع کنید.
+            </li>
+            <li>بین ابیات یک خط خالی رد کنید.</li>
+          </ul>
         </Grid>
         <Grid item xs={12}>
           <Button
@@ -124,7 +130,6 @@ const InputForm = ({ isLoading, input, onSubmit }) => {
             variant="outlined"
             className={classes.randomTextButton}
             disabled={isLoading}
-            // color='inherit'
             size="small"
           >
             نمونه
