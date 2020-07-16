@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ResultContainer = ({ isLoading, output, error, onGenerateMore }) => {
+const ResultContainer = ({ isLoading, output, error }) => {
   const classes = useStyles();
 
   if (isLoading) {
@@ -36,7 +36,7 @@ const ResultContainer = ({ isLoading, output, error, onGenerateMore }) => {
     if (error == null || error?.code === 200) {
       return (
         <div className={classes.root}>
-          <TextCard lines={output} onGenerateMore={onGenerateMore} />
+          <TextCard lines={output} />
         </div>
       );
     }
@@ -56,7 +56,6 @@ ResultContainer.propTypes = {
     code: PropTypes.number,
     message: PropTypes.string,
   }),
-  onGenerateMore: PropTypes.func.isRequired,
 };
 
 ResultContainer.defaultProps = {
