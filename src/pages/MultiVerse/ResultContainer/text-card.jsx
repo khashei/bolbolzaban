@@ -1,7 +1,7 @@
 /* eslint-disable import/no-unresolved */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Typography, Card, CardContent, CardActions, IconButton } from '@material-ui/core';
+import { Typography, Card, Grid, CardContent, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import copyToClipboard from '@utils/copy-to-clipboard';
 
@@ -9,21 +9,20 @@ const useStyles = makeStyles((theme) => ({
   card: {
     minWidth: 275,
     margin: 20,
+    marginTop: 0,
+    marginBottom: 0,
   },
   button: {
-    margin: theme.spacing(1),
+    margin: 20,
+    marginTop: theme.spacing(0.75),
+    float: 'left',
+    color: theme.palette.primary.main,
   },
   content: {
-    paddingRight: 15,
-    paddingTop: 10,
-    paddingBottom: 0,
-    paddingLeft: 15,
-  },
-  actions: {
-    padding: 0,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
+    padding: 15,
+    '&:last-child': {
+      paddingBottom: 20,
+    },
   },
   hiddenInput: {
     opacity: 0,
@@ -34,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const TextCard = ({ lines, onGenerateMore }) => {
+const TextCard = ({ lines }) => {
   const copyText = () => {
     const formattedlines = lines
       .map((line) =>
@@ -49,7 +48,7 @@ const TextCard = ({ lines, onGenerateMore }) => {
       )
       .join('\n');
 
-    copyToClipboard(formattedlines);
+    copyToClipboard(formattedlines.concat('\n\nبلبل‌زبان\nwww.bolbolzaban.com'));
   };
 
   const formatLinesForDisplay = (allLines) =>
@@ -63,42 +62,50 @@ const TextCard = ({ lines, onGenerateMore }) => {
         .trim()
     );
 
+  const splitInputAndOutputParts = (line) => {
+    const parts = line.split('<s>');
+    if (parts[1].indexOf('\n') > 0) {
+      const lastLineStartIndex = parts[0].lastIndexOf('\n');
+      return [parts[0].substring(lastLineStartIndex).trim(), parts[1]];
+    }
+
+    return ['', parts[1].trim()];
+  };
+
   const classes = useStyles();
   return (
-    <Card className={classes.card}>
-      <CardContent className={classes.content}>
-        {formatLinesForDisplay(lines).map((line, index) => {
-          const parts = line.split('<s>');
-          return (
-            <Typography
-              // eslint-disable-next-line react/no-array-index-key
-              key={index}
-              variant="body1"
-              color="primary"
-              className={classes.resultText}
-              style={{ whiteSpace: 'pre-line' }}
-            >
-              <strong>{parts[0]}</strong>
-              {parts[1]}
-            </Typography>
-          );
-        })}
-      </CardContent>
-      <CardActions className={classes.actions}>
-        <IconButton onClick={onGenerateMore}>
-          <Typography>ادامه بده</Typography>
-        </IconButton>
-        <IconButton onClick={copyText}>
-          <Typography>کپی</Typography>
-        </IconButton>
-      </CardActions>
-    </Card>
+    <Grid container justify="space-around" spacing={2}>
+      <Grid item xs={12}>
+        <Card className={classes.card}>
+          <CardContent className={classes.content}>
+            {formatLinesForDisplay(lines).map((line, index) => {
+              const parts = splitInputAndOutputParts(line);
+              return (
+                <Typography
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={index}
+                  variant="body1"
+                  color="primary"
+                  className={classes.resultText}
+                  style={{ whiteSpace: 'pre-line' }}
+                >
+                  <strong>{parts[0]}</strong>
+                  {parts[1]}
+                </Typography>
+              );
+            })}
+          </CardContent>
+        </Card>
+        <Button onClick={copyText} variant="outlined" className={classes.button} size="small">
+          کپی متن کامل در کلیپ‌بورد
+        </Button>
+      </Grid>
+    </Grid>
   );
 };
 
 TextCard.propTypes = {
   lines: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onGenerateMore: PropTypes.func.isRequired,
 };
 
 TextCard.defaultProps = {};

@@ -43,14 +43,12 @@ const useStyles = makeStyles((theme) => ({
   menu: {
     width: 200,
   },
-  button: {},
   input: {
     display: 'none',
   },
-  group: {},
 }));
 
-const InputForm = ({ isLoading, input, onSubmit }) => {
+const InputForm = ({ isLoading, input, hasOutput, onSubmit, onGenerateMore }) => {
   const [formState, setFormState] = useState({
     input,
     hint: '',
@@ -90,7 +88,7 @@ const InputForm = ({ isLoading, input, onSubmit }) => {
     setFormState({
       ...formState,
       input: randomInput.lines,
-      hint: 'دکمه بسُرای را دوباره بزنید، تا بلبل زبان یک متن جدید درست کند.',
+      hint: 'دکمه «بسُرای» را دوباره بزنید تا یک ادامه کاملا جدید سروده شود.',
       inlineHelpVisible: false,
       isUserDefined: false,
     });
@@ -121,9 +119,14 @@ const InputForm = ({ isLoading, input, onSubmit }) => {
             <li>
               هر مصرع را با عبارت <b>(مصرع)</b> شروع کنید.
             </li>
-            <li>بین ابیات یک خط خالی رد کنید.</li>
+            <li>بین هر دو مصرع یک خط خالی رد کنید.</li>
           </ul>
         </Grid>
+        {formState.hint && !isLoading && (
+          <Grid item xs={12}>
+            <HintBox text={formState.hint} />
+          </Grid>
+        )}
         <Grid item xs={12}>
           <Button
             onClick={onRandomSampleClick}
@@ -151,15 +154,10 @@ const InputForm = ({ isLoading, input, onSubmit }) => {
             inputRef={setInputTextRef.bind(this)}
           />
         </Grid>
-        {formState.hint && !isLoading && (
-          <Grid item xs={12}>
-            <HintBox text={formState.hint} />
-          </Grid>
-        )}
         {formState.inlineHelpVisible && (
           <InlineHelp onRandomSampleClick={onRandomSampleClick} anchor={inputTextRef} />
         )}
-        <Grid item xs={12}>
+        <Grid item xs={hasOutput ? 6 : 12}>
           <Button
             variant="contained"
             color="primary"
@@ -168,9 +166,23 @@ const InputForm = ({ isLoading, input, onSubmit }) => {
             disabled={isLoading}
             onClick={handleSubmit}
           >
-            بسُرای
+            {hasOutput ? 'یکی دیگه بسُرای' : 'بسُرای'}
           </Button>
         </Grid>
+        {hasOutput && (
+          <Grid item xs={6}>
+            <Button
+              variant="contained"
+              color="primary"
+              fullWidth
+              className={classes.button}
+              disabled={isLoading}
+              onClick={onGenerateMore}
+            >
+              خوبه، ادامه بده
+            </Button>
+          </Grid>
+        )}
       </Grid>
     </form>
   );
@@ -179,13 +191,14 @@ const InputForm = ({ isLoading, input, onSubmit }) => {
 InputForm.propTypes = {
   isLoading: PropTypes.bool,
   input: PropTypes.string,
-  onSubmit: PropTypes.func,
+  hasOutput: PropTypes.bool.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  onGenerateMore: PropTypes.func.isRequired,
 };
 
 InputForm.defaultProps = {
   isLoading: false,
   input: '',
-  onSubmit: null,
 };
 
 export default InputForm;
