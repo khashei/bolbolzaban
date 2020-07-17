@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const InlineHelp = ({ anchor, onRandomSampleClick }) => {
+const InlineHelp = ({ anchor, onRandomSampleClick, text }) => {
   const [arrowRef, setArrowRef] = useState();
   const classes = useStyles();
   return (
@@ -65,12 +65,19 @@ const InlineHelp = ({ anchor, onRandomSampleClick }) => {
     >
       <span className={classes.arrow} ref={setArrowRef.bind(this)} />
       <Card className={classes.card}>
-        <CardContent>
-          <Typography variant="body2">اگر خواهی بگویی شعر نابی</Typography>
-          <Typography variant="body2">بپرس از من بگویم تا جوابی</Typography>
-          <Typography variant="body2">بده الگـوی بیـتی را به بلبـل</Typography>
-          <Typography variant="body2">همانند مثال ای دسته‌ی گل</Typography>
-        </CardContent>
+        {text && (
+          <CardContent>
+            <Typography variant="body2">{text}</Typography>
+          </CardContent>
+        )}
+        {!text && (
+          <CardContent>
+            <Typography variant="body2">اگر خواهی بگویی شعر نابی</Typography>
+            <Typography variant="body2">بپرس از من بگویم تا جوابی</Typography>
+            <Typography variant="body2">بده الگـوی بیـتی را به بلبـل</Typography>
+            <Typography variant="body2">همانند مثال ای دسته‌ی گل</Typography>
+          </CardContent>
+        )}
         <CardActions>
           <Button
             size="small"
@@ -78,7 +85,7 @@ const InlineHelp = ({ anchor, onRandomSampleClick }) => {
             className={classes.button}
             onClick={onRandomSampleClick}
           >
-            تولید الگوی نمونه
+            نمایش الگوی نمونه
           </Button>
         </CardActions>
       </Card>
@@ -89,10 +96,12 @@ const InlineHelp = ({ anchor, onRandomSampleClick }) => {
 InlineHelp.propTypes = {
   onRandomSampleClick: PropTypes.func.isRequired,
   anchor: PropTypes.object,
+  text: PropTypes.string,
 };
 
 InlineHelp.defaultProps = {
   anchor: null,
+  text: '',
 };
 
 export default InlineHelp;

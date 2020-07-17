@@ -4,9 +4,9 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { TextField, Typography, Grid, Button, makeStyles } from '@material-ui/core';
 import HintBox from '@components/hint-box';
-import InlineHelp from './inline-help';
+import InputPreprocessor from '@pages/gpt2/utils/input-preprocessor';
+import InlineHelp from '@components/inline-help';
 import predefinedPatterns from './predefined-patterns';
-import InputPreprocessor from './input-preprocessor';
 
 const useStyles = makeStyles((theme) => ({
   container: {

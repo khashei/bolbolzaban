@@ -5,7 +5,7 @@ import useMultiVerseContext from '@pages/Home/context/multi-verse/context';
 import { GENERATE_FULLFILLED, UPDATE_INPUT } from '@pages/Home/context/multi-verse/reducer';
 import generateTextRequest, { POETRY_STYLE } from '../api/generate-text-request';
 import InputForm from './InputForm/index';
-import ResultContainer from '../components/ResultContainer';
+import ResultContainer from '../components/result-container';
 
 const useStyles = makeStyles(() => ({
   root: {

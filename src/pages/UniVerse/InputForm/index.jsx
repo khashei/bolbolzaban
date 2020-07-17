@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { TextField, Typography, Grid, Paper, Radio, Button, makeStyles } from '@material-ui/core';
 
 import HintBox from '@components/hint-box';
-import InlineHelp from './inline-help';
+import InlineHelp from '@components/inline-help';
 import predefinedPatterns from './predefined-patterns';
 import InputPreprocessor from './input-preprocessor';
 

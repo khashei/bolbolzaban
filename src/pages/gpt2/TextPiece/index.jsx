@@ -5,7 +5,7 @@ import useTextPieceContext from '@pages/Home/context/text-piece/context';
 import { GENERATE_FULLFILLED, UPDATE_INPUT } from '@pages/Home/context/text-piece/reducer';
 import generateTextRequest, { TEXT_STYLE } from '../api/generate-text-request';
 import InputForm from './InputForm/index';
-import ResultContainer from '../components/ResultContainer';
+import ResultContainer from '../components/result-container';
 
 const useStyles = makeStyles(() => ({
   root: {
