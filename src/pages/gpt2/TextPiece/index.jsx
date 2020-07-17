@@ -1,11 +1,11 @@
 /* eslint-disable import/no-unresolved */
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import useMultiVerseContext from '@pages/Home/context/multi-verse/context';
-import { GENERATE_FULLFILLED, UPDATE_INPUT } from '@pages/Home/context/multi-verse/reducer';
-import generateTextRequest, { POETRY_STYLE } from '@app/api/generate-text-request';
+import useTextPieceContext from '@pages/Home/context/text-piece/context';
+import { GENERATE_FULLFILLED, UPDATE_INPUT } from '@pages/Home/context/text-piece/reducer';
+import generateTextRequest, { TEXT_STYLE } from '../api/generate-text-request';
 import InputForm from './InputForm/index';
-import ResultContainer from './ResultContainer';
+import ResultContainer from '../components/ResultContainer';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -13,15 +13,15 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const MultiVerse = () => {
-  const { state, dispatch } = useMultiVerseContext();
+const TextPiece = () => {
+  const { state, dispatch } = useTextPieceContext();
   const [isLoading, setIsLoading] = useState(false);
 
   const generateText = async (input, byUser) => {
     setIsLoading(true);
 
     const data = await generateTextRequest({
-      style: POETRY_STYLE,
+      style: TEXT_STYLE,
       input,
       topk: 40,
       temperature: 75,
@@ -76,7 +76,7 @@ const MultiVerse = () => {
   );
 };
 
-MultiVerse.defaultProps = {};
-MultiVerse.propTypes = {};
+TextPiece.defaultProps = {};
+TextPiece.propTypes = {};
 
-export default MultiVerse;
+export default TextPiece;
