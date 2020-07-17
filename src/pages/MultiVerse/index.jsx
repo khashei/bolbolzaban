@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import useMultiVerseContext from '@pages/Home/context/multi-verse/context';
 import { GENERATE_FULLFILLED, UPDATE_INPUT } from '@pages/Home/context/multi-verse/reducer';
+import generateTextRequest, { POETRY_STYLE } from '@app/api/generate-text-request';
 import InputForm from './InputForm/index';
 import ResultContainer from './ResultContainer';
-import generateTextRequest from './api';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -21,6 +21,7 @@ const MultiVerse = () => {
     setIsLoading(true);
 
     const data = await generateTextRequest({
+      POETRY_STYLE,
       input,
       topk: 40,
       temperature: 75,

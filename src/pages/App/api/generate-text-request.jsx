@@ -2,10 +2,13 @@
 import { postRequest } from '@utils/request';
 import BASE_PATH from '@app-settings';
 
-const generateTextRequest = async ({ input, topk, temperature }) => {
+export const POETRY_STYLE = 'poetry';
+export const TEXT_STYLE = 'text';
+
+const generateTextRequest = async ({ style, input, topk, temperature }) => {
   const body = JSON.stringify({
     context: input.trim(),
-    style: 'poetry',
+    style,
     topk,
     temperature,
   });
