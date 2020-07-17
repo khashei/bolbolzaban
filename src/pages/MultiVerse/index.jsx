@@ -17,11 +17,11 @@ const MultiVerse = () => {
   const { state, dispatch } = useMultiVerseContext();
   const [isLoading, setIsLoading] = useState(false);
 
-  const generateText = async (input, style, byUser) => {
+  const generateText = async (input, byUser) => {
     setIsLoading(true);
 
     const data = await generateTextRequest({
-      POETRY_STYLE,
+      style: POETRY_STYLE,
       input,
       topk: 40,
       temperature: 75,
@@ -48,8 +48,8 @@ const MultiVerse = () => {
       .replace(/\[BOM\]/g, '\n(مصرع)')
       .replace(/\[KRK\]/g, '[فُلان]')
       .replace(/\[LAT\]/g, '[فُلان]')
-      .replace(/\[EOS\]/g, '\n')
-      .replace(/\[SEP\]/g, '\n')}`.trim();
+      .replace(/\[EOS\]\s*/g, '\n')
+      .replace(/\[SEP\]\s*/g, '\n')}`.trim();
 
     dispatch({
       type: UPDATE_INPUT,

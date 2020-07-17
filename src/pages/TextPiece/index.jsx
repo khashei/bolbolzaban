@@ -21,7 +21,7 @@ const TextPiece = () => {
     setIsLoading(true);
 
     const data = await generateTextRequest({
-      TEXT_STYLE,
+      style: TEXT_STYLE,
       input,
       topk: 40,
       temperature: 75,
@@ -64,13 +64,14 @@ const TextPiece = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <InputForm isLoading={isLoading} input={state.input} onSubmit={generateText} />
-      <ResultContainer
+      <InputForm
         isLoading={isLoading}
-        output={state.output}
-        error={state.error}
+        input={state.input}
+        hasOutput={state.output.length > 0}
+        onSubmit={generateText}
         onGenerateMore={generateMoreText}
       />
+      <ResultContainer isLoading={isLoading} output={state.output} error={state.error} />
     </div>
   );
 };
