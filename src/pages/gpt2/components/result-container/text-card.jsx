@@ -38,12 +38,12 @@ const TextCard = ({ lines }) => {
     const formattedlines = lines
       .map((line) =>
         line
-          .replace(/\[EOS\]/g, '\n')
-          .replace(/\[SEP\]/g, '\nپایان')
-          .replace(/\[LAT\]/g, '[فُلان]')
-          .replace(/\[KRK\]/g, '[فُلان]')
-          .replace(/\[BOM\]\s+/g, '\n')
+          .trim()
           .replace(/<s>/g, '')
+          .replace(/\[LAT\]|\[KRK\]/g, '[فُلان]')
+          .replace(/\[EOS\]\s*/g, '\n')
+          .replace(/\[SEP\]\s*/g, '\n')
+          .replace(/\[BOM\]\s*/g, '\n')
           .trim()
       )
       .join('\n');
@@ -54,11 +54,11 @@ const TextCard = ({ lines }) => {
   const formatLinesForDisplay = (allLines) =>
     allLines.map((line) =>
       line
+        .trim()
+        .replace(/\[LAT\]|\[KRK\]/g, '[فُلان]')
+        .replace(/\[BOM\]/g, '\n(مصرع)')
         .replace(/\[EOS\]/g, '\n')
         .replace(/\[SEP\]/g, '\nپایان')
-        .replace(/\[LAT\]/g, '[فُلان]')
-        .replace(/\[KRK\]/g, '[فُلان]')
-        .replace(/\[BOM\]/g, '\n(مصرع)')
         .trim()
     );
 

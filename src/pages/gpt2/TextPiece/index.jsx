@@ -45,11 +45,10 @@ const TextPiece = () => {
     const parts = state.output[0].split('<s>');
     const input = `${state.input} ${parts[1]
       .trim()
-      .replace(/\[BOM\]/g, '\n(مصرع)')
-      .replace(/\[KRK\]/g, '[فُلان]')
-      .replace(/\[LAT\]/g, '[فُلان]')
+      .replace(/\[LAT\]|\[KRK\]/g, '[فُلان]')
       .replace(/\[EOS\]\s*/g, '\n')
-      .replace(/\[SEP\]\s*/g, '\n')}`.trim();
+      .replace(/\[SEP\]\s*/g, '\n')
+      .replace(/\[BOM\]/g, '\n(مصرع)')}`.trim();
 
     dispatch({
       type: UPDATE_INPUT,
