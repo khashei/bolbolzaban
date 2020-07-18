@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import useMultiVerseContext from '@pages/Home/context/multi-verse/context';
 import { GENERATE_FULLFILLED, UPDATE_INPUT } from '@pages/Home/context/multi-verse/reducer';
+import generateTextRequest, { POETRY_STYLE } from '../api/generate-text-request';
 import InputForm from './InputForm/index';
-import ResultContainer from './ResultContainer';
-import generateTextRequest from './api';
+import ResultContainer from '../components/result-container';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -17,10 +17,11 @@ const MultiVerse = () => {
   const { state, dispatch } = useMultiVerseContext();
   const [isLoading, setIsLoading] = useState(false);
 
-  const generateText = async (input, style, byUser) => {
+  const generateText = async (input, byUser) => {
     setIsLoading(true);
 
     const data = await generateTextRequest({
+      style: POETRY_STYLE,
       input,
       topk: 40,
       temperature: 75,
@@ -44,11 +45,15 @@ const MultiVerse = () => {
     const parts = state.output[0].split('<s>');
     const input = `${state.input} ${parts[1]
       .trim()
-      .replace(/\[BOM\]/g, '\n(مصرع)')
-      .replace(/\[KRK\]/g, '[فُلان]')
-      .replace(/\[LAT\]/g, '[فُلان]')
-      .replace(/\[EOS\]/g, '\n')
-      .replace(/\[SEP\]/g, '\n')}`.trim();
+      .replace(/\[LAT\]|\[KRK\]/g, '[فُلان]')
+      .replace(/\[EOS\]\s*/g, '\n')
+      .replace(/\[SEP\]\s*/g, '\n')
+      .replace(/\[BOM\]/g, '\n(مصرع)')}`.trim();
+    // .trim()
+    // .replace(/\[LAT\]|\[KRK\]/g, '[فُلان]')
+    // .replace(/\[BOM\]/g, '\n(مصرع)')
+    // .replace(/\[EOS\]/g, '\n')
+    // .replace(/\[SEP\]/g, '\n')}`.trim();
 
     dispatch({
       type: UPDATE_INPUT,

@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import useTextPieceContext from '@pages/Home/context/text-piece/context';
 import { GENERATE_FULLFILLED, UPDATE_INPUT } from '@pages/Home/context/text-piece/reducer';
+import generateTextRequest, { TEXT_STYLE } from '../api/generate-text-request';
 import InputForm from './InputForm/index';
-import ResultContainer from './ResultContainer';
-import generateTextRequest from './api';
+import ResultContainer from '../components/result-container';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -21,6 +21,7 @@ const TextPiece = () => {
     setIsLoading(true);
 
     const data = await generateTextRequest({
+      style: TEXT_STYLE,
       input,
       topk: 40,
       temperature: 75,
@@ -44,11 +45,10 @@ const TextPiece = () => {
     const parts = state.output[0].split('<s>');
     const input = `${state.input} ${parts[1]
       .trim()
-      .replace(/\[BOM\]/g, '\n(مصرع)')
-      .replace(/\[KRK\]/g, '[فُلان]')
-      .replace(/\[LAT\]/g, '[فُلان]')
+      .replace(/\[LAT\]|\[KRK\]/g, '[فُلان]')
       .replace(/\[EOS\]\s*/g, '\n')
-      .replace(/\[SEP\]\s*/g, '\n')}`.trim();
+      .replace(/\[SEP\]\s*/g, '\n')
+      .replace(/\[BOM\]/g, '\n(مصرع)')}`.trim();
 
     dispatch({
       type: UPDATE_INPUT,
@@ -63,13 +63,14 @@ const TextPiece = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <InputForm isLoading={isLoading} input={state.input} onSubmit={generateText} />
-      <ResultContainer
+      <InputForm
         isLoading={isLoading}
-        output={state.output}
-        error={state.error}
+        input={state.input}
+        hasOutput={state.output.length > 0}
+        onSubmit={generateText}
         onGenerateMore={generateMoreText}
       />
+      <ResultContainer isLoading={isLoading} output={state.output} error={state.error} />
     </div>
   );
 };
