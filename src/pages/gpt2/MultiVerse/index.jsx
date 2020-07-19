@@ -56,11 +56,6 @@ const MultiVerse = () => {
       .replace(/\[EOS\]\s*/g, '\n')
       .replace(/\[SEP\]\s*/g, '\n')
       .replace(/\[BOM\]/g, '\n(مصرع)')}`.trim();
-    // .trim()
-    // .replace(/\[LAT\]|\[KRK\]/g, '[فُلان]')
-    // .replace(/\[BOM\]/g, '\n(مصرع)')
-    // .replace(/\[EOS\]/g, '\n')
-    // .replace(/\[SEP\]/g, '\n')}`.trim();
 
     dispatch({
       type: UPDATE_INPUT,

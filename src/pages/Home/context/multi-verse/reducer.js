@@ -18,8 +18,6 @@ const multiVerseReducer = (state, action) => {
 
     case UPDATE_INPUT: {
       const { input } = action.payload;
-      // eslint-disable-next-line no-console
-      console.log({ action });
       return {
         ...state,
         input,
