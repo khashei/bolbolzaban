@@ -1,6 +1,6 @@
 /* eslint-disable import/no-unresolved */
 import React, { lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
@@ -53,15 +53,16 @@ function App() {
   return (
     <Suspense fallback={<div>گر صبر کنی ز غوره حلوا سازی</div>}>
       <ErrorBoundary>
-        {/* <Provider> */}
         <Router>
-          {/* <ThirdPartyServices /> */}
           <ThemeProvider theme={muiTheme}>
             <div id="app-wrapper" className={classes.root}>
               <CssBaseline />
               <ApplicationAppBar />
               <Switch>
                 <Route exact path="/">
+                  <Redirect to="/poem" />
+                </Route>
+                <Route path={['/poem/:input?', '/text/:input?', '/beyt/:input?', '/about']}>
                   <Home />
                 </Route>
                 <Route>
@@ -71,7 +72,6 @@ function App() {
             </div>
           </ThemeProvider>
         </Router>
-        {/* </Provider> */}
       </ErrorBoundary>
     </Suspense>
   );
