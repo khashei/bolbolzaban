@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Collapse from '@material-ui/core/Collapse';
 import LocalCafeIcon from '@material-ui/icons/LocalCafe';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
 import {
   Button,
   IconButton,
@@ -60,15 +59,16 @@ const SupportUs = () => {
       /> */}
         <CardContent>
           <Typography>
-            بلبل زبان تازه متولد شده است و برای سرپا ماندن و یادگیری بهتر زبان فارسی نیاز به حمایت
-            شما دارد.
+            برای بلبل زبان یک قهوه بخرید! بلبل زبان تازه متولد شده است و برای سرپا ماندن و یادگیری
+            بهتر زبان فارسی نیاز به حمایت شما دارد.
           </Typography>
         </CardContent>
         <Collapse in={isExpanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Typography paragraph>
-              اگر از استفاده از این ابزار لذت بردید برای بلبل زبان یک قهوه بخرید.
-            </Typography>
+            <ul>
+              <li>اگر از استفاده از این ابزار لذت بردید برای بلبل زبان یک قهوه بخرید.</li>
+              <li>بلبل‌زبان را به دوستان خود معرفی کنید.</li>
+            </ul>
           </CardContent>
         </Collapse>
         <CardActions>
@@ -91,21 +91,6 @@ const SupportUs = () => {
             <ExpandMoreIcon />
           </IconButton>
         </CardActions>
-        {/* <CardActions>
-          {!isExpanded && (
-            <Button className={classes.actionButton} onClick={expandCard}>
-              توضیحات بیشتر
-            </Button>
-          )}
-          <Button
-            className={classes.button}
-            variant="contained"
-            color="primary"
-            startIcon={<LocalCafeIcon />}
-          >
-            برای من یک قهوه بخر
-          </Button>
-        </CardActions> */}
       </Card>
     </Grid>
   );
