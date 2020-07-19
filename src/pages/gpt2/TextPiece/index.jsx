@@ -1,11 +1,12 @@
 /* eslint-disable import/no-unresolved */
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import useTextPieceContext from '@pages/Home/context/text-piece/context';
 import { GENERATE_FULLFILLED, UPDATE_INPUT } from '@pages/Home/context/text-piece/reducer';
+import ResultContainer from '../components/result-container';
 import generateTextRequest, { TEXT_STYLE } from '../api/generate-text-request';
 import InputForm from './InputForm/index';
-import ResultContainer from '../components/result-container';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -16,6 +17,11 @@ const useStyles = makeStyles(() => ({
 const TextPiece = () => {
   const { state, dispatch } = useTextPieceContext();
   const [isLoading, setIsLoading] = useState(false);
+
+  const param = useParams();
+  if (state.input === '' && param.input) {
+    state.input = param.input.replace(/\[EOS\]\s*/g, '\n');
+  }
 
   const generateText = async (input, byUser) => {
     setIsLoading(true);

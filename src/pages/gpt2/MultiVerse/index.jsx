@@ -1,11 +1,12 @@
 /* eslint-disable import/no-unresolved */
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import useMultiVerseContext from '@pages/Home/context/multi-verse/context';
 import { GENERATE_FULLFILLED, UPDATE_INPUT } from '@pages/Home/context/multi-verse/reducer';
+import ResultContainer from '../components/result-container';
 import generateTextRequest, { POETRY_STYLE } from '../api/generate-text-request';
 import InputForm from './InputForm/index';
-import ResultContainer from '../components/result-container';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -16,6 +17,12 @@ const useStyles = makeStyles(() => ({
 const MultiVerse = () => {
   const { state, dispatch } = useMultiVerseContext();
   const [isLoading, setIsLoading] = useState(false);
+
+  const param = useParams();
+
+  if (state.input === '' && param.input) {
+    state.input = param.input.replace(/\[EOS\]\s*/g, '\n');
+  }
 
   const generateText = async (input, byUser) => {
     setIsLoading(true);

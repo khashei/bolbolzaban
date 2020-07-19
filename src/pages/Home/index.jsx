@@ -1,5 +1,6 @@
 /* eslint-disable import/no-unresolved */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation, useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Tabs, Tab } from '@material-ui/core';
 import UniVerse from '@pages/UniVerse';
@@ -23,12 +24,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Home() {
-  const [tabIndex, setTabIndex] = useState(0);
+const Home = () => {
+  const history = useHistory();
+  const location = useLocation();
+
+  const urlPathToTabName = (path) => path.substr(1).split('/', 1)[0];
+  const tabNameToUrlPath = (tabName) => `/${tabName}`;
+  const [selectedTab, setSelectedTab] = useState(urlPathToTabName(location.pathname.toLowerCase()));
 
   const handleChange = (event, value) => {
-    setTabIndex(value);
+    history.push(tabNameToUrlPath(value));
   };
+
+  useEffect(() => {
+    return () => {
+      setSelectedTab(urlPathToTabName(history.location.pathname.toLowerCase()));
+    };
+  }, [history.location]);
+
   const classes = useStyles();
   return (
     <TextPieceProvider>
@@ -36,39 +49,25 @@ function Home() {
         <UniVerseProvider>
           <div className={classes.root}>
             <AppBar position="static">
-              <Tabs value={tabIndex} onChange={handleChange} centered>
-                <Tab label="شعر" />
-                <Tab label="تک بیت" />
-                <Tab label="متن" />
-                <Tab label="درباره" />
+              <Tabs value={selectedTab} onChange={handleChange} centered>
+                <Tab label="شعر" value="poem" />
+                <Tab label="متن" value="text" />
+                <Tab label="تک بیت" value="beyt" />
+                <Tab label="درباره" value="about" />
               </Tabs>
             </AppBar>
-            {tabIndex === 0 && (
-              <TabContainer>
-                <MultiVerse />
-              </TabContainer>
-            )}
-            {tabIndex === 1 && (
-              <TabContainer>
-                <UniVerse />
-              </TabContainer>
-            )}
-            {tabIndex === 2 && (
-              <TabContainer>
-                <TextPiece />
-              </TabContainer>
-            )}
-            {tabIndex === 3 && (
-              <TabContainer>
-                <About />
-              </TabContainer>
-            )}
+            <TabContainer>
+              {selectedTab === 'poem' && <MultiVerse />}
+              {selectedTab === 'text' && <TextPiece />}
+              {selectedTab === 'beyt' && <UniVerse />}
+              {selectedTab === 'about' && <About />}
+            </TabContainer>
           </div>
         </UniVerseProvider>
       </MultiVerseProvider>
     </TextPieceProvider>
   );
-}
+};
 
 Home.defaultProps = {};
 Home.propTypes = {};
