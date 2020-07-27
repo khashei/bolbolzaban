@@ -7,12 +7,7 @@ import HintBox from '@components/hint-box';
 import InlineHelp from '@components/inline-help';
 import predefinedPatterns from './predefined-patterns';
 import initialState from './initial-state';
-import reducer, {
-  UPDATE_INPUT,
-  GENERATE_POEM,
-  GENERATE_POEM_FROM_SAMPLES,
-  GENERATE_MORE,
-} from './reducer';
+import reducer, { UPDATE_INPUT, GENERATE, GENERATE_FROM_SAMPLES, GENERATE_MORE } from './reducer';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -72,7 +67,7 @@ const InputForm = ({ isLoading, input, hasOutput, onSubmit, onGenerateMore }) =>
 
   const handleSubmit = () => {
     dispatch({
-      type: GENERATE_POEM,
+      type: GENERATE,
       payload: {
         hasOutput,
       },
@@ -101,7 +96,7 @@ const InputForm = ({ isLoading, input, hasOutput, onSubmit, onGenerateMore }) =>
     });
 
     dispatch({
-      type: GENERATE_POEM_FROM_SAMPLES,
+      type: GENERATE_FROM_SAMPLES,
       payload: {},
     });
 

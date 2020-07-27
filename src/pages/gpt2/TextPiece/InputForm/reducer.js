@@ -14,15 +14,7 @@ const reducer = (state, action) => {
     }
 
     case GENERATE: {
-      const { hasOutput } = action.payload;
       const input = state.input.trim();
-      let hint = '';
-
-      if (!input.startsWith('(مصرع)') && !hasOutput) {
-        hint =
-          'اگر ورودی شما تمام یا بخشی از یک مصرع موزون است، حتما عبارت (مصرع) را دقیقا به همین صورت در ابتدای خط وارد کنید.';
-      }
-
       if (!input) {
         return {
           ...state,
@@ -35,7 +27,7 @@ const reducer = (state, action) => {
         ...state,
         inlineHelpVisible: false,
         input,
-        hint,
+        hint: '',
       };
     }
 
@@ -43,7 +35,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         inlineHelpVisible: false,
-        hint: 'دکمه «بسُرای» را دوباره بزنید تا یک ادامه کاملا جدید سروده شود.',
+        hint: 'دکمه بنویس را دوباره بزنید، تا بلبل زبان یک متن جدید بنویسد.',
         isUserDefined: false,
         hintUserToEditAndContinue: true,
       };
@@ -67,7 +59,7 @@ const reducer = (state, action) => {
     }
 
     default:
-      throw new Error('undefined MultiVerse inputForm Reducer action');
+      throw new Error('undefined TextPiece inputForm Reducer action');
   }
 };
 
