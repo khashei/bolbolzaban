@@ -1,12 +1,13 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable react/jsx-no-bind */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useReducer, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { TextField, Typography, Grid, Button, makeStyles } from '@material-ui/core';
 import HintBox from '@components/hint-box';
-import InputPreprocessor from '@pages/gpt2/utils/input-preprocessor';
 import InlineHelp from '@components/inline-help';
 import predefinedPatterns from './predefined-patterns';
+import initialState from './initial-state';
+import reducer, { UPDATE_INPUT, GENERATE, GENERATE_FROM_SAMPLES, GENERATE_MORE } from './reducer';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -49,57 +50,65 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const InputForm = ({ isLoading, input, hasOutput, onSubmit, onGenerateMore }) => {
-  const [formState, setFormState] = useState({
-    input,
-    hint: '',
-    inlineHelpVisible: false,
-    isUserDefined: false,
-  });
+  initialState.input = input;
+  const [formState, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    setFormState({ ...formState, input });
+    dispatch({
+      type: UPDATE_INPUT,
+      payload: {
+        input,
+      },
+    });
   }, [input]);
 
   // eslint-disable-next-line no-unused-vars
   const [inputTextRef, setInputTextRef] = useState();
 
   const handleSubmit = () => {
-    const { lines, hint } = InputPreprocessor.process(formState.input);
+    dispatch({
+      type: GENERATE,
+      payload: {
+        hasOutput,
+      },
+    });
 
-    if (!lines) {
-      setFormState({
-        ...formState,
-        inlineHelpVisible: true,
-      });
-    } else {
-      setFormState({
-        ...formState,
-        inlineHelpVisible: false,
-        input: lines,
-        hint,
-      });
+    if (formState.input) onSubmit(formState.input, true);
+  };
 
-      onSubmit(lines, true);
-    }
+  const handleGenerateMore = () => {
+    dispatch({
+      type: GENERATE_MORE,
+      payload: {},
+    });
+
+    onGenerateMore();
   };
 
   const onRandomSampleClick = () => {
-    const randomInput = predefinedPatterns[Math.floor(Math.random() * predefinedPatterns.length)];
-    setFormState({
-      ...formState,
-      input: randomInput.lines,
-      hint: 'دکمه «بسُرای» را دوباره بزنید تا یک ادامه کاملا جدید سروده شود.',
-      inlineHelpVisible: false,
-      isUserDefined: false,
+    const { lines } = predefinedPatterns[Math.floor(Math.random() * predefinedPatterns.length)];
+
+    dispatch({
+      type: UPDATE_INPUT,
+      payload: {
+        input: lines,
+      },
     });
 
-    onSubmit(randomInput.lines, false);
+    dispatch({
+      type: GENERATE_FROM_SAMPLES,
+      payload: {},
+    });
+
+    onSubmit(lines, false);
   };
 
-  const handleChange = (name) => (event) => {
-    setFormState({
-      ...formState,
-      [name]: event.target.value,
+  const handleInputChange = (event) => {
+    dispatch({
+      type: UPDATE_INPUT,
+      payload: {
+        input: event.target.value,
+      },
     });
   };
 
@@ -143,7 +152,7 @@ const InputForm = ({ isLoading, input, hasOutput, onSubmit, onGenerateMore }) =>
             required
             className={classes.textInput}
             value={formState.input}
-            onChange={handleChange('input')}
+            onChange={handleInputChange}
             placeholder="(مصرع) هرگز نمیرد آنکه دلش زنده شد بعشق"
             multiline
             inputProps={{
@@ -177,7 +186,7 @@ const InputForm = ({ isLoading, input, hasOutput, onSubmit, onGenerateMore }) =>
               fullWidth
               className={classes.button}
               disabled={isLoading}
-              onClick={onGenerateMore}
+              onClick={handleGenerateMore}
             >
               خوبه، ادامه بده
             </Button>
