@@ -1,3 +1,5 @@
-const BASE_PATH = 'http://www.bolbolzaban.com/api';
+// const API_BASE_PATH = 'http://www.bolbolzaban.com/api';
+export const API_BASE_PATH = 'http://alpha.bolbolzaban.com/api';
+export const IMAGES_BASE_PATH = 'http://alpha.bolbolzaban.com';
 
-export default BASE_PATH;
+export default API_BASE_PATH;

@@ -1,6 +1,6 @@
 /* eslint-disable import/no-unresolved */
 import { postRequest } from '@utils/request';
-import BASE_PATH from '@app-settings';
+import API_BASE_PATH from '@app-settings';
 
 export const POETRY_STYLE = 'poetry';
 export const TEXT_STYLE = 'text';
@@ -14,7 +14,7 @@ const generateTextRequest = async ({ style, input, topk, temperature }) => {
   });
 
   return postRequest({
-    url: `${BASE_PATH}/deeptext/`,
+    url: `${API_BASE_PATH}/deeptext/`,
     body,
   });
 };
