@@ -10,7 +10,18 @@ import {
   CardMedia,
   CardHeader,
   Typography,
+  CardActions,
 } from '@material-ui/core';
+import {
+  TelegramShareButton,
+  TwitterShareButton,
+  FacebookShareButton,
+  WhatsappShareButton,
+  FacebookIcon,
+  TelegramIcon,
+  TwitterIcon,
+  WhatsappIcon,
+} from 'react-share';
 import { IMAGES_BASE_PATH } from '@app-settings';
 import quoteInitialState from './initial-state';
 import reduder, { GENERATE_FULLFILLED } from './reducer';
@@ -22,9 +33,15 @@ const useStyles = makeStyles((theme) => ({
     width: '90%',
     minWidth: 275,
     maxWidth: 500,
-    // [theme.breakpoints.down('sm')]: {
-    //   width: '90%',
-    // },
+  },
+  shareIcon: {
+    width: 32,
+    color: 'rgba(0, 0, 0, 0.54)',
+    bgStyle: 'fill:#044B9466 opacity: 0.3',
+  },
+  shareButton: {
+    color: 'rgba(0, 0, 0, 0.54)',
+    margin: 10,
   },
   media: {
     height: 0,
@@ -61,17 +78,14 @@ const Quote = () => {
   };
 
   const classes = useStyles();
+  const imageUrl = state.outputImageAddress
+    ? `${IMAGES_BASE_PATH}${state.outputImageAddress.trim()}`
+    : '';
   return (
     <Grid container justify="center">
       <Card className={classes.card}>
-        {!state.outputImageAddress && <CardHeader title="سلام" />}
-        {state.outputImageAddress && (
-          <CardMedia
-            className={classes.media}
-            image={`${IMAGES_BASE_PATH}${state.outputImageAddress}`}
-            title={state.text}
-          />
-        )}
+        {!imageUrl && <CardHeader title="سلام" />}
+        {imageUrl && <CardMedia className={classes.media} image={imageUrl} title={state.text} />}
         <CardContent>
           {!state.outputImageAddress && (
             <Typography>
@@ -89,6 +103,42 @@ const Quote = () => {
             بسرای
           </Button>
         </CardContent>
+        {state.outputImageAddress && (
+          <CardActions>
+            <TelegramShareButton
+              className={classes.shareButton}
+              url={imageUrl}
+              title={`${state.output.join('\n')}\nbolbolzaban.com\n@bolbol_zaban`}
+            >
+              <TelegramIcon className={classes.shareIcon} />
+            </TelegramShareButton>
+            <TwitterShareButton
+              className={classes.shareButton}
+              url={imageUrl}
+              title={`${state.output.join('\n')}\n\nbolbolzaban.com\n\n`}
+              via="bolbol_zaban"
+              hashtags={['بلبل_زبان', 'شعر']}
+            >
+              <TwitterIcon className={classes.shareIcon} />
+            </TwitterShareButton>
+            <FacebookShareButton
+              className={classes.shareButton}
+              url={imageUrl}
+              quote={`${state.output.join(' - ')}`}
+              hashtag="#بلبل_زبان"
+            >
+              <FacebookIcon className={classes.shareIcon} />
+            </FacebookShareButton>
+            <WhatsappShareButton
+              url={imageUrl}
+              title={`${state.output.join('\n')}\nbolbolzaban.com`}
+              separator=" :: "
+              className={classes.shareButton}
+            >
+              <WhatsappIcon className={classes.shareIcon} />
+            </WhatsappShareButton>
+          </CardActions>
+        )}
       </Card>
     </Grid>
   );
