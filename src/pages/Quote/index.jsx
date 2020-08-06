@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/no-unresolved */
 import React, { useReducer, useState } from 'react';
