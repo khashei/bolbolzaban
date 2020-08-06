@@ -60,9 +60,11 @@ function App() {
               <ApplicationAppBar />
               <Switch>
                 <Route exact path="/">
-                  <Redirect to="/poem" />
+                  <Redirect to="/quotes" />
                 </Route>
-                <Route path={['/poem/:input?', '/text/:input?', '/beyt/:input?', '/about']}>
+                <Route
+                  path={['/quotes', '/poem/:input?', '/text/:input?', '/beyt/:input?', '/about']}
+                >
                   <Home />
                 </Route>
                 <Route>

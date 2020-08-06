@@ -4,6 +4,7 @@ import { useLocation, useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Tabs, Tab } from '@material-ui/core';
 import UniVerse from '@pages/UniVerse';
+import Quote from '@pages/Quote';
 import MultiVerse from '@pages/gpt2/MultiVerse';
 import TextPiece from '@pages/gpt2/TextPiece';
 import About from '@pages/About';
@@ -50,13 +51,15 @@ const Home = () => {
           <div className={classes.root}>
             <AppBar position="static">
               <Tabs value={selectedTab} onChange={handleChange} centered>
+                <Tab label="چامه‌ها" value="quotes" />
                 <Tab label="شعر" value="poem" />
                 <Tab label="متن" value="text" />
-                <Tab label="تک بیت" value="beyt" />
-                <Tab label="درباره" value="about" />
+                <Tab label="بیت" value="beyt" />
+                <Tab label="..." value="about" />
               </Tabs>
             </AppBar>
             <TabContainer>
+              {selectedTab === 'quotes' && <Quote />}
               {selectedTab === 'poem' && <MultiVerse />}
               {selectedTab === 'text' && <TextPiece />}
               {selectedTab === 'beyt' && <UniVerse />}
