@@ -22,6 +22,7 @@ import {
   TwitterIcon,
   WhatsappIcon,
 } from 'react-share';
+import * as gtag from '@utils/gtag';
 import { IMAGES_BASE_PATH } from '@app-settings';
 import defaultTheme from '@app/theme';
 import quoteInitialState from './initial-state';
@@ -62,6 +63,14 @@ const Quote = () => {
   const [state, dispatch] = useReducer(reduder, quoteInitialState);
   const [isLoading, setIsLoading] = useState(false);
 
+  const handleBeforeOnClick = (shareTo) => () => {
+    gtag.event({
+      action: 'share_button',
+      category: 'Sharing',
+      label: `Sharing to ${shareTo}!`,
+    });
+  };
+
   const generateQuote = async () => {
     setIsLoading(true);
 
@@ -94,8 +103,7 @@ const Quote = () => {
         <CardContent>
           {!state.outputImageAddress && (
             <Typography>
-              نام من بلبل‌زبان است. من با کمک هوش مصنوعی ابیاتی الهام بخش و موزون می‌سُرایم. دیوان
-              شعر من پایانی ندارد.
+              نام من بلبل‌زبان است. من با کمک هوش مصنوعی ابیاتی الهام بخش و موزون می‌سُرایم. دیوان شعر من پایانی ندارد.
             </Typography>
           )}
           <Button
@@ -111,6 +119,7 @@ const Quote = () => {
         {state.outputImageAddress && (
           <CardActions className={classes.actions}>
             <WhatsappShareButton
+              beforeOnClick={handleBeforeOnClick('Whatsapp')}
               url={imageUrl}
               title={`${state.output.join('\n')}\nbolbolzaban.com`}
               separator=" :: "
@@ -125,6 +134,7 @@ const Quote = () => {
               />
             </WhatsappShareButton>
             <TwitterShareButton
+              beforeOnClick={handleBeforeOnClick('Twitter')}
               className={classes.shareButton}
               url={imageUrl}
               title={`${state.output.join('\n')}\n\nbolbolzaban.com\n\n`}
@@ -140,6 +150,7 @@ const Quote = () => {
               />
             </TwitterShareButton>
             <FacebookShareButton
+              beforeOnClick={handleBeforeOnClick('Facebook')}
               className={classes.shareButton}
               url={imageUrl}
               quote={`${state.output.join(' - ')}`}
@@ -154,6 +165,7 @@ const Quote = () => {
               />
             </FacebookShareButton>
             <TelegramShareButton
+              beforeOnClick={handleBeforeOnClick('Telegram')}
               className={classes.shareButton}
               url={imageUrl}
               title={`\n${state.output.join('\n').trim()}\nbolbolzaban.com - @bolbol_zaban`}
