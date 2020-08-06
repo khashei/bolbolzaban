@@ -23,6 +23,7 @@ import {
   WhatsappIcon,
 } from 'react-share';
 import { IMAGES_BASE_PATH } from '@app-settings';
+import defaultTheme from '@app/theme';
 import quoteInitialState from './initial-state';
 import reduder, { GENERATE_FULLFILLED } from './reducer';
 import generateRandomImageRequest from './api/generate-random-image-request';
@@ -35,25 +36,29 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 500,
   },
   shareIcon: {
-    width: 32,
-    color: 'rgba(0, 0, 0, 0.54)',
-    bgStyle: 'fill:#044B9466 opacity: 0.3',
+    width: 48,
+    '&:hover': {
+      opacity: 0.75,
+    },
   },
-  shareButton: {
-    color: 'rgba(0, 0, 0, 0.54)',
-    margin: 10,
-  },
+  shareButton: {},
   media: {
     height: 0,
-    paddingTop: '100%', // 16:9
+    paddingTop: '100%',
   },
   button: {
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(1),
+    minWidth: '100%',
+  },
+  actions: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    marginLeft: '20%',
+    marginRight: '20%',
   },
 }));
 
 const Quote = () => {
-  // quoteInitialState.outputImageAddress = '/share/2020216/toewof3k.24x.jpg';
   const [state, dispatch] = useReducer(reduder, quoteInitialState);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -89,7 +94,7 @@ const Quote = () => {
         <CardContent>
           {!state.outputImageAddress && (
             <Typography>
-              نام من بلبل‌زبان است. من با کمک هوش مصنوعی ابیاتی الهام بخش و موزون می‌سرایم. دیوان
+              نام من بلبل‌زبان است. من با کمک هوش مصنوعی ابیاتی الهام بخش و موزون می‌سُرایم. دیوان
               شعر من پایانی ندارد.
             </Typography>
           )}
@@ -104,14 +109,21 @@ const Quote = () => {
           </Button>
         </CardContent>
         {state.outputImageAddress && (
-          <CardActions>
-            <TelegramShareButton
-              className={classes.shareButton}
+          <CardActions className={classes.actions}>
+            <WhatsappShareButton
               url={imageUrl}
-              title={`${state.output.join('\n')}\nbolbolzaban.com\n@bolbol_zaban`}
+              title={`${state.output.join('\n')}\nbolbolzaban.com`}
+              separator=" :: "
+              className={classes.shareButton}
             >
-              <TelegramIcon className={classes.shareIcon} />
-            </TelegramShareButton>
+              <WhatsappIcon
+                className={classes.shareIcon}
+                iconFillColor={defaultTheme.palette.primary.main}
+                bgStyle={{
+                  fill: 'white',
+                }}
+              />
+            </WhatsappShareButton>
             <TwitterShareButton
               className={classes.shareButton}
               url={imageUrl}
@@ -119,7 +131,13 @@ const Quote = () => {
               via="bolbol_zaban"
               hashtags={['بلبل_زبان', 'شعر']}
             >
-              <TwitterIcon className={classes.shareIcon} />
+              <TwitterIcon
+                className={classes.shareIcon}
+                iconFillColor={defaultTheme.palette.primary.main}
+                bgStyle={{
+                  fill: 'white',
+                }}
+              />
             </TwitterShareButton>
             <FacebookShareButton
               className={classes.shareButton}
@@ -127,16 +145,27 @@ const Quote = () => {
               quote={`${state.output.join(' - ')}`}
               hashtag="#بلبل_زبان"
             >
-              <FacebookIcon className={classes.shareIcon} />
+              <FacebookIcon
+                className={classes.shareIcon}
+                iconFillColor={defaultTheme.palette.primary.main}
+                bgStyle={{
+                  fill: 'white',
+                }}
+              />
             </FacebookShareButton>
-            <WhatsappShareButton
-              url={imageUrl}
-              title={`${state.output.join('\n')}\nbolbolzaban.com`}
-              separator=" :: "
+            <TelegramShareButton
               className={classes.shareButton}
+              url={imageUrl}
+              title={`\n${state.output.join('\n').trim()}\nbolbolzaban.com - @bolbol_zaban`}
             >
-              <WhatsappIcon className={classes.shareIcon} />
-            </WhatsappShareButton>
+              <TelegramIcon
+                className={classes.shareIcon}
+                iconFillColor={defaultTheme.palette.primary.main}
+                bgStyle={{
+                  fill: 'white',
+                }}
+              />
+            </TelegramShareButton>
           </CardActions>
         )}
       </Card>
