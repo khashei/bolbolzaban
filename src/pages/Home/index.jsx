@@ -51,11 +51,11 @@ const Home = () => {
           <div className={classes.root}>
             <AppBar position="static">
               <Tabs value={selectedTab} onChange={handleChange} centered>
-                <Tab label="چامه‌ها" value="quotes" />
+                <Tab label="سروده‌ها" value="quotes" />
                 <Tab label="شعر" value="poem" />
                 <Tab label="متن" value="text" />
                 <Tab label="بیت" value="beyt" />
-                <Tab label="..." value="about" />
+                <Tab label="درباره" value="about" />
               </Tabs>
             </AppBar>
             <TabContainer>
