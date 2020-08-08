@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
@@ -35,7 +36,7 @@ const ApplicationMenuContainer = () => {
 
   const toggleDrawer = (open) => () => {
     window.location = 'http://nosokhan.com/';
-    setDrawerState(open);
+    // setDrawerState(open);
     // setState({
     //   [side]: open,
     // });

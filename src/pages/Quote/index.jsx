@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable import/no-unresolved */
 import React, { useReducer, useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
@@ -8,7 +7,7 @@ import {
   Button,
   CardContent,
   CardMedia,
-  CardHeader,
+  Link,
   Typography,
   CardActions,
 } from '@material-ui/core';
@@ -25,6 +24,8 @@ import {
 import * as gtag from '@utils/gtag';
 import { IMAGES_BASE_PATH } from '@app-settings';
 import defaultTheme from '@app/theme';
+import InstagramIcon from '@components/icons/instagram-icon';
+import SimpleTelegramIcon from '@components/icons/telegram-icon';
 import LogoImage from '@resources/logo.svg';
 import quoteInitialState from './initial-state';
 import reduder, { GENERATE_FULLFILLED } from './reducer';
@@ -55,11 +56,13 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
     minWidth: '100%',
   },
+  inlineButton: {
+    marginleft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+  },
   actions: {
     display: 'flex',
     justifyContent: 'space-between',
-    marginLeft: '20%',
-    marginRight: '20%',
   },
 }));
 
@@ -112,89 +115,113 @@ const Quote = () => {
     ? `${IMAGES_BASE_PATH}${state.outputImageAddress.trim()}`
     : '';
   return (
-    <Grid container justify="center">
+    <Grid container justify="center" direction="column" alignItems="center">
       <Card className={classes.card}>
         {imageUrl && <CardMedia className={classes.media} image={imageUrl} title={state.text} />}
         <CardContent>
           {!state.outputImageAddress && <CardMedia className={classes.media} image={LogoImage} />}
-          <Grid container justify="center">
-            {!state.outputImageAddress && (
-              <Typography>
-                نام من بلبل‌زبان است. من با کمک هوش مصنوعی ابیاتی الهام بخش و موزون می‌سُرایم، تا
-                ذهن خواننده با ذوق را به بازی بگیرم.
-              </Typography>
-            )}
-            <Button
-              className={classes.button}
-              variant="contained"
-              size="large"
-              color="primary"
-              onClick={generateQuote}
-              disabled={isLoading}
-            >
-              بسُرای
-            </Button>
-          </Grid>
+          {!state.outputImageAddress && (
+            <Typography>
+              نام من بلبل‌زبان است. من با کمک هوش مصنوعی ابیاتی الهام بخش و موزون می‌سُرایم، تا ذهن
+              خواننده‌ی با ذوق را به بازی بگیرم.
+            </Typography>
+          )}
+          <Button
+            className={classes.button}
+            variant="contained"
+            size="large"
+            color="primary"
+            onClick={generateQuote}
+            disabled={isLoading}
+          >
+            بسُرای
+          </Button>
         </CardContent>
         {state.outputImageAddress && (
           <CardActions className={classes.actions}>
-            <WhatsappShareButton
-              beforeOnClick={postAnalyticEvent(SENT_TO, 'Whatsapp')}
-              url={imageUrl}
-              title={`${state.output.join('\n')}\nbolbolzaban.com`}
-              separator=" :: "
-            >
-              <WhatsappIcon
-                className={classes.shareIcon}
-                iconFillColor={defaultTheme.palette.primary.main}
-                bgStyle={{
-                  fill: 'white',
-                }}
-              />
-            </WhatsappShareButton>
-            <TwitterShareButton
-              beforeOnClick={postAnalyticEvent(SENT_TO, 'Twitter')}
-              url={imageUrl}
-              title={`${state.output.join('\n')}\n\nbolbolzaban.com\n\n`}
-              via="bolbol_zaban"
-              hashtags={['بلبل_زبان', 'شعر']}
-            >
-              <TwitterIcon
-                iconFillColor={defaultTheme.palette.primary.main}
-                bgStyle={{
-                  fill: 'white',
-                }}
-              />
-            </TwitterShareButton>
-            <FacebookShareButton
-              beforeOnClick={postAnalyticEvent(SENT_TO, 'Facebook')}
-              url={imageUrl}
-              quote={`${state.output.join(' - ')}`}
-              hashtag="#بلبل_زبان"
-            >
-              <FacebookIcon
-                iconFillColor={defaultTheme.palette.primary.main}
-                bgStyle={{
-                  fill: 'white',
-                }}
-              />
-            </FacebookShareButton>
-            <TelegramShareButton
-              beforeOnClick={postAnalyticEvent(SENT_TO, 'Telegram')}
-              url={imageUrl}
-              title={`\n${state.output.join('\n').trim()}\nbolbolzaban.com - @bolbol_zaban`}
-            >
-              <TelegramIcon
-                className={classes.shareIcon}
-                iconFillColor={defaultTheme.palette.primary.main}
-                bgStyle={{
-                  fill: 'white',
-                }}
-              />
-            </TelegramShareButton>
+            <Grid container justify="center" alignItems="center" direction="column">
+              <Grid Item>
+                <Typography variant="h5">ارسال به:</Typography>
+              </Grid>
+              <Grid Item>
+                <WhatsappShareButton
+                  beforeOnClick={postAnalyticEvent(SENT_TO, 'Whatsapp')}
+                  url={imageUrl}
+                  title={`${state.output.join('\n')}\nbolbolzaban.com`}
+                  separator=" :: "
+                >
+                  <WhatsappIcon
+                    className={classes.shareIcon}
+                    iconFillColor={defaultTheme.palette.primary.main}
+                    bgStyle={{
+                      fill: 'white',
+                    }}
+                  />
+                </WhatsappShareButton>
+                <TwitterShareButton
+                  beforeOnClick={postAnalyticEvent(SENT_TO, 'Twitter')}
+                  url={imageUrl}
+                  title={`${state.output.join('\n')}\n\nbolbolzaban.com\n\n`}
+                  via="bolbol_zaban"
+                  hashtags={['بلبل_زبان', 'شعر']}
+                >
+                  <TwitterIcon
+                    iconFillColor={defaultTheme.palette.primary.main}
+                    bgStyle={{
+                      fill: 'white',
+                    }}
+                  />
+                </TwitterShareButton>
+                <FacebookShareButton
+                  beforeOnClick={postAnalyticEvent(SENT_TO, 'Facebook')}
+                  url={imageUrl}
+                  quote={`${state.output.join(' - ')}`}
+                  hashtag="#بلبل_زبان"
+                >
+                  <FacebookIcon
+                    iconFillColor={defaultTheme.palette.primary.main}
+                    bgStyle={{
+                      fill: 'white',
+                    }}
+                  />
+                </FacebookShareButton>
+                <TelegramShareButton
+                  beforeOnClick={postAnalyticEvent(SENT_TO, 'Telegram')}
+                  url={imageUrl}
+                  title={`${state.output.join('\n').trim()}\nbolbolzaban.com - @bolbol_zaban`}
+                >
+                  <TelegramIcon
+                    className={classes.shareIcon}
+                    iconFillColor={defaultTheme.palette.primary.main}
+                    bgStyle={{
+                      fill: 'white',
+                    }}
+                  />
+                </TelegramShareButton>
+              </Grid>
+            </Grid>
           </CardActions>
         )}
       </Card>
+      <Grid item style={{ marginTop: 20, marginBottom: 100 }}>
+        <Typography variant="body1">
+          بلبل‌زبان را در
+          <Link href="https://www.instagram.com/bolbolzaban" color="inherit">
+            <Button>
+              <InstagramIcon />
+              <Typography style={{ marginRight: 5 }}>اینستاگرام</Typography>
+            </Button>
+          </Link>
+          و
+          <Link href="https://t.me/bolbol_zaban">
+            <Button>
+              <SimpleTelegramIcon />
+              <Typography style={{ marginRight: 5 }}>تلگرام</Typography>
+            </Button>
+          </Link>
+          دنبال کنید.
+        </Typography>
+      </Grid>
     </Grid>
   );
 };

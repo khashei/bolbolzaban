@@ -1,5 +1,6 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
-// import { AppBar, Toolbar, Grid } from '@material-ui/core';
+// import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Fade from '@material-ui/core/Fade';
 import AppBar from '@material-ui/core/AppBar';
