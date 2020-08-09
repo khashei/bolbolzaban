@@ -25,7 +25,7 @@ import * as gtag from '@utils/gtag';
 import { IMAGES_BASE_PATH } from '@app-settings';
 import defaultTheme from '@app/theme';
 import InstagramIcon from '@components/icons/instagram-icon';
-import SimpleTelegramIcon from '@components/icons/telegram-icon';
+// import SimpleTelegramIcon from '@components/icons/telegram-icon';
 import LogoImage from '@resources/logo.svg';
 import quoteInitialState from './initial-state';
 import reduder, { GENERATE_FULLFILLED } from './reducer';
@@ -188,7 +188,9 @@ const Quote = () => {
                 <TelegramShareButton
                   beforeOnClick={postAnalyticEvent(SENT_TO, 'Telegram')}
                   url={imageUrl}
-                  title={`${state.output.join('\n').trim()}\nbolbolzaban.com - @bolbol_zaban`}
+                  title={`${state.output
+                    .join('\n')
+                    .trim()}\n#بلبل_زبان\nbolbolzaban.com - @bolbol_zaban`}
                 >
                   <TelegramIcon
                     className={classes.shareIcon}
@@ -212,13 +214,13 @@ const Quote = () => {
               <Typography style={{ marginRight: 5 }}>اینستاگرام</Typography>
             </Button>
           </Link>
-          و
+          {/* و
           <Link href="https://t.me/bolbol_zaban">
             <Button>
               <SimpleTelegramIcon />
               <Typography style={{ marginRight: 5 }}>تلگرام</Typography>
             </Button>
-          </Link>
+          </Link> */}
           دنبال کنید.
         </Typography>
       </Grid>
