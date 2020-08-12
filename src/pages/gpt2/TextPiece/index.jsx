@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import useTextPieceContext from '@pages/Home/context/text-piece/context';
 import { GENERATE_FULLFILLED, UPDATE_INPUT } from '@pages/Home/context/text-piece/reducer';
+import Footer from '@components/footer';
 import ResultContainer from '../components/result-container';
 import generateTextRequest, { TEXT_STYLE } from '../api/generate-text-request';
 import InputForm from './InputForm/index';
@@ -77,6 +78,7 @@ const TextPiece = () => {
         onGenerateMore={generateMoreText}
       />
       <ResultContainer isLoading={isLoading} output={state.output} error={state.error} />
+      <Footer />
     </div>
   );
 };

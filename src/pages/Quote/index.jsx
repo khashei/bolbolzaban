@@ -9,7 +9,6 @@ import {
   CardMedia,
   Typography,
   CardActions,
-  ButtonGroup,
 } from '@material-ui/core';
 import {
   TelegramShareButton,
@@ -27,6 +26,7 @@ import defaultTheme from '@app/theme';
 // import InstagramIcon from '@components/icons/instagram-icon';
 // import SimpleTelegramIcon from '@components/icons/telegram-icon';
 import LogoImage from '@resources/logo.svg';
+import Footer from '@components/footer';
 import quoteInitialState from './initial-state';
 import reduder, { GENERATE_FULLFILLED } from './reducer';
 import generateRandomImageRequest from './api/generate-random-image-request';
@@ -205,87 +205,7 @@ const Quote = () => {
           </CardActions>
         )}
       </Card>
-      <Grid container alignItems="center" direction="column">
-        <Typography variant="body1" style={{ marginTop: 20 }}>
-          سروده‌های بلبل‌زبان را در شبکه‌های اجتماعی دنبال کنید
-        </Typography>
-        <Grid item>
-          <ButtonGroup
-            style={{ direction: 'ltr', marginTop: 5, marginBottom: 100 }}
-            variant="text"
-            color="primary"
-          >
-            <Button target="_blank" href="https://www.instagram.com/bolbolzaban">
-              اینستاگرام
-            </Button>
-            <Button target="_blank" href="https://www.facebook.com/bolbolzaban">
-              فیس‌بوک
-            </Button>
-            <Button target="_blank" href="https://twitter.com/bolbol_zaban">
-              توییتر
-            </Button>
-            <Button target="_blank" href="https://t.me/bolbol_zaban">
-              تلگرام
-            </Button>
-          </ButtonGroup>
-        </Grid>
-        {/* <Typography variant="body1">
-          <Link href="https://www.instagram.com/bolbolzaban" color="inherit">
-            <Button>
-              <InstagramIcon />
-              <Typography style={{ marginRight: 5 }}>اینستاگرام</Typography>
-            </Button>
-          </Link>
-          <Link href="https://t.me/bolbol_zaban">
-            <Button>
-              <SimpleTelegramIcon />
-              <Typography style={{ marginRight: 5 }}>تلگرام</Typography>
-            </Button>
-          </Link>
-          <Link href="https://twitter.com/bolbol_zaban">
-            <Button>
-              <TwitterIcon
-                className={classes.shareIcon}
-                iconFillColor={defaultTheme.palette.primary.main}
-                bgStyle={{
-                  fill: 'white',
-                }}
-              />
-              <Typography style={{ marginRight: 5 }}>توییتر</Typography>
-            </Button>
-          </Link>
-          <Link href="https://www.facebook.com/bolbolzaban">
-            <Button>
-              <FacebookIcon
-                className={classes.shareIcon}
-                iconFillColor={defaultTheme.palette.primary.main}
-                bgStyle={{
-                  fill: 'white',
-                }}
-              />
-              <Typography style={{ marginRight: 5 }}>فیس‌بوک</Typography>
-            </Button>
-          </Link>
-        </Typography> */}
-
-        {/* <Typography variant="body1">
-          بلبل‌زبان را در
-          <Link href="https://www.instagram.com/bolbolzaban" color="inherit">
-            <Button>
-              <InstagramIcon />
-              <Typography style={{ marginRight: 5 }}>اینستاگرام</Typography>
-            </Button>
-          </Link>
-          {/* و
-          <Link href="https://t.me/bolbol_zaban">
-            <Button>
-              <SimpleTelegramIcon />
-              <Typography style={{ marginRight: 5 }}>تلگرام</Typography>
-            </Button>
-          </Link> 
-          دنبال کنید.
-        </Typography> */}
-      </Grid>
+      <Footer />
     </Grid>
   );
 };

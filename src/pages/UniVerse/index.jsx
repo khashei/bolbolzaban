@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import useUniVerseContext from '@pages/Home/context/uni-verse/context';
 import { GENERATE_VERSE_FULLFILLED } from '@pages/Home/context/uni-verse/reducer';
+import Footer from '@components/footer';
 import InputForm from './InputForm';
 import ResultContainer from './ResultContainer';
 import generatePoemRequest from './api';
@@ -57,6 +58,7 @@ const UniVerse = () => {
         onSubmit={generateBeyt}
       />
       <ResultContainer isLoading={isLoading} outputs={state.outputs} error={state.error} />
+      <Footer />
     </div>
   );
 };
