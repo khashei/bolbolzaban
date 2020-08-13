@@ -1,11 +1,8 @@
 /* eslint-disable import/no-unresolved */
 import React, { useState } from 'react';
-
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-
 import IconButton from '@material-ui/core/IconButton';
-// import FeedbackIcon from '@material-ui/icons/FeedbackOutlined';
 // import HelpIcon from '@material-ui/icons/HelpOutline';
 import Typography from '@material-ui/core/Typography';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -14,6 +11,10 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import InstagramIcon from '@components/icons/instagram-icon';
 import TelegramIcon from '@components/icons/telegram-icon';
+import FeedbackIcon from '@material-ui/icons/FeedbackOutlined';
+import TwitterIcon from '@material-ui/icons/Twitter';
+import InfoIcon from '@material-ui/icons/Info';
+import { Divider } from '@material-ui/core';
 
 const ITEM_HEIGHT = 48;
 
@@ -46,6 +47,16 @@ const ApplicationMenuContainer = () => {
 
   const goToTelegram = () => {
     window.open('https://t.me/bolbol_zaban', '_blank');
+    setAnchorEl(null);
+  };
+
+  const goToTwitter = () => {
+    window.open('https://twitter.com/bolbol_zaban', '_blank');
+    setAnchorEl(null);
+  };
+
+  const goToFacebook = () => {
+    window.open('https://www.facebook.com/bolbolzaban ', '_blank');
     setAnchorEl(null);
   };
 
@@ -102,12 +113,31 @@ const ApplicationMenuContainer = () => {
             <FeedbackIcon />
           </ListItemIcon>
           <Typography variant="inherit">ارسال نظر</Typography>
-        </MenuItem> */}
+        </MenuItem> containerElement={<Link to="/about"  */}
+        <MenuItem key="about" onClick={handleClose} component={Link} to="/about">
+          <ListItemIcon>
+            <InfoIcon className={classes.icon} />
+          </ListItemIcon>
+          <Typography variant="inherit">درباره بلبل‌زبان</Typography>
+        </MenuItem>
+        <Divider />
         <MenuItem key="telegram-option" onClick={goToTelegram}>
           <ListItemIcon>
             <TelegramIcon className={classes.icon} />
           </ListItemIcon>
           <Typography variant="inherit">کانال تلگرام</Typography>
+        </MenuItem>
+        <MenuItem key="twitter-option" onClick={goToTwitter}>
+          <ListItemIcon>
+            <TwitterIcon className={classes.icon} />
+          </ListItemIcon>
+          <Typography variant="inherit">حساب توییتر</Typography>
+        </MenuItem>
+        <MenuItem key="instagram-option" onClick={goToFacebook}>
+          <ListItemIcon>
+            <FeedbackIcon className={classes.icon} />
+          </ListItemIcon>
+          <Typography variant="inherit">صفحه فیس‌بوک</Typography>
         </MenuItem>
         <MenuItem key="instagram-option" onClick={goToInstgram}>
           <ListItemIcon>
