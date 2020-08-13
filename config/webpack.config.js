@@ -298,6 +298,7 @@ module.exports = function (webpackEnv) {
         ),
         '@app-context': path.resolve(__dirname, './../src/pages/App/context'),
         '@pages': path.resolve(__dirname, './../src/pages'),
+        '@resources': path.resolve(__dirname, './../src/resources'),
         '@components': path.resolve(__dirname, './../src/components'),
         '@utils': path.resolve(__dirname, './../src/utils'),
         '@hooks': path.resolve(__dirname, './../src/hooks'),

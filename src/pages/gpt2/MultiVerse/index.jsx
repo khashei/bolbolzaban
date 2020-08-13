@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import useMultiVerseContext from '@pages/Home/context/multi-verse/context';
 import { GENERATE_FULLFILLED, UPDATE_INPUT } from '@pages/Home/context/multi-verse/reducer';
+import Footer from '@components/footer';
 import ResultContainer from '../components/result-container';
 import generateTextRequest, { POETRY_STYLE } from '../api/generate-text-request';
 import InputForm from './InputForm/index';
@@ -78,6 +79,7 @@ const MultiVerse = () => {
         onGenerateMore={generateMoreText}
       />
       <ResultContainer isLoading={isLoading} output={state.output} error={state.error} />
+      <Footer />
     </div>
   );
 };

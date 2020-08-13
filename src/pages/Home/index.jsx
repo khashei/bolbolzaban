@@ -7,7 +7,6 @@ import UniVerse from '@pages/UniVerse';
 import Quote from '@pages/Quote';
 import MultiVerse from '@pages/gpt2/MultiVerse';
 import TextPiece from '@pages/gpt2/TextPiece';
-import About from '@pages/About';
 import UniVerseProvider from './context/uni-verse/provider';
 import MultiVerseProvider from './context/multi-verse/provider';
 import TextPieceProvider from './context/text-piece/provider';
@@ -51,11 +50,10 @@ const Home = () => {
           <div className={classes.root}>
             <AppBar position="static">
               <Tabs value={selectedTab} onChange={handleChange} centered>
-                <Tab label="چامه‌ها" value="quotes" />
+                <Tab label="سروده‌ها" value="quotes" />
                 <Tab label="شعر" value="poem" />
                 <Tab label="متن" value="text" />
                 <Tab label="بیت" value="beyt" />
-                <Tab label="..." value="about" />
               </Tabs>
             </AppBar>
             <TabContainer>
@@ -63,7 +61,6 @@ const Home = () => {
               {selectedTab === 'poem' && <MultiVerse />}
               {selectedTab === 'text' && <TextPiece />}
               {selectedTab === 'beyt' && <UniVerse />}
-              {selectedTab === 'about' && <About />}
             </TabContainer>
           </div>
         </UniVerseProvider>

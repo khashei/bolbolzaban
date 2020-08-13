@@ -42,6 +42,13 @@ function App() {
     )
   );
 
+  const About = lazy(() =>
+    import(
+      /* webpackChunkName: "pages" */
+      '@pages/About'
+    )
+  );
+
   const NotFound = lazy(() =>
     import(
       /* webpackChunkName: "pages" */
@@ -62,10 +69,11 @@ function App() {
                 <Route exact path="/">
                   <Redirect to="/quotes" />
                 </Route>
-                <Route
-                  path={['/quotes', '/poem/:input?', '/text/:input?', '/beyt/:input?', '/about']}
-                >
+                <Route path={['/quotes', '/poem/:input?', '/text/:input?', '/beyt/:input?']}>
                   <Home />
+                </Route>
+                <Route exact path="/about">
+                  <About />
                 </Route>
                 <Route>
                   <NotFound />
