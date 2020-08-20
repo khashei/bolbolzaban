@@ -75,6 +75,9 @@ function App() {
                 <Route exact path="/about">
                   <About />
                 </Route>
+                <Route exact path="/help">
+                  <About />
+                </Route>
                 <Route>
                   <NotFound />
                 </Route>
