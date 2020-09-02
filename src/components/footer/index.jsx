@@ -29,13 +29,13 @@ const Footer = () => {
           >
             اینستاگرام
           </Button>
-          <Button
+          {/* <Button
             target="_blank"
             href="https://www.facebook.com/bolbolzaban"
             onClick={postAnalyticEvent('Facebook')}
           >
             فیس‌بوک
-          </Button>
+          </Button> */}
           <Button
             target="_blank"
             href="https://twitter.com/bolbol_zaban"

@@ -51,6 +51,11 @@ const useStyles = makeStyles((theme) => ({
     height: 0,
     paddingTop: '100%',
   },
+  logoMedia: {
+    height: 0,
+    paddingTop: '100%',
+    backgroundSize: '75%',
+  },
   button: {
     marginTop: theme.spacing(2),
     minWidth: '100%',
@@ -129,7 +134,9 @@ const Quote = () => {
       <Card className={classes.card}>
         {imageUrl && <CardMedia className={classes.media} image={imageUrl} title={state.text} />}
         <CardContent>
-          {!state.outputImageAddress && <CardMedia className={classes.media} image={LogoImage} />}
+          {!state.outputImageAddress && (
+            <CardMedia className={classes.logoMedia} image={LogoImage} />
+          )}
           {!state.outputImageAddress && (
             <Typography>
               نام من بلبل‌زبان است. من با کمک هوش مصنوعی ابیاتی الهام بخش و موزون می‌سُرایم، تا ذهن
@@ -144,7 +151,7 @@ const Quote = () => {
             onClick={generateQuote}
             disabled={isLoading}
           >
-            بسُرای
+            {isLoading ? 'گر صبر کنی ...' : 'بسُرای'}
           </Button>
         </CardContent>
         {state.outputImageAddress && (
