@@ -31,6 +31,7 @@ const TextPiece = () => {
       style: TEXT_STYLE,
       input,
       topk: 40,
+      topp: 98,
       temperature: 75,
       isUserDefined: byUser,
     });
