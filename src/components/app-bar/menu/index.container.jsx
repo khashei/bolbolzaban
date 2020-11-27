@@ -11,7 +11,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import InstagramIcon from '@components/icons/instagram-icon';
 import TelegramIcon from '@components/icons/telegram-icon';
-import FeedbackIcon from '@material-ui/icons/FeedbackOutlined';
+// import FeedbackIcon from '@material-ui/icons/FeedbackOutlined';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import InfoIcon from '@material-ui/icons/Info';
 import { Divider } from '@material-ui/core';
@@ -55,10 +55,10 @@ const ApplicationMenuContainer = () => {
     setAnchorEl(null);
   };
 
-  const goToFacebook = () => {
-    window.open('https://www.facebook.com/bolbolzaban ', '_blank');
-    setAnchorEl(null);
-  };
+  // const goToFacebook = () => {
+  //   window.open('https://www.facebook.com/bolbolzaban ', '_blank');
+  //   setAnchorEl(null);
+  // };
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -133,12 +133,12 @@ const ApplicationMenuContainer = () => {
           </ListItemIcon>
           <Typography variant="inherit">حساب توییتر</Typography>
         </MenuItem>
-        <MenuItem key="instagram-option" onClick={goToFacebook}>
+        {/* <MenuItem key="instagram-option" onClick={goToFacebook}>
           <ListItemIcon>
             <FeedbackIcon className={classes.icon} />
           </ListItemIcon>
           <Typography variant="inherit">صفحه فیس‌بوک</Typography>
-        </MenuItem>
+        </MenuItem> */}
         <MenuItem key="instagram-option" onClick={goToInstgram}>
           <ListItemIcon>
             <InstagramIcon className={classes.icon} />

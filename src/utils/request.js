@@ -5,6 +5,7 @@ const request = async ({
   body = {},
   // token = null,
   contentType = null,
+  jsonResponse = true,
 }) => {
   const finalHeaders = { ...headers };
   // if (token) {
@@ -22,18 +23,36 @@ const request = async ({
     ...(method === 'POST' && { body }),
   });
 
-  return response.json();
+  if (jsonResponse) {
+    return response.json();
+  }
+
+  return response;
 };
 
-export const getRequest = async ({ url, headers = {}, body = {}, token = null }) =>
+export const getRequest = async ({
+  url,
+  headers = {},
+  body = {},
+  token = null,
+  jsonResponse = true,
+}) =>
   request({
     url,
     headers,
     body,
     token,
+    jsonResponse,
   });
 
-export const postRequest = ({ url, headers = {}, body = {}, token = null, json = true }) =>
+export const postRequest = ({
+  url,
+  headers = {},
+  body = {},
+  token = null,
+  json = true,
+  jsonResponse = true,
+}) =>
   request({
     url,
     headers,
@@ -41,9 +60,17 @@ export const postRequest = ({ url, headers = {}, body = {}, token = null, json =
     method: 'POST',
     token,
     contentType: (json && 'application/json') || null,
+    jsonResponse,
   });
 
-export const putRequest = ({ url, headers = {}, body = {}, token = null, json = true }) =>
+export const putRequest = ({
+  url,
+  headers = {},
+  body = {},
+  token = null,
+  json = true,
+  jsonResponse = false,
+}) =>
   request({
     url,
     headers,
@@ -51,15 +78,23 @@ export const putRequest = ({ url, headers = {}, body = {}, token = null, json = 
     method: 'PUT',
     token,
     contentType: (json && 'application/json') || null,
+    jsonResponse,
   });
 
-export const deleteRequest = ({ url, headers = {}, body = {}, token = null }) =>
+export const deleteRequest = ({
+  url,
+  headers = {},
+  body = {},
+  token = null,
+  jsonResponse = false,
+}) =>
   request({
     url,
     headers,
     body,
     method: 'DELETE',
     token,
+    jsonResponse,
   });
 
 export default request;

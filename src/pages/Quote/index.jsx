@@ -23,8 +23,7 @@ import {
 import * as gtag from '@utils/gtag';
 import { IMAGES_BASE_PATH } from '@app-settings';
 import defaultTheme from '@app/theme';
-// import InstagramIcon from '@components/icons/instagram-icon';
-// import SimpleTelegramIcon from '@components/icons/telegram-icon';
+import { sendNotificationRequest } from '@app/api';
 import LogoImage from '@resources/logo.svg';
 import Footer from '@components/footer';
 import quoteInitialState from './initial-state';
@@ -52,6 +51,11 @@ const useStyles = makeStyles((theme) => ({
     height: 0,
     paddingTop: '100%',
   },
+  logoMedia: {
+    height: 0,
+    paddingTop: '100%',
+    backgroundSize: '75%',
+  },
   button: {
     marginTop: theme.spacing(2),
     minWidth: '100%',
@@ -70,20 +74,31 @@ const Quote = () => {
   const [state, dispatch] = useReducer(reduder, quoteInitialState);
   const [isLoading, setIsLoading] = useState(false);
 
-  const postAnalyticEvent = (action, label) => () => {
+  const postAnalyticEvent = (action, label) => {
     if (action === SENT_TO) {
       gtag.event({
         action: `sent_to_${label}`,
         category: 'quote',
-        label: `${state.modelName}: ${state.output.join(' - ')}`,
+        label: `${state.modelName}/${state.outputImageAddress}: ${state.output.join(' - ')}`,
       });
     } else if (action === QUOTE_GENERATED) {
       gtag.event({
         action,
         category: 'quote',
-        label: `${state.modelName}: ${state.output.join(' - ')}`,
+        label: `${state.modelName}/${state.outputImageAddress}: ${state.output.join(' - ')}`,
       });
     }
+  };
+
+  const beforeSendingTo = (target) => () => {
+    postAnalyticEvent(SENT_TO, target);
+
+    sendNotificationRequest({
+      type: 'usage',
+      text: `${IMAGES_BASE_PATH}${state.outputImageAddress.trim()}\n${state.output
+        .join('\n')
+        .trim()}\n${state.modelName}\n#bolbolzaban #sent_to_${target}`,
+    });
   };
 
   const generateQuote = async () => {
@@ -107,8 +122,8 @@ const Quote = () => {
   };
 
   useEffect(() => {
-    postAnalyticEvent(QUOTE_GENERATED, '');
-  }, [state]);
+    if (state.outputImageAddress) postAnalyticEvent(QUOTE_GENERATED, 'test');
+  }, [state.outputImageAddress]);
 
   const classes = useStyles();
   const imageUrl = state.outputImageAddress
@@ -119,7 +134,9 @@ const Quote = () => {
       <Card className={classes.card}>
         {imageUrl && <CardMedia className={classes.media} image={imageUrl} title={state.text} />}
         <CardContent>
-          {!state.outputImageAddress && <CardMedia className={classes.media} image={LogoImage} />}
+          {!state.outputImageAddress && (
+            <CardMedia className={classes.logoMedia} image={LogoImage} />
+          )}
           {!state.outputImageAddress && (
             <Typography>
               نام من بلبل‌زبان است. من با کمک هوش مصنوعی ابیاتی الهام بخش و موزون می‌سُرایم، تا ذهن
@@ -134,18 +151,18 @@ const Quote = () => {
             onClick={generateQuote}
             disabled={isLoading}
           >
-            بسُرای
+            {isLoading ? 'گر صبر کنی ...' : 'بسُرای'}
           </Button>
         </CardContent>
         {state.outputImageAddress && (
           <CardActions className={classes.actions}>
             <Grid container justify="center" alignItems="center" direction="column">
-              <Grid Item>
+              <Grid>
                 <Typography variant="h5">ارسال به:</Typography>
               </Grid>
-              <Grid Item>
+              <Grid>
                 <WhatsappShareButton
-                  beforeOnClick={postAnalyticEvent(SENT_TO, 'Whatsapp')}
+                  beforeOnClick={beforeSendingTo('Whatsapp')}
                   url={imageUrl}
                   title={`${state.output.join('\n')}\nbolbolzaban.com`}
                   separator=" :: "
@@ -159,7 +176,7 @@ const Quote = () => {
                   />
                 </WhatsappShareButton>
                 <TwitterShareButton
-                  beforeOnClick={postAnalyticEvent(SENT_TO, 'Twitter')}
+                  beforeOnClick={beforeSendingTo('Twitter')}
                   url={imageUrl}
                   title={`${state.output.join('\n')}\n\nbolbolzaban.com\n\n`}
                   via="bolbol_zaban"
@@ -173,7 +190,7 @@ const Quote = () => {
                   />
                 </TwitterShareButton>
                 <FacebookShareButton
-                  beforeOnClick={postAnalyticEvent(SENT_TO, 'Facebook')}
+                  beforeOnClick={beforeSendingTo('Facebook')}
                   url={imageUrl}
                   quote={`${state.output.join(' - ')}`}
                   hashtag="#بلبل_زبان"
@@ -186,7 +203,7 @@ const Quote = () => {
                   />
                 </FacebookShareButton>
                 <TelegramShareButton
-                  beforeOnClick={postAnalyticEvent(SENT_TO, 'Telegram')}
+                  beforeOnClick={beforeSendingTo('Telegram')}
                   url={imageUrl}
                   title={`${state.output
                     .join('\n')
