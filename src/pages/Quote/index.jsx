@@ -129,6 +129,8 @@ const Quote = () => {
   const imageUrl = state.outputImageAddress
     ? `${IMAGES_BASE_PATH}${state.outputImageAddress.trim()}`
     : '';
+  const typeTag = state.output.length === 1 ? 'تک_مصرع' : 'تک_بیت';
+
   return (
     <Grid container justify="center" direction="column" alignItems="center">
       <Card className={classes.card}>
@@ -177,10 +179,11 @@ const Quote = () => {
                 </WhatsappShareButton>
                 <TwitterShareButton
                   beforeOnClick={beforeSendingTo('Twitter')}
-                  url={imageUrl}
-                  title={`${state.output.join('\n')}\n\nbolbolzaban.com\n\n`}
+                  url={`${imageUrl}\n\n`}
+                  title={`${state.output.join(
+                    '\n'
+                  )}\n#بلبل_زبان #${typeTag} #شعر_فارسى #هوش_مصنوعی \n\n`}
                   via="bolbol_zaban"
-                  hashtags={['بلبل_زبان', 'شعر']}
                 >
                   <TwitterIcon
                     iconFillColor={defaultTheme.palette.primary.main}
@@ -207,7 +210,7 @@ const Quote = () => {
                   url={imageUrl}
                   title={`${state.output
                     .join('\n')
-                    .trim()}\n#بلبل_زبان\nbolbolzaban.com - @bolbol_zaban`}
+                    .trim()}\n#بلبل_زبان #${typeTag}\n@bolbol_zaban - bolbolzaban.com`}
                 >
                   <TelegramIcon
                     className={classes.shareIcon}
