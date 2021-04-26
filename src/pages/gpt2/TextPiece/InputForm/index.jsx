@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { TextField, Typography, Grid, Button, makeStyles } from '@material-ui/core';
 import HintBox from '@components/hint-box';
 import InlineHelp from '@components/inline-help';
+import SupportUs from '@components/support-us';
 import predefinedPatterns from './predefined-patterns';
 import initialState from './initial-state';
 import reducer, { UPDATE_INPUT, GENERATE, GENERATE_FROM_SAMPLES, GENERATE_MORE } from './reducer';
@@ -134,7 +135,8 @@ const InputForm = ({ isLoading, input, hasOutput, onSubmit, onGenerateMore }) =>
             onClick={onRandomSampleClick}
             variant="outlined"
             className={classes.randomTextButton}
-            disabled={isLoading}
+            // disabled={isLoading}
+            disabled="True"
             size="small"
           >
             نمونه
@@ -160,7 +162,7 @@ const InputForm = ({ isLoading, input, hasOutput, onSubmit, onGenerateMore }) =>
           <InlineHelp
             onRandomSampleClick={onRandomSampleClick}
             anchor={inputTextRef}
-            text="با بلیل‌زبان صحبت کنید"
+            text="با بلبل‌زبان صحبت کنید"
           />
         )}
         <Grid item xs={hasOutput ? 6 : 12}>
@@ -169,11 +171,15 @@ const InputForm = ({ isLoading, input, hasOutput, onSubmit, onGenerateMore }) =>
             color="primary"
             fullWidth
             className={classes.button}
-            disabled={isLoading}
+            // disabled={isLoading}
+            disabled="True"
             onClick={handleSubmit}
           >
             {hasOutput ? 'یکی دیگه بنویس' : 'بنویس'}
           </Button>
+          <Grid item xs={12}>
+            <SupportUs />
+          </Grid>
         </Grid>
         {hasOutput && (
           <Grid item xs={6}>
