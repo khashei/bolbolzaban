@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import Collapse from '@material-ui/core/Collapse';
 import LocalCafeIcon from '@material-ui/icons/LocalCafe';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {
   Button,
+  IconButton,
   Grid,
   Card,
   CardContent,
@@ -41,6 +44,10 @@ const useStyles = makeStyles((theme) => ({
 
 const SupportUs = () => {
   const classes = useStyles();
+  const [isExpanded, setIsExpanded] = useState(false);
+  const handleExpandClick = () => {
+    setIsExpanded(!isExpanded);
+  };
   return (
     <Grid container justify="center">
       <Card className={classes.card}>
@@ -52,10 +59,18 @@ const SupportUs = () => {
       /> */}
         <CardContent>
           <Typography>
-            بلبل زبان تازه متولد شده است و برای سرپا ماندن و یادگیری بهتر زبان فارسی نیاز به حمایت
-            شما دارد. بلبل‌زبان را به دوستان خود معرفی کنید.
+            برای بلبل زبان یک قهوه بخرید! بلبل زبان تازه متولد شده است و برای سرپا ماندن و یادگیری
+            بهتر زبان فارسی نیاز به حمایت شما دارد.
           </Typography>
         </CardContent>
+        <Collapse in={isExpanded} timeout="auto" unmountOnExit>
+          <CardContent>
+            <ul>
+              <li>اگر از استفاده از این ابزار لذت بردید برای بلبل زبان یک قهوه بخرید.</li>
+              <li>بلبل‌زبان را به دوستان خود معرفی کنید.</li>
+            </ul>
+          </CardContent>
+        </Collapse>
         <CardActions>
           <Button
             target="_blank"
@@ -67,6 +82,14 @@ const SupportUs = () => {
           >
             برای بلبل زبان یک قهوه بخرید
           </Button>
+          <IconButton
+            className={`${classes.expand} ${isExpanded ? classes.expandOpen : ''}`}
+            onClick={handleExpandClick}
+            aria-expanded={isExpanded}
+            aria-label="توضیحات بیشتر"
+          >
+            <ExpandMoreIcon />
+          </IconButton>
         </CardActions>
       </Card>
     </Grid>
