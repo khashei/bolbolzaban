@@ -5,6 +5,7 @@ import {
   Grid,
   Card,
   Button,
+  TextField,
   CardContent,
   CardMedia,
   Typography,
@@ -27,8 +28,8 @@ import { sendNotificationRequest } from '@app/api';
 import LogoImage from '@resources/logo.svg';
 import Footer from '@components/footer';
 import quoteInitialState from './initial-state';
-import reduder, { GENERATE_FULLFILLED } from './reducer';
-import generateRandomImageRequest from './api/generate-random-image-request';
+import reduder, { GENERATE_FULLFILLED, UPDATE_INPUT } from './reducer';
+import generateRequest from './api/generate-request';
 
 const SENT_TO = 'sent_to';
 const QUOTE_GENERATED = 'generated';
@@ -57,6 +58,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: '75%',
   },
   button: {
+    marginTop: theme.spacing(2),
+    minWidth: '100%',
+  },
+  textField: {
     marginTop: theme.spacing(2),
     minWidth: '100%',
   },
@@ -104,7 +109,7 @@ const Quote = () => {
   const generateQuote = async () => {
     setIsLoading(true);
 
-    const data = await generateRandomImageRequest();
+    const data = await generateRequest(state.input);
 
     dispatch({
       type: GENERATE_FULLFILLED,
@@ -131,6 +136,15 @@ const Quote = () => {
     : '';
   const typeTag = state.output.length === 1 ? 'تک_مصرع' : 'تک_بیت';
 
+  const handleInputChange = (event) => {
+    dispatch({
+      type: UPDATE_INPUT,
+      payload: {
+        input: event.target.value,
+      },
+    });
+  };
+
   return (
     <Grid container justify="center" direction="column" alignItems="center">
       <Card className={classes.card}>
@@ -145,6 +159,16 @@ const Quote = () => {
               خواننده‌ی با ذوق را به بازی بگیرم.
             </Typography>
           )}
+          <TextField
+            className={classes.textField}
+            placeholder="کلمات ابتدای شعر"
+            variant="outlined"
+            inputProps={{
+              maxLength: 40,
+            }}
+            value={state.input}
+            onChange={handleInputChange}
+          />
           <Button
             className={classes.button}
             variant="contained"

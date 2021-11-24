@@ -1,5 +1,7 @@
+import generateRandomContext from './api/generate-random-context';
+
 const quoteInitialState = {
-  input: '',
+  input: generateRandomContext(),
   modelName: '',
   output: [],
   outputImageAddress: '',
