@@ -54,8 +54,8 @@ const useStyles = makeStyles((theme) => ({
   },
   logoMedia: {
     height: 0,
-    paddingTop: '100%',
-    backgroundSize: '75%',
+    paddingTop: '80%',
+    backgroundSize: '70%',
   },
   button: {
     marginTop: theme.spacing(2),
