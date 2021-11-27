@@ -20,7 +20,7 @@ const reducer = (state, action) => {
       const { input } = action.payload;
       const sanitizedInput = input
         // eslint-disable-next-line no-misleading-character-class
-        .replace(/[^ءآأؤئابتثجحخدذرزسشصضطظعغفقلمنهوپچژکگیِةًٌٍَُِّْٰٔ٫()\s]/g, ' ')
+        .replace(/[^ءآأؤئابتثجحخدذرزسشصضطظعغفقلمنهوپچژکگیِةًٌٍَُِّْٰٔ٫\s]/g, ' ')
         .replace(/\s+/g, ' ')
         .substring(0, 64);
       return {
